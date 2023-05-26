@@ -59,17 +59,12 @@ try {
 	$stm = $pdo->query($sql);
 	$res = $stm->fetchAll(PDO::FETCH_ASSOC);
 	foreach( $res as $key => $val ) {
-		echo date( 'Y/m/d H:i:s T', $val['updated'] );
-		echo chr(9);
-		echo $val['content'];
-		echo PHP_EOL;
-
 		$url = $val['link'];
 		$xml = simplexml_load_file( $url );
 		$json = json_encode( $xml );
 		$array = json_decode( $json, TRUE );
 
-		$detail['kind_name'] = $array['Head']['Headline']['Information']['Item'][0]['Kind'];
+		$detail['kind_name'] = $array['Head']['Headline']['Information']['Item'][0]['Kind']['Name'];
 		$detail['area'] = $array['Head']['Headline']['Information']['Item'][0]['Areas']['Area'];
 		var_dump($detail);
 
@@ -78,14 +73,48 @@ try {
 		$sql .= 'INSERT INTO tmp02 ( kind_name, area_code, area_name ) VALUES (?, ?, ?);';
 		$stm = $pdo->prepare($sql);
 
+		var_dump($detail);
 		foreach( $detail['area'] as $key => $val ) {
 			$stm -> execute([
 				$detail['kind_name'],
-				$detail['area']['Code'],
-				$detail['area']['Name'],
+				$val['Code'],
+				$val['Name'],
 			]);
 		}
 		
+	}
+} catch ( \Exception $e ) {
+	var_dump( $e->getMessage() );
+}
+
+try {
+	$sql  = '';
+	$sql .= '';
+	$sql .= 'SELECT DISTINCT updated, content, link FROM tmp01 WHERE content LIKE \'%速報%\' ORDER BY updated;';
+	$stm = $pdo->query($sql);
+	$res = $stm->fetchAll(PDO::FETCH_ASSOC);
+	foreach( $res as $key => $val ) {
+		echo date( 'Y/m/d H:i:s T', $val['updated'] );
+		echo chr(9);
+		echo $val['content'];
+		echo chr(9);
+		echo PHP_EOL;
+
+		$sql  = '';
+		$sql .= '';
+		$sql .= 'SELECT DISTINCT kind_name,area_code,area_name FROM tmp02;';
+		$stm2 = $pdo->query($sql);
+		$res2 = $stm2->fetchAll(PDO::FETCH_ASSOC);
+		foreach( $res2 as $key2 => $val2 ) {
+			echo $val2['kind_name'];
+			echo chr(9);
+			echo $val2['area_code'];
+			echo chr(9);
+			echo $val2['area_name'];
+			echo chr(9);
+			echo PHP_EOL;
+		}
+		echo PHP_EOL;
 	}
 } catch ( \Exception $e ) {
 	var_dump( $e->getMessage() );
