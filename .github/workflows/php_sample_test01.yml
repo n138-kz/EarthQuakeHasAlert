@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP Composer (sample/test01.php)
 
 on:
   push:
