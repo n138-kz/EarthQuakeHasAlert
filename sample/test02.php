@@ -74,7 +74,7 @@ try {
 
 		foreach( $detail['area'] as $key => $val ) {
 			$stm -> execute([
-				$detail['kind_name'],
+				mb_convert_kana( $detail['kind_name'], 'as' ),
 				$val['Code'],
 				$val['Name'],
 			]);
