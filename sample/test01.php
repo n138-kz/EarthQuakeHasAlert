@@ -14,7 +14,7 @@ try {
 	$pdo = new PDO( 'sqlite::memory:' );
 	$sql  = '';
 	$sql .= '';
-	$sql .= 'CREATE TABLE tmp01 ( id text, title text, updated text, author_name text, content text );';
+	$sql .= 'CREATE TABLE tmp01 ( id text, title text, updated int, author_name text, content text );';
 	$pdo->query($sql);
 
 	$sql  = '';
@@ -47,10 +47,12 @@ foreach( $array['entry'] as $key=>$val ) {
 	
 		$sql  = '';
 		$sql .= '';
-		$sql .= 'SELECT * FROM tmp01 ORDER BY updated;';
+		$sql .= 'SELECT DISTINCT * FROM tmp01 ORDER BY updated;';
 		$stm = $pdo->query($sql);
 		$res = $stm->fetchAll(PDO::FETCH_ASSOC);
 		foreach( $res as $key => $val ) {
+			echo $val['updated'];
+			echo chr(9);
 			echo date( 'Y/m/d H:i:s T', $val['updated'] );
 			echo chr(9);
 			echo $val['content'];
