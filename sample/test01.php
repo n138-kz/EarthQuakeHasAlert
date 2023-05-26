@@ -28,8 +28,8 @@ try {
 }
 
 foreach( $array['entry'] as $key=>$val ) {
-        if( $val['title'] != '震源・震度に関する情報' ){
-                continue;
+        if( FALSE === strpos($val['title'], '震') ){
+			continue;
         }
 
 	try {
