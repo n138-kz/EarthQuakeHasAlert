@@ -19,9 +19,8 @@ try {
 
 	$sql  = '';
 	$sql .= '';
-	$sql .= 'SELECT * FROM tmp01;';
-	$stm = $pdo->query($sql);
-	$res = $stm->fetchAll(PDO::FETCH_ASSOC);
+	$sql .= 'CREATE TABLE tmp02 ( kind_name text, area_code int, area_name text );';
+	$pdo->query($sql);
 
 } catch ( \Exception $e ) {
 	echo __LINE__;
@@ -70,7 +69,23 @@ try {
 		$json = json_encode( $xml );
 		$array = json_decode( $json, TRUE );
 
-		var_dump( $array['Head']['Headline']['Information']['Item'][0] );
+		$detail['kind_name'] = $array['Head']['Headline']['Information']['Item'][0]['Kind'];
+		$detail['area'] = $array['Head']['Headline']['Information']['Item'][0]['Areas']['Area'];
+		var_dump($detail);
+
+		$sql  = '';
+		$sql .= '';
+		$sql .= 'INSERT INTO tmp02 ( kind_name, area_code, area_name ) VALUES (?, ?, ?);';
+		$stm = $pdo->prepare($sql);
+
+		foreach( $detail['area'] as $key => $val ) {
+			$stm -> execute([
+				$detail['kind_name'],
+				$detail['area']['Code'],
+				$detail['area']['Name'],
+			]);
+		}
+		
 	}
 } catch ( \Exception $e ) {
 	var_dump( $e->getMessage() );
