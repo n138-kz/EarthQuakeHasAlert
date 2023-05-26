@@ -108,8 +108,6 @@ try {
 		foreach( $res2 as $key2 => $val2 ) {
 			echo $val2['kind_name'];
 			echo chr(9);
-			echo $val2['area_code'];
-			echo chr(9);
 			echo $val2['area_name'];
 			echo chr(9);
 			echo PHP_EOL;
