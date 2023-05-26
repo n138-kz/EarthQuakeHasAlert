@@ -29,7 +29,7 @@ try {
 
 foreach( $array['entry'] as $key=>$val ) {
         if( FALSE === strpos($val['title'], '震') ){
-			continue;
+		continue;
         }
 
 	try {
