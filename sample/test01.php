@@ -47,7 +47,7 @@ foreach( $array['entry'] as $key=>$val ) {
 	
 		$sql  = '';
 		$sql .= '';
-		$sql .= 'SELECT DISTINCT * FROM tmp01 ORDER BY updated;';
+		$sql .= 'SELECT DISTINCT updated, content FROM tmp01 ORDER BY updated;';
 		$stm = $pdo->query($sql);
 		$res = $stm->fetchAll(PDO::FETCH_ASSOC);
 		foreach( $res as $key => $val ) {
