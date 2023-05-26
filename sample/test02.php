@@ -66,14 +66,12 @@ try {
 
 		$detail['kind_name'] = $array['Head']['Headline']['Information']['Item'][0]['Kind']['Name'];
 		$detail['area'] = $array['Head']['Headline']['Information']['Item'][0]['Areas']['Area'];
-		var_dump($detail);
 
 		$sql  = '';
 		$sql .= '';
 		$sql .= 'INSERT INTO tmp02 ( kind_name, area_code, area_name ) VALUES (?, ?, ?);';
 		$stm = $pdo->prepare($sql);
 
-		var_dump($detail);
 		foreach( $detail['area'] as $key => $val ) {
 			$stm -> execute([
 				$detail['kind_name'],
