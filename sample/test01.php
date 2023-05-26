@@ -57,8 +57,6 @@ try {
 	$stm = $pdo->query($sql);
 	$res = $stm->fetchAll(PDO::FETCH_ASSOC);
 	foreach( $res as $key => $val ) {
-		echo $val['updated'];
-		echo chr(9);
 		echo date( 'Y/m/d H:i:s T', $val['updated'] );
 		echo chr(9);
 		echo $val['content'];
