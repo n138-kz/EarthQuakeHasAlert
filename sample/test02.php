@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');
 
-$url = 'https://www.data.jma.go.jp/developer/xml/feed/extra.xml';
+$url = 'https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
 $xml = simplexml_load_file( $url );
 $json = json_encode( $xml );
 $array = json_decode( $json, TRUE );
@@ -14,7 +14,7 @@ try {
 	$pdo = new PDO( 'sqlite::memory:' );
 	$sql  = '';
 	$sql .= '';
-	$sql .= 'CREATE TABLE tmp01 ( id text, title text, updated text, author_name text, content text );';
+	$sql .= 'CREATE TABLE tmp01 ( id text, title text, updated int, author_name text, content text, link text );';
 	$pdo->query($sql);
 
 	$sql  = '';
@@ -28,36 +28,42 @@ try {
 }
 
 foreach( $array['entry'] as $key=>$val ) {
-        if( $val['title'] != '震源・震度に関する情報' ){
-                continue;
+        if( FALSE === strpos($val['title'], '震') ){
+		continue;
         }
 
 	try {
 		$sql  = '';
 		$sql .= '';
-		$sql .= 'INSERT INTO tmp01 ( id, title, updated, author_name, content ) VALUES (?, ?, ?, ?, ?);';
+		$sql .= 'INSERT INTO tmp01 ( id, title, updated, author_name, content, link ) VALUES (?, ?, ?, ?, ?);';
 		$stm = $pdo->prepare($sql);
 		$stm -> execute([
 			$val['id'],
 			$val['title'],
-			$val['updated'],
+			strtotime( $val['updated'] ),
 			$val['author']['name'],
-			$val['content'],
+			mb_convert_kana( $val['content'], 'as' ),
 		]);
 	
-		$sql  = '';
-		$sql .= '';
-		$sql .= 'SELECT * FROM tmp01;';
-		$stm = $pdo->query($sql);
-		$res = $stm->fetchAll(PDO::FETCH_ASSOC);
-		foreach( $res as $key => $val ) {
-			echo date( 'Y/m/d H:i:s T', strtotime( $val['updated'] ) );
-			echo chr(9);
-			echo mb_convert_kana( $val['content'], 'as' );
-			echo PHP_EOL;
-		}
-
 	} catch ( \Exception $e ) {
 		var_dump( $e->getMessage() );
 	}
+}
+
+try {
+	$sql  = '';
+	$sql .= '';
+	$sql .= 'SELECT DISTINCT updated, content FROM tmp01 WHERE content LIKE \'%速報%\' ORDER BY updated;';
+	$stm = $pdo->query($sql);
+	$res = $stm->fetchAll(PDO::FETCH_ASSOC);
+	foreach( $res as $key => $val ) {
+		echo $val['updated'];
+		echo chr(9);
+		echo date( 'Y/m/d H:i:s T', $val['updated'] );
+		echo chr(9);
+		echo $val['content'];
+		echo PHP_EOL;
+	}
+} catch ( \Exception $e ) {
+	var_dump( $e->getMessage() );
 }
