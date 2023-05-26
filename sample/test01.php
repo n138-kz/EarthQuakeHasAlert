@@ -45,21 +45,25 @@ foreach( $array['entry'] as $key=>$val ) {
 			mb_convert_kana( $val['content'], 'as' ),
 		]);
 	
-		$sql  = '';
-		$sql .= '';
-		$sql .= 'SELECT DISTINCT updated, content FROM tmp01 ORDER BY updated;';
-		$stm = $pdo->query($sql);
-		$res = $stm->fetchAll(PDO::FETCH_ASSOC);
-		foreach( $res as $key => $val ) {
-			echo $val['updated'];
-			echo chr(9);
-			echo date( 'Y/m/d H:i:s T', $val['updated'] );
-			echo chr(9);
-			echo $val['content'];
-			echo PHP_EOL;
-		}
-
 	} catch ( \Exception $e ) {
 		var_dump( $e->getMessage() );
 	}
+}
+
+try {
+	$sql  = '';
+	$sql .= '';
+	$sql .= 'SELECT DISTINCT updated, content FROM tmp01 ORDER BY updated;';
+	$stm = $pdo->query($sql);
+	$res = $stm->fetchAll(PDO::FETCH_ASSOC);
+	foreach( $res as $key => $val ) {
+		echo $val['updated'];
+		echo chr(9);
+		echo date( 'Y/m/d H:i:s T', $val['updated'] );
+		echo chr(9);
+		echo $val['content'];
+		echo PHP_EOL;
+	}
+} catch ( \Exception $e ) {
+	var_dump( $e->getMessage() );
 }
