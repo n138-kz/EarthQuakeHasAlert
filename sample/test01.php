@@ -40,9 +40,9 @@ foreach( $array['entry'] as $key=>$val ) {
 		$stm -> execute([
 			$val['id'],
 			$val['title'],
-			$val['updated'],
+			strtotime( $val['updated'] ),
 			$val['author']['name'],
-			$val['content'],
+			mb_convert_kana( $val['content'], 'as' ),
 		]);
 	
 		$sql  = '';
@@ -51,9 +51,9 @@ foreach( $array['entry'] as $key=>$val ) {
 		$stm = $pdo->query($sql);
 		$res = $stm->fetchAll(PDO::FETCH_ASSOC);
 		foreach( $res as $key => $val ) {
-			echo date( 'Y/m/d H:i:s T', strtotime( $val['updated'] ) );
+			echo date( 'Y/m/d H:i:s T', $val['updated'] );
 			echo chr(9);
-			echo mb_convert_kana( $val['content'], 'as' );
+			echo $val['content'];
 			echo PHP_EOL;
 		}
 
