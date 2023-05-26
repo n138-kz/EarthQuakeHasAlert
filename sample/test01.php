@@ -47,7 +47,7 @@ foreach( $array['entry'] as $key=>$val ) {
 	
 		$sql  = '';
 		$sql .= '';
-		$sql .= 'SELECT * FROM tmp01;';
+		$sql .= 'SELECT * FROM tmp01 ORDER BY updated;';
 		$stm = $pdo->query($sql);
 		$res = $stm->fetchAll(PDO::FETCH_ASSOC);
 		foreach( $res as $key => $val ) {
