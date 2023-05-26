@@ -14,7 +14,7 @@ try {
 	$pdo = new PDO( 'sqlite::memory:' );
 	$sql  = '';
 	$sql .= '';
-	$sql .= 'CREATE TABLE tmp01 ( id text, title text, updated int, author_name text, content text );';
+	$sql .= 'CREATE TABLE tmp01 ( id text, title text, updated int, author_name text, content text, link text );';
 	$pdo->query($sql);
 
 	$sql  = '';
@@ -35,7 +35,7 @@ foreach( $array['entry'] as $key=>$val ) {
 	try {
 		$sql  = '';
 		$sql .= '';
-		$sql .= 'INSERT INTO tmp01 ( id, title, updated, author_name, content ) VALUES (?, ?, ?, ?, ?);';
+		$sql .= 'INSERT INTO tmp01 ( id, title, updated, author_name, content, link ) VALUES (?, ?, ?, ?, ?);';
 		$stm = $pdo->prepare($sql);
 		$stm -> execute([
 			$val['id'],
