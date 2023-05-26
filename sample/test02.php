@@ -24,7 +24,9 @@ try {
 	$res = $stm->fetchAll(PDO::FETCH_ASSOC);
 
 } catch ( \Exception $e ) {
+	echo __LINE__;
 	var_dump( $e->getMessage() );
+	exit();
 }
 
 foreach( $array['entry'] as $key=>$val ) {
@@ -35,7 +37,7 @@ foreach( $array['entry'] as $key=>$val ) {
 	try {
 		$sql  = '';
 		$sql .= '';
-		$sql .= 'INSERT INTO tmp01 ( id, title, updated, author_name, content, link ) VALUES (?, ?, ?, ?, ?);';
+		$sql .= 'INSERT INTO tmp01 ( id, title, updated, author_name, content, link ) VALUES (?, ?, ?, ?, ?, ?);';
 		$stm = $pdo->prepare($sql);
 		$stm -> execute([
 			$val['id'],
@@ -43,6 +45,7 @@ foreach( $array['entry'] as $key=>$val ) {
 			strtotime( $val['updated'] ),
 			$val['author']['name'],
 			mb_convert_kana( $val['content'], 'as' ),
+			$val['link']['@attributes']['href'],
 		]);
 	
 	} catch ( \Exception $e ) {
@@ -53,16 +56,21 @@ foreach( $array['entry'] as $key=>$val ) {
 try {
 	$sql  = '';
 	$sql .= '';
-	$sql .= 'SELECT DISTINCT updated, content FROM tmp01 WHERE content LIKE \'%速報%\' ORDER BY updated;';
+	$sql .= 'SELECT DISTINCT updated, content, link FROM tmp01 WHERE content LIKE \'%速報%\' ORDER BY updated;';
 	$stm = $pdo->query($sql);
 	$res = $stm->fetchAll(PDO::FETCH_ASSOC);
 	foreach( $res as $key => $val ) {
-		echo $val['updated'];
-		echo chr(9);
 		echo date( 'Y/m/d H:i:s T', $val['updated'] );
 		echo chr(9);
 		echo $val['content'];
 		echo PHP_EOL;
+
+		$url = $val['link'];
+		$xml = simplexml_load_file( $url );
+		$json = json_encode( $xml );
+		$array = json_decode( $json, TRUE );
+
+		var_dump( $array['Head']['Headline']['Information']['Item'][0] );
 	}
 } catch ( \Exception $e ) {
 	var_dump( $e->getMessage() );
