@@ -36,5 +36,5 @@ jobs:
     #   run: composer run-script test
 
     - name: Test sample program
-      run: php sample/test.php
+      run: php sample/test01.php
     
