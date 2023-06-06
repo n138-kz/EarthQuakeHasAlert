@@ -71,7 +71,9 @@
             wrapLine = document.createElement('p');
             wrapLine.classList.add('meta');
             smallText = document.createElement('small');
-            smallText.innerText = eqvol.updated;
+            smallText.innerText  = '';
+            smallText.innerText += 'updated: ';
+            smallText.innerText += eqvol.updated;
             wrapLine.append(smallText);
             root_body.append(wrapLine);
 
