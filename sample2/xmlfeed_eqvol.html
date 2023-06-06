@@ -139,6 +139,7 @@
             arrayList.push('Status');
             arrayList.push('震源');
             arrayList.push('最大震度');
+            arrayList.push('各地の震度');
             tableLine = document.createElement('tr');
             arrayList.map(function(val) {
                 tableCell = document.createElement('th');
@@ -196,6 +197,9 @@
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = 'Comming soon...';
                 tableLine.append(tableCell);
                 sub1_tableBlock = document.createElement('table');
                 sub1_tableBlock.classList.add('content');
