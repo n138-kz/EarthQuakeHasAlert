@@ -19,9 +19,10 @@
                 console.debug(xhr.readyState);
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
-                    console.log( xhr.responseText );
+                    console.debug( xhr.responseText );
+                    console.log( JSON.parse(xhr.responseText) );
                 } else {
-                    console.log( [xhr.responseText,xhr.readyState,xhr.status] );
+                    console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
             }
             xhr.open('POST','./gsi-auth.php');
