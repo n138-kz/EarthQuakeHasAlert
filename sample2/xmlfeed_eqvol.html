@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>xmlfeed_eqvol.php</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfCHdcUAAAAAOwkHsW_7W7MfoOrvoIw9CXdLRBA"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        grecaptcha.ready(function() { grecaptcha.execute('6LfCHdcUAAAAAOwkHsW_7W7MfoOrvoIw9CXdLRBA', {action: 'homepage'}); });
+    </script>
+    <script>
+        function onSignIn(googleUser) {
+            console.log(googleUser);
+            console.log(googleUser.credential);
+
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                console.debug(xhr.readyState);
+
+                if ( xhr.readyState === 4 && xhr.status === 200 ) {
+                    console.log( xhr.responseText );
+                } else {
+                    console.log( [xhr.responseText,xhr.readyState,xhr.status] );
+                }
+            }
+            xhr.open('POST','./gsi-auth.php');
+            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+            xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
+        }
+    </script>
+    <script>
+        function getFeedXML_eqvol() {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                console.debug(xhr.readyState);
+
+                if ( xhr.readyState === 4 && xhr.status === 200 ) {
+                    console.debug( xhr.responseText );
+                    console.log( JSON.parse(xhr.responseText) );
+                } else {
+                    console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
+                }
+            }
+            xhr.open('GET','https://labs.n138.jp/tmp/xmlfeed_eqvol.php');
+            xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+            xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
+        }
+    </script>
+</head>
+<body>
+    <input type="button" onclick="getFeedXML_eqvol()" value="getFeedXML_eqvol">
+</body>
+</html>
