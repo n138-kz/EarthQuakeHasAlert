@@ -42,7 +42,7 @@
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
             }
-            xhr.open('GET','https://labs.n138.jp/tmp/xmlfeed_eqvol.php');
+            xhr.open('GET','./xmlfeed_eqvol.php');
             xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
             xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
         }
