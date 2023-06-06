@@ -48,6 +48,14 @@
             root_body.style.background = 'linear-gradient(0.5turn, #3f87a6, #ebf8e1, #f69d3c)';
             root_body.style.height = screen.height + 'px';
         }
+        function replaceFullToHalf(str){
+            /* 
+            * https://qumeru.com/magazine/395
+            */
+            return str.replace(/[！-～]/g, function(s){
+                return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+            });
+        }
         function getFeedXML_eqvol() {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
