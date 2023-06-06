@@ -119,6 +119,124 @@
             wrapLine.append(listBlock);
             root_body.append(wrapLine);
 
+            wrapLine = document.createElement('p');
+            wrapLine.classList.add('content');
+            tableBlock = document.createElement('table');
+            tableBlock.classList.add('content');
+            tableBlock.border = 1;
+            tableMeta = document.createElement('thead');
+            arrayList = [];
+            arrayList.push('Title');
+            arrayList.push('Updated');
+            arrayList.push('ArrivalTime');
+            //arrayList.push('Author');
+            arrayList.push('Content');
+            arrayList.push('EventID');
+            arrayList.push('InfoKind');
+            //arrayList.push('InfoKindVersion');
+            //arrayList.push('InfoType');
+            //arrayList.push('Serial');
+            arrayList.push('Status');
+            arrayList.push('震源');
+            arrayList.push('最大震度');
+            tableLine = document.createElement('tr');
+            arrayList.map(function(val) {
+                tableCell = document.createElement('th');
+                tableCell.innerText = val;
+                tableLine.append(tableCell);
+            });
+            tableMeta.append(tableLine);
+            tableBlock.append(tableMeta);
+            wrapLine.append(tableBlock);
+            tableMeta = document.createElement('tbody');
+            eqvol.entry.map(function(val_r) {
+                console.log(val_r.detail.Body);
+                tableLine = document.createElement('tr');
+                tableCell = document.createElement('td');
+                linkText = document.createElement('a');
+                linkText.href = val_r.id;
+                linkText.innerText = val_r.title;
+                tableCell.append(linkText);
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                linkText = document.createElement('a');
+                linkText.href = val_r.id;
+                linkText.innerText = val_r.updated;
+                tableCell.append(linkText);
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = val_r.detail.Body.Earthquake.ArrivalTime;
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                //tableCell.innerText = val_r.author.name;
+                //tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = replaceFullToHalf(val_r.content);
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = val_r.detail.Head.EventID;
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = val_r.detail.Head.InfoKind;
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                //tableCell.innerText = val_r.detail.Head.InfoKindVersion;
+                //tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                //tableCell.innerText = val_r.detail.Head.InfoType;
+                //tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                //tableCell.innerText = val_r.detail.Head.Serial;
+                //tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = val_r.detail.Control.Status;
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
+                tableLine.append(tableCell);
+                sub1_tableBlock = document.createElement('table');
+                sub1_tableBlock.classList.add('content');
+                sub1_tableBlock.border = 1;
+                sub1_tableMeta = document.createElement('thead');
+                sub1_tableLine = document.createElement('tr');
+                sub1_tableCell = document.createElement('th');
+                sub1_val_r = val_r.detail.Body.Intensity.Observation.Pref;
+                console.debug(sub1_val_r);
+                arrayList = [];
+                if (typeof sub1_val_r.Area != 'undefined') {
+                    sub1_val_r.Area[0] = JSON.parse(JSON.stringify(sub1_val_r.Area));
+                    delete sub1_val_r.Area.City;
+                    delete sub1_val_r.Area.Code;
+                    delete sub1_val_r.Area.MaxInt;
+                    delete sub1_val_r.Area.Name;
+                }
+                console.debug( sub1_val_r.Area, typeof sub1_val_r.Area );
+                Object.keys(sub1_val_r.Area).forEach(function(key1) {
+                    console.log( sub1_val_r.Area[key1] );
+                    //Object.keys(val_r.detail.Body.Intensity.Observation.Pref[key1]['Area']).forEach(function(key2) {
+                        // arrayList.push(val_r.detail.Body.Intenstiy.Observation.Pref[key1]['Area'][key2]);
+                    //});
+                });
+                /*
+                */
+                
+                console.debug(arrayList);
+
+
+
+
+                tableMeta.append(tableLine);
+                
+            });
+            tableBlock.append(tableMeta);
+            wrapLine.append(tableBlock);
+            root_body.append(wrapLine);
+
+
+
         }
     </script>
     <script>
