@@ -63,11 +63,13 @@
         function listup_eqvol(eqvol){
             root_body = document.getElementsByTagName('body')[0];
             header1 = document.createElement('h1');
+            header1.classList.add('meta');
             header1.innerText = eqvol.title;
             header1.title = eqvol.subtitle;
             root_body.append(header1);
 
             wrapLine = document.createElement('p');
+            wrapLine.classList.add('meta');
             smallText = document.createElement('small');
             smallText.innerText = eqvol.updated;
             wrapLine.append(smallText);
@@ -75,6 +77,14 @@
 
         }
     </script>
+    <style>
+        h1.meta {
+            margin: 0;
+        }
+        p.meta {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <input type="button" onclick="getFeedXML_eqvol()" value="getFeedXML_eqvol">
