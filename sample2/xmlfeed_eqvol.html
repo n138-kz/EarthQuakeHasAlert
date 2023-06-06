@@ -54,6 +54,13 @@
             header1.innerText = eqvol.title;
             header1.title = eqvol.subtitle;
             root_body.append(header1);
+
+            wrapLine = document.createElement('p');
+            smallText = document.createElement('small');
+            smallText.innerText = eqvol.updated;
+            wrapLine.append(smallText);
+            root_body.append(wrapLine);
+
         }
     </script>
 </head>
