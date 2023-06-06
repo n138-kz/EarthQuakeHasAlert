@@ -63,6 +63,8 @@
         }
         function listup_eqvol(eqvol){
             root_body = document.getElementsByTagName('body')[0];
+            root_body.innerText = '';
+
             header1 = document.createElement('h1');
             header1.classList.add('meta');
             header1.innerText = eqvol.title;
