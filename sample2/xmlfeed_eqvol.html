@@ -31,6 +31,17 @@
         }
     </script>
     <script>
+        function set_eqvol(eqvol) {
+            eqvol = JSON.stringify(eqvol);
+            return sessionStorage.setItem(
+                (btoa(location.href)).slice(0, 16) + '.eqvol',
+                eqvol
+            );
+        }
+        function get_eqvol(eqvol) {
+            eqvol = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol' );
+            return JSON.parse(eqvol);
+        }
         function getFeedXML_eqvol() {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -39,6 +50,7 @@
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
+                    set_eqvol( JSON.parse(xhr.responseText) );
                     listup_eqvol( JSON.parse(xhr.responseText) );
                 } else {
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
