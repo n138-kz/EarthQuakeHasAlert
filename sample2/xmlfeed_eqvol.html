@@ -77,6 +77,32 @@
             wrapLine.append(smallText);
             root_body.append(wrapLine);
 
+            wrapLine = document.createElement('p');
+            wrapLine.classList.add('meta');
+            listBlock = document.createElement('ul');
+            listLine = document.createElement('li');
+            linkText = document.createElement('a');
+            smallText = document.createElement('small');
+            arrayList = [];
+            arrayList.push(eqvol.id);
+            Object.keys(eqvol.link).forEach(function(key) {
+                arrayList.push(eqvol.link[key]['@attributes']['href']);
+            });
+            console.debug(arrayList);
+            arrayList.map(function(val) {
+                listLine = document.createElement('li');
+                linkText = document.createElement('a');
+                linkText.href = val;
+                smallText = document.createElement('small');
+                smallText.innerText = val;
+                linkText.append(smallText);
+                listLine.append(linkText);
+                listBlock.append(listLine);
+            });
+            wrapLine.append(listBlock);
+            root_body.append(wrapLine);
+
+            
         }
     </script>
     <style>
