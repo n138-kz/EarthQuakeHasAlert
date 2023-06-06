@@ -39,6 +39,7 @@
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
+                    listup_eqvol( JSON.parse(xhr.responseText) );
                 } else {
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
@@ -46,6 +47,13 @@
             xhr.open('GET','./xmlfeed_eqvol.php');
             xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
             xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
+        }
+        function listup_eqvol(eqvol){
+            root_body = document.getElementsByTagName('body')[0];
+            header1 = document.createElement('h1');
+            header1.innerText = eqvol.title;
+            header1.title = eqvol.subtitle;
+            root_body.append(header1);
         }
     </script>
 </head>
