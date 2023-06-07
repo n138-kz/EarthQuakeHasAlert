@@ -33,6 +33,10 @@
     </script>
     <script>
         function datef(date) {
+            dateftext = {
+                literal: [],
+                appendzero: [],
+            };
             dateftext.literal.FullYear    = date.getFullYear();
             dateftext.literal.Month       = date.getMonth()+1;
             dateftext.literal.Date        = date.getDate();
