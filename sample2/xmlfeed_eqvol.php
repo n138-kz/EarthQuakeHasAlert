@@ -17,7 +17,7 @@ function loadCache(){
 	return $cache_result;
 }
 function saveCache($data){
-	if ( is_array($data) ) { $data = json_encode($data); }
+	if ( is_array($data) ) { $data = json_encode($data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE); }
 	$cache_name = dirname(__FILE__) . '/' . 'xmlfeed_cache.dat';
 	$cache_result = file_put_contents($cache_name, $data, LOCK_EX);
 	if ( $cache_result === FALSE ) {
@@ -108,7 +108,7 @@ if (!$data) {
 		}
 	}
 
-	saveCache( json_encode( $data ) );
+	saveCache( json_encode( $data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE ) );
 }
 
 $params = [
