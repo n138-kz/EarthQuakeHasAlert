@@ -267,6 +267,22 @@
             margin: 0;
             white-space:nowrap;
         }
+        @media screen and (orientation: portrait) {
+            .display_landscape {
+                display: none;
+            }
+            .display_landscape_text {
+                opacity: 0;
+            }
+        }
+        @media screen and (orientation: landscape) {
+            .display_portrait {
+                display: none;
+            }
+            .display_portrait_text {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body></body>
