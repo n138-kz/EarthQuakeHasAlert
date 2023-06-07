@@ -6,7 +6,7 @@ function xml2json($data){
 }
 function saveCache($data){
 	if ( is_array($data) ) { $data = json_encode($data); }
-	$cache_name = 'xmlfeed_cache.dat';
+	$cache_name = realpath(dirname(__FILE__) . '/' . 'xmlfeed_cache.dat');
 	$cache_result = file_put_contents($cache_name, $data, LOCK_EX);
 	if ( $cache_result === FALSE ) {
 		error_log('Feed cache failed: ' . $cache_name);
