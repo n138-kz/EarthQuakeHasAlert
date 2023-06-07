@@ -127,6 +127,7 @@
             tableBlock.border = 1;
             tableMeta = document.createElement('thead');
             arrayList = [];
+            arrayList.push('▶');
             arrayList.push('Title');
             arrayList.push('Updated');
             arrayList.push('ArrivalTime');
@@ -154,6 +155,12 @@
             eqvol.entry.map(function(val_r) {
                 console.log(val_r.detail.Body);
                 tableLine = document.createElement('tr');
+                tableCell = document.createElement('td');
+                tableCell.classList.add('display_portrait_text');
+                linkText = document.createElement('a');
+                linkText.innerText = '▶';
+                tableCell.append(linkText);
+                tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 linkText = document.createElement('a');
                 linkText.href = val_r.id;
