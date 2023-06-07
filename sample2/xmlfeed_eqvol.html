@@ -7,9 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=6LfCHdcUAAAAAOwkHsW_7W7MfoOrvoIw9CXdLRBA"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-        grecaptcha.ready(function() { grecaptcha.execute('6LfCHdcUAAAAAOwkHsW_7W7MfoOrvoIw9CXdLRBA', {action: 'homepage'}); });
-    </script>
+    <script src="./lib/grecaptcha.js" id="grecaptchajs"></script>
     <script>
         function onSignIn(googleUser) {
             console.log(googleUser);
@@ -107,7 +105,10 @@
             }
             xhr.open('GET','./xmlfeed_eqvol.php');
             xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
-            xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
+            xhr.send(
+                'ts='+(Math.floor((new Date()).getTime()/1000))
+                + '&id='+grecaptcha_pickup()
+            );
         }
         function listup_eqvol(eqvol){
             root_body = document.getElementsByTagName('body')[0];

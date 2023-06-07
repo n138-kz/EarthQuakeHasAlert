@@ -30,6 +30,9 @@ if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
 	http_response_code(400); die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
+if ( !isset($_GET['id']) || strlen(trim($_GET['id']))==0 ) {
+	http_response_code(400); die('[HTTP400]Bad request.('.dechex(__LINE__).')');
+}
 require_once './vendor/autoload.php';
 require_once('./lib/Discode_push_class.php');
 $discord = new discord();
@@ -39,6 +42,17 @@ $discord->setValue('content', json_encode([
 	$_SERVER['REMOTE_HOST'],
 	$_SERVER['REMOTE_PORT'],
 ]));$discord->exec_curl();
+require_once './lib/Google_reCAPTCHA_v3.php';
+$google = new google();
+$google->setKey_private('6LfCHdcUAAAAAE6CABzkcDthyMEt8CTKM4yzkvKZ');
+$google->setKey_public($_GET['id']);
+$google->setip_remotehost($_SERVER['REMOTE_ADDR']);
+$google_res = $google->exec_curl();
+$google_res = $google->get_resultMesg($google_res);
+if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
+	http_response_code(400); die('[HTTP400]Bad request.('.dechex(__LINE__).')');
+}
+
 $data=loadCache();
 if (!$data) {
 	$data='https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
