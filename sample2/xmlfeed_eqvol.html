@@ -173,7 +173,7 @@
                 //tableCell.innerText = val_r.author.name;
                 //tableLine.append(tableCell);
                 tableCell = document.createElement('td');
-                tableCell.innerText = replaceFullToHalf(val_r.content);
+                tableCell.innerText = replaceFullToHalf(val_r.content).replace('　', '');
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Head.EventID;
