@@ -27,6 +27,9 @@ function saveCache($data){
 if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 	http_response_code(405); die('[HTTP405]Method NOT allowed.('.dechex(__LINE__).')');
 }
+if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
+	http_response_code(400); die('[HTTP400]Bad request.('.dechex(__LINE__).')');
+}
 require_once './vendor/autoload.php';
 $data=loadCache();
 if (!$data) {
