@@ -24,6 +24,9 @@ function saveCache($data){
 		error_log('Feed cache save failed: ' . $cache_name);
 	}
 }
+if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
+	http_response_code(405); die('[HTTP405]Method NOT allowed.('.dechex(__LINE__).')');
+}
 require_once './vendor/autoload.php';
 $data=loadCache();
 if (!$data) {
