@@ -102,6 +102,7 @@
                 } else {
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
+                grecaptcha_init();
             }
             xhr.open(
                 'GET',
