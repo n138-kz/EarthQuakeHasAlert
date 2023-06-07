@@ -203,7 +203,7 @@
                 tableCell = document.createElement('td');
                 linkText = document.createElement('a');
                 linkText.href = val_r.id;
-                linkText.innerText = val_r.updated;
+                linkText.innerText = datef(new Date(val_r.updated));
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
