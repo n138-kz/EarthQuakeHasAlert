@@ -93,10 +93,10 @@
             xhr.onreadystatechange = function() {
                 console.debug(xhr.readyState);
 
+                setBodyBackgroundColor();
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
-                    setBodyBackgroundColor();
                     set_eqvol( JSON.parse(xhr.responseText) );
                     listup_eqvol( JSON.parse(xhr.responseText) );
                 } else {
