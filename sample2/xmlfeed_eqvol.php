@@ -12,7 +12,7 @@ function loadCache(){
 	$cache_mtime = filemtime($cache_name);
 	$cache_result = FALSE;
 	if ( $cache_mtime!==FALSE && (time()-$cache_mtime)<10 ) {
-		$cache_result = file_get_contents($cache_name);
+		$cache_result = json_decode(file_get_contents($cache_name), TRUE);
 	}
 	return $cache_result;
 }
