@@ -1,3 +1,6 @@
 *.bak*
 *.db
+*.lock
+*.dat
+vendor/
 secret.txt
