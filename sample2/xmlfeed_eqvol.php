@@ -31,6 +31,14 @@ if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
 	http_response_code(400); die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
 require_once './vendor/autoload.php';
+require_once('./lib/Discode_push_class.php');
+$discord = new discord();
+$discord->endpoint = 'https://discord.com/api/webhooks/1115835488704663592/WySgau67OH5j_zDitnvV3ncF1gaJltQq58o5bWjVwR4cvTTfrmh8Th8zeWJuiixXzP4v';
+$discord->setValue('content', json_encode([
+	$_SERVER['REMOTE_ADDR'],
+	$_SERVER['REMOTE_HOST'],
+	$_SERVER['REMOTE_PORT'],
+]));$discord->exec_curl();
 $data=loadCache();
 if (!$data) {
 	$data='https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
