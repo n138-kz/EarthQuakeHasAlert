@@ -33,21 +33,33 @@
     </script>
     <script>
         function datef(date) {
-            dateftext  = ''
-            dateftext += ''
-            dateftext += date.getFullYear();
-            dateftext += '/'
-            dateftext += date.getMonth();
-            dateftext += '/'
-            dateftext += date.getDate();
-            dateftext += ' '
-            dateftext += date.getHours();
-            dateftext += ':'
-            dateftext += date.getMinutes();
-            dateftext += ':'
-            dateftext += date.getSeconds();
-            dateftext += ''
-            return dateftext;
+            dateftext.literal.FullYear    = date.getFullYear();
+            dateftext.literal.Month       = date.getMonth()+1;
+            dateftext.literal.Date        = date.getDate();
+            dateftext.literal.Hours       = date.getHours();
+            dateftext.literal.Minutes     = date.getMinutes();
+            dateftext.literal.Seconds     = date.getSeconds();
+            dateftext.appendzero.FullYear = ('00' + dateftext.literal.FullYear + '');
+            dateftext.appendzero.Month    = ('00' + dateftext.literal.Month    + '');
+            dateftext.appendzero.Date     = ('00' + dateftext.literal.Date     + '');
+            dateftext.appendzero.Hours    = ('00' + dateftext.literal.Hours    + '');
+            dateftext.appendzero.Minutes  = ('00' + dateftext.literal.Minutes  + '');
+            dateftext.appendzero.Seconds  = ('00' + dateftext.literal.Seconds  + '');
+            dateftext.resultText  = ''
+            dateftext.resultText += ''
+            dateftext.resultText += dateftext.literal.FullYear;
+            dateftext.resultText += '/'
+            dateftext.resultText += dateftext.appendzero.Month.substring( dateftext.appendzero.Month.length-2 );
+            dateftext.resultText += '/'
+            dateftext.resultText += dateftext.appendzero.Date.substring( dateftext.appendzero.Date.length-2 );
+            dateftext.resultText += ' '
+            dateftext.resultText += dateftext.appendzero.Hours.substring( dateftext.appendzero.Hours.length-2 );
+            dateftext.resultText += ':'
+            dateftext.resultText += dateftext.appendzero.Minutes.substring( dateftext.appendzero.Minutes.length-2 );
+            dateftext.resultText += ':'
+            dateftext.resultText += dateftext.appendzero.Seconds.substring( dateftext.appendzero.Seconds.length-2 );
+            dateftext.resultText += ''
+            return dateftext.resultText;
         }
         function set_eqvol(eqvol) {
             eqvol = JSON.stringify(eqvol);
