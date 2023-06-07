@@ -48,6 +48,7 @@ $discord->setValue('content', json_encode([
 	date('Y/m/d H:i:s T'),
 	$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
 	gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
+	'https://ipinfo.io/'.$_SERVER['REMOTE_ADDR'],
 ]));$discord->exec_curl();
 require_once './lib/Google_reCAPTCHA_v3.php';
 $google = new google();
