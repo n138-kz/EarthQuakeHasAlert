@@ -25,13 +25,19 @@ function saveCache($data){
 	}
 }
 if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
-	http_response_code(405); die('[HTTP405]Method NOT allowed.('.dechex(__LINE__).')');
+	http_response_code(405); 
+	error_log('Error on '.__FILE__.'#'.__LINE__.'');
+	die('[HTTP405]Method NOT allowed.('.dechex(__LINE__).')');
 }
 if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
-	http_response_code(400); die('[HTTP400]Bad request.('.dechex(__LINE__).')');
+	http_response_code(400); 
+	error_log('Error on '.__FILE__.'#'.__LINE__.'');
+	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
 if ( !isset($_GET['id']) || strlen(trim($_GET['id']))==0 ) {
-	http_response_code(400); die('[HTTP400]Bad request.('.dechex(__LINE__).')');
+	http_response_code(400); 
+	error_log('Error on '.__FILE__.'#'.__LINE__.'');
+	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
 require_once './vendor/autoload.php';
 require_once('./lib/Discode_push_class.php');
@@ -50,7 +56,9 @@ $google->setip_remotehost($_SERVER['REMOTE_ADDR']);
 $google_res = $google->exec_curl();
 $google_res = $google->get_resultMesg($google_res);
 if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
-	http_response_code(400); die('[HTTP400]Bad request.('.dechex(__LINE__).')');
+	http_response_code(400); 
+	error_log('Error on '.__FILE__.'#'.__LINE__.'');
+	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
 
 $data=loadCache();
