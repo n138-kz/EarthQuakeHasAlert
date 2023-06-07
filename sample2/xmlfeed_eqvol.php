@@ -24,7 +24,8 @@ function saveCache($data){
 		error_log('Feed cache save failed: ' . $cache_name);
 	}
 }
-if (!loadCache()) {
+$data=loadCache();
+if (!$data) {
 	$data='https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
 	$data=file_get_contents($data);
 	$data=xml2json($data);
