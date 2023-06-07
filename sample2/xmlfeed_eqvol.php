@@ -4,6 +4,14 @@ function xml2json($data){
 	$data=json_encode($data, JSON_INVALID_UTF8_IGNORE );
 	return $data;
 }
+function saveCache($data){
+	if ( is_array($data) ) { $data = json_encode($data); }
+	$cache_name = 'xmlfeed_cache.dat';
+	$cache_result = file_put_contents($cache_name, $data, LOCK_EX);
+	if ( $cache_result === FALSE ) {
+		error_log('Feed cache failed: ' . $cache_name);
+	}
+}
 $data='https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
 $data=file_get_contents($data);
 $data=xml2json($data);
@@ -40,6 +48,8 @@ foreach($data['entry'] as $key => $val){
 		unset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']['MaxInt'] );
 	}
 }
+
+saveCache( json_encode( $data ) );
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
