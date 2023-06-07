@@ -103,12 +103,14 @@
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
             }
-            xhr.open('GET','./xmlfeed_eqvol.php');
-            xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
-            xhr.send(
-                'ts='+(Math.floor((new Date()).getTime()/1000))
-                + '&id='+grecaptcha_pickup()
+            xhr.open(
+                'GET',
+                './xmlfeed_eqvol.php'
+                + '?'+'ts='+(Math.floor((new Date()).getTime()/1000))
+                + '&'+'id='+grecaptcha_pickup()
             );
+            xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+            xhr.send();
         }
         function listup_eqvol(eqvol){
             root_body = document.getElementsByTagName('body')[0];
