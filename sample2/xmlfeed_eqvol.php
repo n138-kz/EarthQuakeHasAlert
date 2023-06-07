@@ -44,6 +44,8 @@ require_once('./lib/Discode_push_class.php');
 $discord = new discord();
 $discord->endpoint = 'https://discord.com/api/webhooks/1115835488704663592/WySgau67OH5j_zDitnvV3ncF1gaJltQq58o5bWjVwR4cvTTfrmh8Th8zeWJuiixXzP4v';
 $discord->setValue('content', json_encode([
+	time(),
+	date('Y/m/d H:i:s T'),
 	$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
 	gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
 ]));$discord->exec_curl();
