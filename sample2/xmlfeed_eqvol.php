@@ -24,6 +24,14 @@ function saveCache($data){
 		error_log('Feed cache save failed: ' . $cache_name);
 	}
 }
+function loadSystemSecret($secret_keyfile = 'secret.txt'){
+	if (!is_readable($secret_keyfile)) {
+		return FALSE;
+	}
+	$secret_keyfile = file_get_contents($secret_keyfile);
+	$secret_keyfile = json_decode($secret_keyfile, TRUE);
+	return $secret_keyfile;
+}
 if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 	http_response_code(405); 
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
@@ -40,9 +48,10 @@ if ( !isset($_GET['id']) || strlen(trim($_GET['id']))==0 ) {
 	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
 require_once './vendor/autoload.php';
+$secret = loadSystemSecret();
 require_once('./lib/Discode_push_class.php');
 $discord = new discord();
-$discord->endpoint = 'https://discord.com/api/webhooks/1115835488704663592/WySgau67OH5j_zDitnvV3ncF1gaJltQq58o5bWjVwR4cvTTfrmh8Th8zeWJuiixXzP4v';
+$discord->endpoint = $secret['external']['discord'][0]['endpoint'];
 $discord->setValue('content', json_encode([
 	time(),
 	date('Y/m/d H:i:s T'),
