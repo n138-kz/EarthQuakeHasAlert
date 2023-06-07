@@ -111,6 +111,26 @@ if (!$data) {
 	saveCache( json_encode( $data ) );
 }
 
+$params = [
+	'files' => new CURLFile(
+		dirname(__FILE__) . '/' . 'xmlfeed_cache.dat',
+		'text/plain',
+		'xmlfeed_cache.txt'
+	)
+];
+$curl_req = curl_init($secret['external']['discord'][0]['endpoint']);
+curl_setopt($curl_req,CURLOPT_POST,           TRUE);
+curl_setopt($curl_req,CURLOPT_POSTFIELDS,     $params);
+curl_setopt($curl_req,CURLOPT_SSL_VERIFYPEER, FALSE); // オレオレ証明書対策
+curl_setopt($curl_req,CURLOPT_SSL_VERIFYHOST, FALSE); //
+curl_setopt($curl_req,CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($curl_req,CURLOPT_COOKIEJAR,      'cookie');
+curl_setopt($curl_req,CURLOPT_COOKIEFILE,     'tmp');
+curl_setopt($curl_req,CURLOPT_FOLLOWLOCATION, TRUE); // Locationヘッダを追跡
+
+$curl_res=curl_exec($curl_req);
+$curl_res=json_decode($curl_res, TRUE);
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
 header('Content-Type: application/json');
