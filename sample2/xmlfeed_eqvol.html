@@ -193,8 +193,9 @@
                 console.log(val_r.detail.Body);
                 tableLine = document.createElement('tr');
                 tableCell = document.createElement('td');
-                linkText = document.createElement('a');
-                linkText.innerText = '▶';
+                linkText = document.createElement('input');
+                linkText.value = '手動発報';
+                linkText.type = 'button';
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
