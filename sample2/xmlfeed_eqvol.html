@@ -114,7 +114,7 @@
             xhr.send();
         }
         function listup_eqvol(eqvol){
-            root_body = document.getElementsByTagName('body')[0];
+            root_body = document.getElementById('eqvol');
             root_body.innerText = '';
 
             header1 = document.createElement('h1');
@@ -338,5 +338,15 @@
         }
     </style>
 </head>
-<body></body>
+<body>
+	<div id="eqvol"></div>
+	<div id="auth_google_sso">
+	    <div id="g_id_onload"
+	        data-client_id="784669840257-i0a06p3o6g8k0k1tk26jj09li1q2acud.apps.googleusercontent.com"
+	        data-login_uri="https://labs.n138.jp"
+	        data-callback="onSignIn">
+	    </div>
+	    <div class="g_id_signin" data-type="standard" data-logo_alignment="left"></div>
+	</div>
+</body>
 </html>
