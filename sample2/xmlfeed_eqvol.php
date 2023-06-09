@@ -87,6 +87,15 @@ if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 }
 if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
 	http_response_code(400); 
+	$database['useraccesslog']->insert(
+		time(),/* Server ts */
+		date('Y/m/d H:i:s T'),
+		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
+		gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
+		mb_strtolower($_SERVER['REQUEST_METHOD']),
+		$_GET['ts'],/* Client ts */
+		NULL,/* Google reCAPTCHA v3 result */
+	);
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
 	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
