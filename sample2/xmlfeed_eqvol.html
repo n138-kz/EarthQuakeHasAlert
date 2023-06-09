@@ -359,6 +359,7 @@
     <style>
         .g_id_signin {
             position: fixed;
+            top: 0;
             right: 0;
             z-index: 1;
         }
@@ -367,14 +368,12 @@
             height: 50px;
             border-radius: 50%;
         }
-        @media screen and (orientation: portrait) {
-            .g_id_signin {
-                bottom: 0;
-            }
-        }
         @media screen and (orientation: landscape) {
             .g_id_signin {
+                position: fixed;
                 top: 0;
+                right: 0;
+                z-index: 1;
             }
         }
     </style>
