@@ -72,10 +72,13 @@ if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
 }
 
 $data=loadCache(dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json');
+$data_recv='';
+$data_recv_length=0;
 if (!$data) {
 	$data='https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
-	$data=file_get_contents($data);
-	$data=xml2json($data);
+	$data_recv=file_get_contents($data);
+	$data_recv_length+=strlen($data_recv);
+	$data=xml2json($data_recv);
 
 	/* 必要なものだけ抽出 */
 	$search='震源・震度に関する情報';
@@ -91,11 +94,9 @@ if (!$data) {
 
 	/* 詳細情報取得 */
 	foreach($data['entry'] as $key => $val){
-		$data['entry'][$key]['detail'] = json_decode(
-			xml2json(
-				file_get_contents( $data['entry'][$key]['id'] )
-			)
-		, TRUE);
+		$data_recv=file_get_contents($data['entry'][$key]['id']);
+		$data_recv_length+=strlen($data_recv);
+		$data['entry'][$key]['detail'] = json_decode( xml2json( $data_recv ), TRUE);
 	}
 
 	/* 各地の震度の項目が不定形だったので定形に変更 */
