@@ -37,6 +37,10 @@
         }
     </script>
     <script>
+        function issueAlert() {
+            console.log(this.dataset.eventid);
+            alert(this.dataset.eventid);
+        }
         function datef(date) {
             dateftext = {
                 literal: [],
@@ -203,6 +207,8 @@
                 linkText = document.createElement('input');
                 linkText.value = '手動発報';
                 linkText.type = 'button';
+                linkText.dataset.eventid = val_r.detail.Head.EventID;
+                linkText.setAttribute('onclick', 'issueAlert()');
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
                 /*
