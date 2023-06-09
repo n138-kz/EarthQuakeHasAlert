@@ -69,9 +69,9 @@ $google_res['mesg'] = $google->get_resultMesg($google_res);
 if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
 }
 
-$data=loadCache(dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json');
 $data_recv='';
 $data_recv_length=0;
+$data=loadCache(dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json');
 if (!$data) {
 	$data='https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
 	$data_recv=file_get_contents($data);
