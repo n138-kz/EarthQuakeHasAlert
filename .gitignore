@@ -2,5 +2,6 @@
 *.db
 *.lock
 *.dat
+*.db
 vendor/
 secret.txt
