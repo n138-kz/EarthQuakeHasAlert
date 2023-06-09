@@ -308,6 +308,16 @@
                             sub1_tableCell.innerText = sub1_val_r[key1];
                         } catch (error) { console.error(error); }
                     }
+                    try { sub1_tableCell.innerText = sub1_val_r[key1].Area.Name; } catch (error) {
+                        try {
+                            sub1_tableCell.innerText = sub1_val_r[key1];
+                        } catch (error) { console.error(error); }
+                    }
+                    try { sub1_tableCell.innerText = sub1_val_r[key1].Area.MaxInt; } catch (error) {
+                        try {
+                            sub1_tableCell.innerText = sub1_val_r[key1];
+                        } catch (error) { console.error(error); }
+                    }
                     sub1_tableLine.append(sub1_tableCell);
                     /*
                     sub1_tableCell.innerText = sub1_val_r[key1].Name;
