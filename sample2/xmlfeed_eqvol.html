@@ -20,7 +20,7 @@
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
-                    sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.google-sso', JSON.parse(xhr.responseText) );
+                    sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.google-sso', xhr.responseText );
                     Array.prototype.forEach.call(document.querySelectorAll('.g_id_signin'), function(class_g_id_signin) {
                         class_g_id_signin.innerHTML='';
                         g_id_icon_img = document.createElement('img');
