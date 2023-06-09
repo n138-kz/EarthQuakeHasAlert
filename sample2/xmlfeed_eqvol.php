@@ -73,6 +73,15 @@ class internalDB {
 $database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
 if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 	http_response_code(405); 
+	$database['useraccesslog']->insert(
+		time(),/* Server ts */
+		date('Y/m/d H:i:s T'),
+		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
+		gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
+		mb_strtolower($_SERVER['REQUEST_METHOD']),
+		NULL,/* Client ts */
+		NULL,/* Google reCAPTCHA v3 result */
+	);
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
 	die('[HTTP405]Method NOT allowed.('.dechex(__LINE__).')');
 }
