@@ -5,7 +5,6 @@ function xml2json($data){
 	return $data;
 }
 function loadCache($cache_name = ''){
-	$cache_name = dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json';
 	if ( !is_readable($cache_name) ) {
 		error_log('Feed cache load failed: ' . $cache_name);
 	}
@@ -18,7 +17,6 @@ function loadCache($cache_name = ''){
 }
 function saveCache($cache_name = '', $data=[]){
 	if ( is_array($data) ) { $data = json_encode($data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE); }
-	$cache_name = dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json';
 	$cache_result = file_put_contents($cache_name, $data, LOCK_EX);
 	if ( $cache_result === FALSE ) {
 		error_log('Feed cache save failed: ' . $cache_name);
