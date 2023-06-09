@@ -69,11 +69,18 @@ $payload = $client->verifyIdToken(CLIENT_TOKEN);
 if ($payload) {
     $userid = $payload['sub'];
     $_SESSION = [];
-    $_SESSION['user']['google']['userid'] = $payload['sub'];
-    $_SESSION['user']['google']['email'] = $payload['email'];
-    $_SESSION['user']['google']['name'] = $payload['name'];
-    $_SESSION['user']['google']['icon'] = $payload['picture'];
+    $_SESSION['user']['google']['userid']         = $payload['sub'];
+    $_SESSION['user']['google']['email']          = $payload['email'];
+    $_SESSION['user']['google']['name']           = $payload['name'];
+    $_SESSION['user']['google']['icon']           = $payload['picture'];
     $_SESSION['user']['google']['session']['iat'] = $payload['iat'];
     $_SESSION['user']['google']['session']['exp'] = $payload['exp'];
 }
-echo json_encode($_SESSION['user']['google']);
+echo json_encode([
+	'client_id'  => CLIENT_ID,
+	'credential' => CLIENT_TOKEN,
+	'email'      => $_SESSION['user']['google']['email'],
+	'icon'       => $_SESSION['user']['google']['icon'],
+	'name'       => $_SESSION['user']['google']['name'],
+	'session'    => $_SESSION['user']['google']['session'],
+]);
