@@ -292,17 +292,29 @@
                     sub1_tableMeta.append(sub1_tableLine);
                 });
                 sub1_tableBlock.append(sub1_tableMeta);
+                sub1_tableMeta = document.createElement('tbody');
                 sub1_val_r = val_r.detail.Body.Intensity.Observation.Pref;
+                arrayList = [];
                 console.debug(sub1_val_r);
+                Object.keys(sub1_val_r).forEach(function(key1) {
+                    sub1_tableLine = document.createElement('tr');
+                    Object.keys(arrayList).forEach(function(key2) {
+                        sub1_tableCell.innerText = arrayList[key2];
+                        sub1_tableLine.append(sub1_tableCell);
+                    });
+                    sub1_tableCell = document.createElement('td');
+                    sub1_tableCell.innerText = sub1_val_r[key1].Name;
+                    sub1_tableMeta.append(sub1_tableLine);
+                    sub1_tableCell = document.createElement('td');
+                    sub1_tableCell.innerText = sub1_val_r[key1].Area.Name;
+                    sub1_tableMeta.append(sub1_tableLine);
+                    sub1_tableCell = document.createElement('td');
+                    sub1_tableCell.innerText = sub1_val_r[key1].Area.MaxInt;
+                    sub1_tableMeta.append(sub1_tableLine);
+                });
+                sub1_tableBlock.append(sub1_tableMeta);
                 /*
                 arrayList = [];
-                if (typeof sub1_val_r.Area != 'undefined') {
-                    sub1_val_r.Area[0] = JSON.parse(JSON.stringify(sub1_val_r.Area));
-                    delete sub1_val_r.Area.City;
-                    delete sub1_val_r.Area.Code;
-                    delete sub1_val_r.Area.MaxInt;
-                    delete sub1_val_r.Area.Name;
-                }
                 console.debug( sub1_val_r.Area, typeof sub1_val_r.Area );
                 Object.keys(sub1_val_r.Area).forEach(function(key1) {
                     console.log( sub1_val_r.Area[key1] );
