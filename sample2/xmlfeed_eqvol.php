@@ -70,6 +70,7 @@ class internalDB {
 		return $data;
 	}
 }
+$database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
 if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 	http_response_code(405); 
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
