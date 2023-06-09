@@ -93,8 +93,6 @@
         }
         function setBodyBackgroundColor() {
             root_body = document.getElementsByTagName('body')[0];
-            root_body.style.background = 'linear-gradient(0.5turn, #3f87a6, #ebf8e1, #f69d3c)';
-            root_body.style.overflowY = 'clip';
             root_body.style.height = screen.height + 'px';
         }
         function replaceFullToHalf(str){
@@ -333,6 +331,10 @@
         }, 1000*10);
     </script>
     <style>
+        body {
+            background: linear-gradient(0.5turn, #3f87a6, #ebf8e1, #f69d3c);
+            overflowY: hidden;
+        }
         h1.meta {
             margin: 0;
         }
