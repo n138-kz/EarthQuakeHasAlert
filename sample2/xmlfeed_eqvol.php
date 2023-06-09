@@ -113,6 +113,17 @@ if ( !isset($_GET['id']) || strlen(trim($_GET['id']))==0 ) {
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
 	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
+if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
+	$database['useraccesslog']->insert([
+		time(),/* Server ts */
+		date('Y/m/d H:i:s T'),
+		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
+		gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
+		mb_strtolower($_SERVER['REQUEST_METHOD']),
+		$_GET['ts'],/* Client ts */
+		NULL,/* Google reCAPTCHA v3 result */
+	]);
+}
 require_once './vendor/autoload.php';
 $secret = loadSystemSecret();
 require_once('./lib/Discode_push_class.php');
