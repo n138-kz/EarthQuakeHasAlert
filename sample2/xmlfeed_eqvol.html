@@ -37,9 +37,9 @@
         }
     </script>
     <script>
-        function issueAlert() {
-            console.log(this.dataset.eventid);
-            alert(this.dataset.eventid);
+        function issueAlert(issuer_object) {
+            console.log(issuer_object.dataset.eventid);
+            alert(issuer_object.dataset.eventid);
         }
         function datef(date) {
             dateftext = {
@@ -208,7 +208,7 @@
                 linkText.value = '手動発報';
                 linkText.type = 'button';
                 linkText.dataset.eventid = val_r.detail.Head.EventID;
-                linkText.setAttribute('onclick', 'issueAlert()');
+                linkText.setAttribute('onclick', 'issueAlert(this)');
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
                 /*
