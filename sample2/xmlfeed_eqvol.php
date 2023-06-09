@@ -58,7 +58,7 @@ class internalDB {
 		$data=$this->select();
 		$data[]=$query;
 		$data=json_encode($data, JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE);
-		file_put_contents($this->database['path'], $data);
+		return file_put_contents($this->database['path'], $data);
 	}
 	function select($query=[]){
 		if ( $this->database['mode']&1 !== 1 ) {
