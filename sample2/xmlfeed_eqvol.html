@@ -104,7 +104,6 @@
             });
         }
         function getFeedXML_eqvol() {
-            setBodyBackgroundColor();
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 console.debug(xhr.readyState);
@@ -325,6 +324,9 @@
         window.addEventListener('load', function() {
             console.log('page is fully loaded');
             getFeedXML_eqvol();
+        });
+        window.addEventListener('DOMContentLoaded', function() {
+            setBodyBackgroundColor();
         });
         setInterval(() => {
             getFeedXML_eqvol();
