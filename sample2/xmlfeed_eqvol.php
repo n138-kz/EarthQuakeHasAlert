@@ -49,6 +49,7 @@ class internalDB {
 	}
 	function insert($query=[]){
 		if ( $this->database['mode']&3 !== 3 ) {
+			error_log('error: no permission to database in write.');
 			return FALSE;
 		}
 		$data=$this->select();
@@ -56,6 +57,7 @@ class internalDB {
 	}
 	function select($query=[]){
 		if ( $this->database['mode']&1 !== 1 ) {
+			error_log('error: no permission to database.');
 			return FALSE;
 		}
 		$data=file_get_contents($this->database['path']);
