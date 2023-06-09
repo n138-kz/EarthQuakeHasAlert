@@ -34,7 +34,10 @@ function loadSystemSecret($secret_keyfile = 'secret.txt'){
 class internalDB {
 	private $database;
 	function __construct($database) {
-		$this->database=[];
+		$this->database=[
+			'path'=>'',
+			'mode'=>0,
+		];
 		if ( !is_readable($database) ) {
 			error_log('Faild open database file(mode=r): ' . $database);
 		} else {
