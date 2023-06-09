@@ -1,4 +1,5 @@
 <?php session_start();
+require_once './vendor/autoload.php';
 function xml2json($data){
 	$data=simplexml_load_string($data);
 	$data=json_encode($data, JSON_INVALID_UTF8_IGNORE );
@@ -124,7 +125,6 @@ if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
 		NULL,/* Google reCAPTCHA v3 result */
 	]);
 }
-require_once './vendor/autoload.php';
 $secret = loadSystemSecret();
 require_once('./lib/Discode_push_class.php');
 $discord = new discord();
