@@ -4,7 +4,7 @@ function xml2json($data){
 	$data=json_encode($data, JSON_INVALID_UTF8_IGNORE );
 	return $data;
 }
-function loadCache(){
+function loadCache($cache_name = ''){
 	$cache_name = dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json';
 	if ( !is_readable($cache_name) ) {
 		error_log('Feed cache load failed: ' . $cache_name);
@@ -71,7 +71,7 @@ $google_res['mesg'] = $google->get_resultMesg($google_res);
 if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
 }
 
-$data=loadCache();
+$data=loadCache(dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json');
 if (!$data) {
 	$data='https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
 	$data=file_get_contents($data);
