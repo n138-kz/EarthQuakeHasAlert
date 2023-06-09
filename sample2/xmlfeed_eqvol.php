@@ -169,7 +169,7 @@ if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
 		'files' => new CURLFile(
 			dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json',
 			'application/json',
-			'xmlfeed_eqvol.json'
+			'xmlfeed_eqvol_'.date('YmdHis T').'.json'
 		)
 	];
 	$curl_req = curl_init($secret['external']['discord'][0]['endpoint']);
