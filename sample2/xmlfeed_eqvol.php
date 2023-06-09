@@ -52,13 +52,15 @@ $secret = loadSystemSecret();
 require_once('./lib/Discode_push_class.php');
 $discord = new discord();
 $discord->endpoint = $secret['external']['discord'][0]['endpoint'];
-$discord->setValue('content', json_encode([
-	time(),
-	date('Y/m/d H:i:s T'),
-	$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
-	gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
-	'https://ipinfo.io/'.$_SERVER['REMOTE_ADDR'],
-]));$discord->exec_curl();
+if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
+	$discord->setValue('content', json_encode([
+		time(),
+		date('Y/m/d H:i:s T'),
+		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
+		gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
+		'https://ipinfo.io/'.$_SERVER['REMOTE_ADDR'],
+	]));$discord->exec_curl();
+}
 require_once './lib/Google_reCAPTCHA_v3.php';
 $google = new google();
 $google->setKey_private('6LfCHdcUAAAAAE6CABzkcDthyMEt8CTKM4yzkvKZ');
@@ -111,25 +113,27 @@ if (!$data) {
 	saveCache( json_encode( $data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE ) );
 }
 
-$params = [
-	'files' => new CURLFile(
-		dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json',
-		'application/json',
-		'xmlfeed_eqvol.json'
-	)
-];
-$curl_req = curl_init($secret['external']['discord'][0]['endpoint']);
-curl_setopt($curl_req,CURLOPT_POST,           TRUE);
-curl_setopt($curl_req,CURLOPT_POSTFIELDS,     $params);
-curl_setopt($curl_req,CURLOPT_SSL_VERIFYPEER, FALSE); // オレオレ証明書対策
-curl_setopt($curl_req,CURLOPT_SSL_VERIFYHOST, FALSE); //
-curl_setopt($curl_req,CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($curl_req,CURLOPT_COOKIEJAR,      'cookie');
-curl_setopt($curl_req,CURLOPT_COOKIEFILE,     'tmp');
-curl_setopt($curl_req,CURLOPT_FOLLOWLOCATION, TRUE); // Locationヘッダを追跡
+if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
+	$params = [
+		'files' => new CURLFile(
+			dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json',
+			'application/json',
+			'xmlfeed_eqvol.json'
+		)
+	];
+	$curl_req = curl_init($secret['external']['discord'][0]['endpoint']);
+	curl_setopt($curl_req,CURLOPT_POST,           TRUE);
+	curl_setopt($curl_req,CURLOPT_POSTFIELDS,     $params);
+	curl_setopt($curl_req,CURLOPT_SSL_VERIFYPEER, FALSE); // オレオレ証明書対策
+	curl_setopt($curl_req,CURLOPT_SSL_VERIFYHOST, FALSE); //
+	curl_setopt($curl_req,CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($curl_req,CURLOPT_COOKIEJAR,      'cookie');
+	curl_setopt($curl_req,CURLOPT_COOKIEFILE,     'tmp');
+	curl_setopt($curl_req,CURLOPT_FOLLOWLOCATION, TRUE); // Locationヘッダを追跡
 
-$curl_res=curl_exec($curl_req);
-$curl_res=json_decode($curl_res, TRUE);
+	$curl_res=curl_exec($curl_req);
+	$curl_res=json_decode($curl_res, TRUE);
+}
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
