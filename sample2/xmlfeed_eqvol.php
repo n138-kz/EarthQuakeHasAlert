@@ -72,7 +72,7 @@ class internalDB {
 	}
 }
 $database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
-if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
+if ( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ) {
 	http_response_code(405); 
 	$database['useraccesslog']->insert([
 		time(),/* Server ts */
