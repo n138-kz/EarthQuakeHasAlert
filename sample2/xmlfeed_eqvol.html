@@ -22,8 +22,14 @@
                     console.log( JSON.parse(xhr.responseText) );
                     sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.google-sso', JSON.parse(xhr.responseText) );
                     Array.prototype.forEach.call(document.querySelectorAll('.g_id_signin'), function(class_g_id_signin) {
-                        class_g_id_signin.style.display='none';
+                        class_g_id_signin.innerHTML='';
+                        g_id_icon_img = createElement('img');
+                        g_id_icon_img.alt='';
+                        g_id_icon_img.src=JSON.parse(xhr.responseText).icon;
+                        g_id_icon_img.classList.add('g_id_icon');
+                        class_g_id_signin.append(g_id_icon_img);
                     });
+
                 } else {
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
