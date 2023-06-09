@@ -165,8 +165,8 @@
             tableMeta = document.createElement('thead');
             arrayList = [];
             arrayList.push('▶');
-            arrayList.push('Title');
-            arrayList.push('Updated');
+            //arrayList.push('Title');
+            //arrayList.push('Updated');
             arrayList.push('ArrivalTime');
             //arrayList.push('Author');
             arrayList.push('Content');
@@ -198,18 +198,22 @@
                 linkText.type = 'button';
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
+                /*
                 tableCell = document.createElement('td');
                 linkText = document.createElement('a');
                 linkText.href = val_r.id;
                 linkText.innerText = val_r.title;
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
+                */
+                /*
                 tableCell = document.createElement('td');
                 linkText = document.createElement('a');
                 linkText.href = val_r.id;
                 linkText.innerText = datef(new Date(val_r.updated));
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
+                */
                 tableCell = document.createElement('td');
                 linkText = document.createElement('a');
                 linkText.href = val_r.id;
@@ -217,8 +221,10 @@
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
-                //tableCell.innerText = val_r.author.name;
-                //tableLine.append(tableCell);
+                /*
+                tableCell.innerText = val_r.author.name;
+                tableLine.append(tableCell);
+                */
                 tableCell = document.createElement('td');
                 tableCell.innerText = replaceFullToHalf(val_r.content).replace('　', '');
                 tableLine.append(tableCell);
