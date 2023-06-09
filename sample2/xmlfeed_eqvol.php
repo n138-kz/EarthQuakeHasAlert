@@ -118,15 +118,6 @@ $secret = loadSystemSecret();
 require_once('./lib/Discode_push_class.php');
 $discord = new discord();
 $discord->endpoint = $secret['external']['discord'][0]['endpoint'];
-$database['useraccesslog']->insert([
-	time(),/* Server ts */
-	date('Y/m/d H:i:s T'),
-	$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
-	gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
-	mb_strtolower($_SERVER['REQUEST_METHOD']),
-	$_GET['ts'],/* Client ts */
-	NULL,/* Google reCAPTCHA v3 result */
-]);
 require_once './lib/Google_reCAPTCHA_v3.php';
 $google = new google();
 $google->setKey_private('6LfCHdcUAAAAAE6CABzkcDthyMEt8CTKM4yzkvKZ');
