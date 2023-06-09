@@ -76,4 +76,4 @@ if ($payload) {
     $_SESSION['user']['google']['session']['iat'] = $payload['iat'];
     $_SESSION['user']['google']['session']['exp'] = $payload['exp'];
 }
-echo json_encode($_SESSION);
+echo json_encode($_SESSION['user']['google']);
