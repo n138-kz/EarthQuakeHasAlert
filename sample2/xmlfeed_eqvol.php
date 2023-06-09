@@ -127,13 +127,11 @@ if (!$data) {
 		$data_recv=file_get_contents($data['entry'][$key]['id']);
 		$data_recv_length+=strlen($data_recv);
 		$data['entry'][$key]['detail'] = json_decode( xml2json( $data_recv ), TRUE);
-	}
 
-	/* 各地の震度の項目が不定形だったので定形に変更 */
-	foreach($data['entry'] as $key => $val){
+		/* 各地の震度の項目が不定形だったので定形に変更 */
 		if( isset( $val['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
 			/* $data['entry'][$key] --> $val */
-			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][0] = $val['detail']['Body']['Intensity']['Observation']['Pref']['Area'];
+			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][] = $val['detail']['Body']['Intensity']['Observation']['Pref']['Area'];
 			unset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']['City'] );
 			unset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']['Code'] );
 			unset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']['Name'] );
