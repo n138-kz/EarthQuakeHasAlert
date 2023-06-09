@@ -73,7 +73,7 @@ class internalDB {
 $database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
 if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 	http_response_code(405); 
-	$database['useraccesslog']->insert(
+	$database['useraccesslog']->insert([
 		time(),/* Server ts */
 		date('Y/m/d H:i:s T'),
 		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
@@ -81,13 +81,13 @@ if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 		mb_strtolower($_SERVER['REQUEST_METHOD']),
 		NULL,/* Client ts */
 		NULL,/* Google reCAPTCHA v3 result */
-	);
+	]);
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
 	die('[HTTP405]Method NOT allowed.('.dechex(__LINE__).')');
 }
 if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
 	http_response_code(400); 
-	$database['useraccesslog']->insert(
+	$database['useraccesslog']->insert([
 		time(),/* Server ts */
 		date('Y/m/d H:i:s T'),
 		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
@@ -95,13 +95,13 @@ if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
 		mb_strtolower($_SERVER['REQUEST_METHOD']),
 		$_GET['ts'],/* Client ts */
 		NULL,/* Google reCAPTCHA v3 result */
-	);
+	]);
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
 	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
 if ( !isset($_GET['id']) || strlen(trim($_GET['id']))==0 ) {
 	http_response_code(400); 
-	$database['useraccesslog']->insert(
+	$database['useraccesslog']->insert([
 		time(),/* Server ts */
 		date('Y/m/d H:i:s T'),
 		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
@@ -109,7 +109,7 @@ if ( !isset($_GET['id']) || strlen(trim($_GET['id']))==0 ) {
 		mb_strtolower($_SERVER['REQUEST_METHOD']),
 		$_GET['ts'],/* Client ts */
 		-1,/* Google reCAPTCHA v3 result *//* -1:not set */
-	);
+	]);
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
 	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
 }
@@ -127,7 +127,7 @@ if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
 		'https://ipinfo.io/'.$_SERVER['REMOTE_ADDR'],
 	]));$discord->exec_curl();
 }
-$database['useraccesslog']->insert(
+$database['useraccesslog']->insert([
 	time(),/* Server ts */
 	date('Y/m/d H:i:s T'),
 	$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
@@ -135,7 +135,7 @@ $database['useraccesslog']->insert(
 	mb_strtolower($_SERVER['REQUEST_METHOD']),
 	$_GET['ts'],/* Client ts */
 	NULL,/* Google reCAPTCHA v3 result */
-);
+]);
 require_once './lib/Google_reCAPTCHA_v3.php';
 $google = new google();
 $google->setKey_private('6LfCHdcUAAAAAE6CABzkcDthyMEt8CTKM4yzkvKZ');
