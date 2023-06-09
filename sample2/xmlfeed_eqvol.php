@@ -31,6 +31,38 @@ function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	$secret_keyfile = json_decode($secret_keyfile, TRUE);
 	return $secret_keyfile;
 }
+class internalDB {
+	private $database;
+	function __construct($database) {
+		$this->database=[];
+		if ( !is_readable($database) ) {
+			error_log('Faild open database file(mode=r): ' . $database);
+		} else {
+			$this->database['mode'] = $this->database['mode']|1; /* 001 */
+		}
+		if ( !is_writable($database) ) {
+			error_log('Faild open database file(mode=w): ' . $database);
+		} else {
+			$this->database['mode'] = $this->database['mode']|2; /* 010 */
+		}
+		$this->database['path']=$database;
+	}
+	function insert($query=[]){
+		if ( $this->database['mode']&3 !== 3 ) {
+			return FALSE;
+		}
+		$data=$this->select();
+		$data[]=$query;
+	}
+	function select($query=[]){
+		if ( $this->database['mode']&1 !== 1 ) {
+			return FALSE;
+		}
+		$data=file_get_contents($this->database['path']);
+		$data=json_decode($data, TRUE);
+		return $data;
+	}
+}
 if( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ){
 	http_response_code(405); 
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
