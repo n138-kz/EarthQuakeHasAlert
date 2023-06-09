@@ -280,8 +280,9 @@
                 sub1_tableBlock.classList.add('content');
                 sub1_tableBlock.border = 1;
                 sub1_tableMeta = document.createElement('thead');
+                sub1_val_r = [0];
                 arrayList = [ '地区', '最大震度', ];
-                Object.keys([0]).forEach(function(key1) {
+                Object.keys(sub1_val_r).forEach(function(key1) {
                     sub1_tableLine = document.createElement('tr');
                     Object.keys(arrayList).forEach(function(key2) {
                         sub1_tableCell = document.createElement('th');
@@ -290,6 +291,7 @@
                     });
                     sub1_tableMeta.append(sub1_tableLine);
                 });
+                sub1_tableBlock.append(sub1_tableMeta);
                 sub1_val_r = val_r.detail.Body.Intensity.Observation.Pref;
                 console.debug(sub1_val_r);
                 /*
@@ -309,7 +311,6 @@
                     //});
                 });
                 */
-                sub1_tableBlock.append(sub1_tableMeta);
                 tableCell.append(sub1_tableBlock);
                 tableLine.append(tableCell);
                 
