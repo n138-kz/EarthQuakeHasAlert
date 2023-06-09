@@ -118,15 +118,6 @@ $secret = loadSystemSecret();
 require_once('./lib/Discode_push_class.php');
 $discord = new discord();
 $discord->endpoint = $secret['external']['discord'][0]['endpoint'];
-if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
-	$discord->setValue('content', json_encode([
-		time(),
-		date('Y/m/d H:i:s T'),
-		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
-		gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
-		'https://ipinfo.io/'.$_SERVER['REMOTE_ADDR'],
-	]));$discord->exec_curl();
-}
 $database['useraccesslog']->insert([
 	time(),/* Server ts */
 	date('Y/m/d H:i:s T'),
