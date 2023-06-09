@@ -157,6 +157,7 @@
             Object.keys(eqvol.link).forEach(function(key) {
                 arrayList.push(eqvol.link[key]['@attributes']['href']);
             });
+            arrayList.push(location.href.replace(/html$/,'json'));
             console.debug(arrayList);
             arrayList.map(function(val) {
                 listLine = document.createElement('li');
