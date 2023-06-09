@@ -10,7 +10,8 @@ function loadCache($cache_name = ''){
 	}
 	$cache_mtime = filemtime($cache_name);
 	$cache_result = FALSE;
-	if ( $cache_mtime!==FALSE && (time()-$cache_mtime)<10 ) {
+	$cache_expire = 300;
+	if ( $cache_mtime!==FALSE && (time()-$cache_mtime)<$cache_expire ) {
 		$cache_result = json_decode(file_get_contents($cache_name), TRUE);
 	}
 	return $cache_result;
