@@ -24,7 +24,7 @@
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
             }
-            xhr.open('POST','./gsi-auth.php');
+            xhr.open('POST','./google-sso.php');
             xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
             xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
         }
