@@ -38,3 +38,23 @@ class internalDB {
 		return $data;
 	}
 }
+function var_dump_text($text) {
+	/*
+	* https://office-obata.com/report/memorandum/post-4494/
+        */
+	
+	/* ①画面出力バッファリング開始 */
+	ob_start();
+
+	/* ②var_dump実行 */
+	var_dump($text);
+
+	/* ③バッファリングした内容をテキストとして出力 */
+	$out_text = ob_get_contents();
+
+	/* ④画面出力バッファリング終了 */
+	ob_end_clean();
+
+	/* ⑤取得したテキストを返す */
+	return $out_text;
+}
