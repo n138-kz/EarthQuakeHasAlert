@@ -148,7 +148,11 @@ if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
 	]);
 }
 
-$feedaccessvol = calcFeedAccessVol('database_feedaccess.db');
+$grep_time=[
+	(int)(new DateTime)->modify('today')->setTime(0,0,0)->format('U'),
+	(int)(new DateTime)->modify('tomorrow')->setTime(0,0,0)->format('U'),
+];
+$feedaccessvol = calcFeedAccessVol('database_feedaccess.db', $grep_time);
 if (FALSE) {
 } elseif ($feedaccessvol[3] >= 10.0) {
 	/* Warning: feed access limit reached!! ( = 100%) */

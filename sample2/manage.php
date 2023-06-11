@@ -77,6 +77,9 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         <table class="feedaccess" border="1">
             <thead>
                 <tr>
+                    <?php
+                        $database='database_feedaccess.db';
+                    ?>
                     <th rowspan="2">通信日時</th>
                     <th colspan="4">通信量</th>
                 </tr>
@@ -87,11 +90,30 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     <th>GB</th>
                 </tr>
                 <tr>
-                    <th class="feedaccess_summary">合計通信量</th>
-                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[0] );?></td>
-                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[1] );?></td>
-                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[2] );?></td>
-                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[3] );?></td>
+                    <?php
+                        $grep_time=[
+                            (int)(new DateTime)->modify('first day of')->setTime(0,0,0)->format('U'),
+                            (int)(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('U'),
+                        ];
+                    ?>
+                    <th class="feedaccess_summary">合計通信量(月間)</th>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[0] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[1] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[2] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[3] );?></td>
+                </tr>
+                <tr>
+                    <?php
+                        $grep_time=[
+                            (int)(new DateTime)->modify('today')->setTime(0,0,0)->format('U'),
+                            (int)(new DateTime)->modify('tomorrow')->setTime(0,0,0)->format('U'),
+                        ];
+                    ?>
+                    <th class="feedaccess_summary">合計通信量(月間)</th>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[0] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[1] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[2] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[3] );?></td>
                 </tr>
             </thead>
             <tbody>

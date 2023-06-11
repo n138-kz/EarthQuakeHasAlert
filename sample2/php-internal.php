@@ -58,15 +58,11 @@ function var_dump_text($text) {
 	/* ⑤取得したテキストを返す */
 	return $out_text;
 }
-function calcFeedAccessVol($database='database_feedaccess.db'){
+function calcFeedAccessVol($database='database_feedaccess.db', $grep_time=[time(), time()]){
 	$database=new internalDB(dirname(__FILE__).'/'.$database);
 	$data=$database->select();
 	
 	$sum=0;
-	$grep_time=[
-		(int)(new DateTime)->modify('first day of')->setTime(0,0,0)->format('U'),
-		(int)(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('U'),
-	];
 	foreach( $data as $key => $val ){
 		if ( $val[0] < $grep_time[0] ) { continue; }
 		if ( $val[0] > $grep_time[1] ) { continue; }
