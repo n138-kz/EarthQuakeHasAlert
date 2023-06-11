@@ -56,5 +56,39 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
     </style>
 </head>
 <body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>アクセス日時</th>
+                    <th>通信量</th>
+                </tr>
+                <tr>
+                    <td><span class="feedaccess_summary">合計通信量</span></td>
+                    <td><span class="feedaccess_summary"><?php echo calcFeedAccessVol('database_feedaccess.db')[0];?></span></td>
+                    <td><span class="feedaccess_summary"><?php echo calcFeedAccessVol('database_feedaccess.db')[1];?></span></td>
+                    <td><span class="feedaccess_summary"><?php echo calcFeedAccessVol('database_feedaccess.db')[2];?></span></td>
+                    <td><span class="feedaccess_summary"><?php echo calcFeedAccessVol('database_feedaccess.db')[3];?></span></td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $database=new internalDB(dirname(__FILE__).'/'.$database);
+                    $data=$database->select();
+                    $grep_time=[
+                        (int)(new DateTime)->modify('first day of')->setTime(0,0,0)->format('U'),
+                        (int)(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('U'),
+                    ];
+                    foreach( $data as $key => $val ){
+                        if ( $val[0] < $grep_time[0] ) { continue; }
+                        if ( $val[0] > $grep_time[1] ) { continue; }
+                    }
+                    echo '<tr>';
+                    echo '<td><span class="feedaccess">' . $val . '</span></td>';
+                    echo '</tr>';
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
