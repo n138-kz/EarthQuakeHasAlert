@@ -400,6 +400,9 @@
         });
         setInterval(() => {
             getFeedXML_eqvol();
+            document.querySelectorAll('body>div:not([id]):not([class])').forEach(function(elm){
+                elm.remove();
+            });
         }, 1000*10);
     </script>
     <style>
