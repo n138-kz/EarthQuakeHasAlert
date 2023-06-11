@@ -124,7 +124,12 @@
         }
         function getFeedXML_eqvol() {
             if(debugInfo('stop_refresh')!==false){
-                console.log('** STOP**', 'Turn on refresh = stop');
+                console.log(
+                    '** STOP **',
+                    'Debug mode is Turn on.(refresh = stop)',
+                    'How to Turn off Debug mode is:',
+                    "sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.debug', JSON.stringify([]) )",
+                );
                 return false;
             }
             let xhr = new XMLHttpRequest();
