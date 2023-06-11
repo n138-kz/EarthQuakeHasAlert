@@ -159,7 +159,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     foreach( $data as $key => $val ){
                         if ( $val[0] < $grep_time[0] ) { continue; }
                         if ( $val[0] > $grep_time[1] ) { continue; }
-                        if ( substr($val[3], 0, strlen('localhost')-1) == 'localhost' ) {continue; }
+                        if ( substr($val[3], 0, strlen('localhost')) == 'localhost' ) {continue; }
                         echo '<tr class="useraccess">';
                         echo '<th class="useraccess" title="' . $val[0] . '">' . $val[1] . '</th>';
                         echo '<td class="useraccess">' . $val[3] . '(' . $val[2] . ')' . '</td>';
