@@ -166,7 +166,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         echo '<td class="useraccess">' . $data[$i][4] . '</td>';
                         echo '<td class="useraccess numeric" data-clientts="' . $data[$i][5] . '" data-serverts="' . $data[$i][0] . '">' . ($data[$i][0]-$data[$i][5]) . '</td>';
                         echo '<td class="useraccess">' . $data[$i][6] . '</td>';
-                        echo '</tr>';
+                        echo '</tr>' . PHP_EOL;
                     }
                 ?>
                 <tr>
