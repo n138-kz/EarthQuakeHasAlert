@@ -142,7 +142,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         if ( $data[$i][0] < $grep_time[0] ) { continue; }
                         if ( $data[$i][0] > $grep_time[1] ) { continue; }
                         echo '<tr class="feedaccess" style="display: none;">';
-                        echo '<th class="feedaccess" title="' . $data[$i][0] . '">' . $data[$i][1] . '</th>';
+                        echo '<th class="feedaccess" title="' . $data[$i][0] . '">' . date('Y/m/d H:i:s U', $data[$i][0]) . '</th>';
                         echo '<td class="feedaccess numeric">' . overap_int( $data[$i][2] * ( 10 **  0 ) ) . '</td>';
                         echo '<td class="feedaccess numeric">' . overap_int( $data[$i][2] * ( 10 ** -3 ) ) . '</td>';
                         echo '<td class="feedaccess numeric">' . overap_int( $data[$i][2] * ( 10 ** -6 ) ) . '</td>';
@@ -181,7 +181,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         if ( $data[$i][0] > $grep_time[1] ) { continue; }
                         if ( substr($data[$i][3], 0, strlen('localhost')) == 'localhost' ) {continue; }
                         echo '<tr class="useraccess" style="display: none;">';
-                        echo '<th class="useraccess" title="' . $data[$i][0] . '">' . $data[$i][1] . '</th>';
+                        echo '<th class="useraccess" title="' . $data[$i][0] . '">' . date('Y/m/d H:i:s U', $data[$i][0]) . '</th>';
                         echo '<td class="useraccess">' . $data[$i][3] . '(' . $data[$i][2] . ')' . '</td>';
                         echo '<td class="useraccess">' . $data[$i][4] . '</td>';
                         echo '<td class="useraccess numeric" data-clientts="' . $data[$i][5] . '" data-serverts="' . $data[$i][0] . '">' . ($data[$i][0]-$data[$i][5]) . '</td>';
