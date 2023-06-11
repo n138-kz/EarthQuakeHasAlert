@@ -1,4 +1,5 @@
 <?php session_start();
+date_default_timezone_set('Asia/Tokyo');
 require_once './vendor/autoload.php';
 function xml2json($data){
 	$data=simplexml_load_string($data);
