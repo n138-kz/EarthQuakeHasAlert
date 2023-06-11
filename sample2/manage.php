@@ -56,6 +56,9 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         .numeric {
             text-align: right;
         }
+        table th, table td {
+            min-width: 100px;
+        }
     </style>
     <script>
         function item_detail_open(param){
@@ -71,11 +74,6 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
 </head>
 <body>
     <div>
-        <style>
-            table.feedaccess th, table.feedaccess td {
-                min-width: 100px;
-            }
-        </style>
         <table class="feedaccess" border="1">
             <thead>
                 <tr>
