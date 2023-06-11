@@ -138,7 +138,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
     </div>
     <div>
         <table class="useraccesslog" border="1">
-        <thead>
+            <thead>
                 <tr>
                     <th>通信日時</th>
                     <th>接続元アドレス</th>
