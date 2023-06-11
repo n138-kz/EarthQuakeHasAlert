@@ -65,6 +65,13 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                 text-align: right;
             }
         </style>
+        <script>
+            function feedaccess_detail_open(){
+                document.querySelectorAll('tr.feedaccess').style.display='table-row';
+                document.querySelectorAll('th.feedaccess').style.display='table-cell;';
+                document.querySelectorAll('td.feedaccess').style.display='table-cell;';
+            }
+        </script>
         <table border="1">
             <thead>
                 <tr>
@@ -110,7 +117,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     foreach( $data as $key => $val ){
                         if ( $val[0] < $grep_time[0] ) { continue; }
                         if ( $val[0] > $grep_time[1] ) { continue; }
-                        echo '<tr>';
+                        echo '<tr class="feedaccess">';
                         echo '<th class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</th>';
                         echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 **  0 ) ) . '</td>';
                         echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -3 ) ) . '</td>';
@@ -119,6 +126,9 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         echo '</tr>';
                     }
                 ?>
+                <tr>
+                    <td><a href="" onclick="feedaccess_detail_open()">詳細</a></td>
+                </tr>
             </tbody>
         </table>
     </div>
