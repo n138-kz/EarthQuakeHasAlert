@@ -160,6 +160,21 @@ $google_res['mesg'] = $google->get_resultMesg($google_res);
 if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
 }
 
+$feedaccessvol = calcFeedAccessVol('database_feedaccess.db');
+if (FALSE) {
+} elseif ($feedaccessvol[3] >= 10.0) {
+	/* Warning: feed access limit reached!! ( = 100%) */
+} elseif ($feedaccessvol[3] >=  9.9) {
+	/* Warning: feed access limit reached!! ( =  99%) */
+} elseif ($feedaccessvol[3] >=  9.5) {
+	/* Warning: feed access limit reached!! ( =  95%) */
+} elseif ($feedaccessvol[3] >=  9.0) {
+	/* Warning: feed access limit reached!! ( =  90%) */
+} elseif ($feedaccessvol[3] >=  7.5) {
+	/* Warning: feed access limit reached!! ( =  75%) */
+} elseif ($feedaccessvol[3] >=  5.0) {
+	/* Warning: feed access limit reached!! ( =  50%) */
+}
 $data_recv='';
 $data_recv_length=0;
 $data=loadCache(dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json');
