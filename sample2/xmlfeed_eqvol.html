@@ -118,6 +118,12 @@
                 return false;
             }
         }
+        function init_pageloaded_eqvol() {
+            root_body = document.getElementById('eqvol');
+            object_block = document.createElement('div');
+            object_block.style.height = screen.height + 'px';
+            root_body.append(object_block);
+        }
         function getFeedXML_eqvol() {
             if(debugInfo('stop_refresh')!==false){
                 console.log(
@@ -389,6 +395,7 @@
             getFeedXML_eqvol();
         });
         window.addEventListener('DOMContentLoaded', function() {
+            init_pageloaded_eqvol();
         });
         setInterval(() => {
             getFeedXML_eqvol();
