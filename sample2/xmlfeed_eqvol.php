@@ -68,6 +68,23 @@ function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	$secret_keyfile = json_decode($secret_keyfile, TRUE);
 	return $secret_keyfile;
 }
+function calcFeedAccessVol($database='database_feedaccess.db'){
+	$database=new internalDB(dirname(__FILE__).'/'.$database);
+	$data=$database->select();
+	
+	$sum=0;
+	$grep_time=[
+		(new DateTime)->modify('first day of')->setTime(0,0,0)->format('Y-m-d_H-i-s-T;U'),
+		(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('Y-m-d_H-i-s-T;U'),
+	];
+	foreach( $data as $key => $val ){
+		if ( $val[0] < $grep_time[0] ) { continue; }
+		if ( $val[0] > $grep_time[1] ) { continue; }
+		$sum+=$val[2];
+	}
+
+	file_put_contents('var_dump_export.dat', var_dump_text($sum), LOCK_EX);
+}
 require_once './php-internal.php';
 $database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
 if ( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ) {
@@ -137,6 +154,7 @@ $google_res['mesg'] = $google->get_resultMesg($google_res);
 if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
 }
 
+calcFeedAccessVol('database_feedaccess.db');
 $data_recv='';
 $data_recv_length=0;
 $data=loadCache(dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json');
