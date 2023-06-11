@@ -92,10 +92,6 @@
             eqvol = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol' );
             return JSON.parse(eqvol);
         }
-        function setBodyBackgroundColor() {
-            root_body = document.getElementsByTagName('body')[0];
-            root_body.style.height = screen.height + 'px';
-        }
         function replaceFullToHalf(str){
             /* 
             * https://qumeru.com/magazine/395
@@ -393,7 +389,6 @@
             getFeedXML_eqvol();
         });
         window.addEventListener('DOMContentLoaded', function() {
-            setBodyBackgroundColor();
         });
         setInterval(() => {
             getFeedXML_eqvol();
