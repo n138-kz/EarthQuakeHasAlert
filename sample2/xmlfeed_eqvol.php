@@ -48,8 +48,8 @@ function saveStore($cache_name = '', $data=[]){
 	}
 
 	/* すでに項目がある場合は上書きして保存 */
-		$store[$key]=$val;
 	foreach($dat1 as $key => $val){
+		$store=array_merge($store, [$key=>$val]);
 	}
 
 	/* jsonにして保存 */
