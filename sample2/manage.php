@@ -109,7 +109,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                             (int)(new DateTime)->modify('tomorrow')->setTime(0,0,0)->format('U'),
                         ];
                     ?>
-                    <th class="feedaccess_summary">合計通信量(月間)</th>
+                    <th class="feedaccess_summary">合計通信量(<?php echo date('Y/m/d');?>)</th>
                     <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[0] );?></td>
                     <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[1] );?></td>
                     <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol( $database, $grep_time )[2] );?></td>
