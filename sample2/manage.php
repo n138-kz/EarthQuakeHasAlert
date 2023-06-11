@@ -76,17 +76,6 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                 min-width: 100px;
             }
         </style>
-        <script>
-            function feedaccess_detail_open(){
-                Array.prototype.forEach.call(document.querySelectorAll('tr.feedaccess'), function(element) {
-                    if (element.style.display=='none') {
-                        element.style.display='table-row';
-                    } else {
-                        element.style.display='none';
-                    }
-                });
-            }
-        </script>
         <table class="feedaccess" border="1">
             <thead>
                 <tr>
@@ -142,7 +131,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     }
                 ?>
                 <tr>
-                    <td><a href="#" onclick="feedaccess_detail_open()">詳細</a></td>
+                    <td><a href="#" onclick="item_detail_open('feedaccess')">詳細</a></td>
                 </tr>
             </tbody>
         </table>
