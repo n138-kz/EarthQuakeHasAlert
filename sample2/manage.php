@@ -58,9 +58,6 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
 <body>
     <div>
         <style>
-            .feedaccess {
-                display: none;
-            }
             .feedaccess_numeric {
                 text-align: right;
             }
@@ -117,7 +114,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     foreach( $data as $key => $val ){
                         if ( $val[0] < $grep_time[0] ) { continue; }
                         if ( $val[0] > $grep_time[1] ) { continue; }
-                        echo '<tr class="feedaccess">';
+                        echo '<tr class="feedaccess" style="display: none;"';
                         echo '<th class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</th>';
                         echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 **  0 ) ) . '</td>';
                         echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -3 ) ) . '</td>';
