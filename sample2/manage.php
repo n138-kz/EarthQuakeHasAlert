@@ -14,10 +14,12 @@ if (!isset($_SESSION['user']) || !isset($_SESSION['user']['google']) || !isset($
 define('CLIENT_ID', $_SESSION['user']['google']['client_id']);
 define('CLIENT_TOKEN', $_SESSION['user']['google']['client_token']);
 
-$client = new Google_Client(['client_id' => CLIENT_ID]); 
-$payload = $client->verifyIdToken(CLIENT_TOKEN);
-if (!$payload) {
-	http_response_code(401);
+try {
+    $client = new Google_Client(['client_id' => CLIENT_ID]); 
+    $payload = $client->verifyIdToken(CLIENT_TOKEN);
+    if (!$payload) { throw $th; }
+} catch (\Throwable $th) {
+    http_response_code(401);
     die('Unauthorized');
 }
 
