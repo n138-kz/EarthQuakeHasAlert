@@ -82,6 +82,26 @@ function calcFeedAccessVol($database='database_feedaccess.db'){
 		if ( $val[0] > $grep_time[1] ) { continue; }
 		$sum+=$val[2];
 	}
+	$sum=[
+		[
+			$sum, /* byte */
+	        $sum / 1000, /* Kilo-byte */
+	        $sum / 1000 / 1000, /* Mega-byte */
+	        $sum / 1000 / 1000 / 1000, /* Giga-byte */
+		],
+		[
+			$sum, /* byte */
+	        $sum ** -3, /* Kilo-byte */
+	        $sum ** -6, /* Mega-byte */
+	        $sum ** -9, /* Giga-byte */
+		],
+		[
+			$sum, /* byte */
+	        $sum * ( 10 ** -3 ), /* Kilo-byte */
+	        $sum * ( 10 ** -6 ), /* Mega-byte */
+	        $sum * ( 10 ** -9 ), /* Giga-byte */
+		],
+	];	
 
 	file_put_contents('var_dump_export.dat', var_dump_text($sum), LOCK_EX);
 }
