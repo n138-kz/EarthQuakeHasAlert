@@ -144,7 +144,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     <th>接続元アドレス</th>
                     <th>Method</th>
                     <th>端末との時差</th>
-                    <th></th>
+                    <th>Google<br />reCAPTCHA v3<br />Result</th>
                 </tr>
             </thead>
             <tbody>

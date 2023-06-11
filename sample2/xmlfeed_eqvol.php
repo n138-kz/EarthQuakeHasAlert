@@ -137,6 +137,15 @@ $google->setip_remotehost($_SERVER['REMOTE_ADDR']);
 $google_res = $google->exec_curl();
 $google_res['mesg'] = $google->get_resultMesg($google_res);
 if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
+	$database['useraccesslog']->insert([
+		time(),/* Server ts */
+		date('Y/m/d H:i:s T'),
+		$_SERVER['REMOTE_ADDR'].':'.$_SERVER['REMOTE_PORT'],
+		gethostbyaddr($_SERVER['REMOTE_ADDR']).':'.$_SERVER['REMOTE_PORT'],
+		mb_strtolower($_SERVER['REQUEST_METHOD']),
+		$_GET['ts'],/* Client ts */
+		$google_res['success'],/* Google reCAPTCHA v3 result */
+	]);
 }
 
 $feedaccessvol = calcFeedAccessVol('database_feedaccess.db');
