@@ -118,16 +118,16 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         (int)(new DateTime)->modify('first day of')->setTime(0,0,0)->format('U'),
                         (int)(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('U'),
                     ];
-                    foreach( $data as $key => $val ){
-                        if ( $val[0] < $grep_time[0] ) { continue; }
-                        if ( $val[0] > $grep_time[1] ) { continue; }
+                    for ($i=(count($data)); $i >= 0; $i--) {
+                        if ( $data[$i][0] < $grep_time[0] ) { continue; }
+                        if ( $data[$i][0] > $grep_time[1] ) { continue; }
                         echo '<tr class="feedaccess" style="display: none;">';
-                        echo '<th class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</th>';
-                        echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 **  0 ) ) . '</td>';
-                        echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 ** -3 ) ) . '</td>';
-                        echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 ** -6 ) ) . '</td>';
-                        echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 ** -9 ) ) . '</td>';
-                        echo '</tr>';
+                        echo '<th class="feedaccess" title="' . $data[$i][0] . '">' . $data[$i][1] . '</th>';
+                        echo '<td class="feedaccess numeric">' . overap_int( $data[$i][2] * ( 10 **  0 ) ) . '</td>';
+                        echo '<td class="feedaccess numeric">' . overap_int( $data[$i][2] * ( 10 ** -3 ) ) . '</td>';
+                        echo '<td class="feedaccess numeric">' . overap_int( $data[$i][2] * ( 10 ** -6 ) ) . '</td>';
+                        echo '<td class="feedaccess numeric">' . overap_int( $data[$i][2] * ( 10 ** -9 ) ) . '</td>';
+                        echo '</tr>' . PHP_EOL;
                     }
                 ?>
                 <tr>
@@ -156,16 +156,16 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         (int)(new DateTime)->modify('first day of')->setTime(0,0,0)->format('U'),
                         (int)(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('U'),
                     ];
-                    foreach( $data as $key => $val ){
-                        if ( $val[0] < $grep_time[0] ) { continue; }
-                        if ( $val[0] > $grep_time[1] ) { continue; }
-                        if ( substr($val[3], 0, strlen('localhost')) == 'localhost' ) {continue; }
+                    for ($i=(count($data)); $i >= 0; $i--) {
+                        if ( $data[$i][0] < $grep_time[0] ) { continue; }
+                        if ( $data[$i][0] > $grep_time[1] ) { continue; }
+                        if ( substr($data[$i][3], 0, strlen('localhost')) == 'localhost' ) {continue; }
                         echo '<tr class="useraccess" style="display: none;">';
-                        echo '<th class="useraccess" title="' . $val[0] . '">' . $val[1] . '</th>';
-                        echo '<td class="useraccess">' . $val[3] . '(' . $val[2] . ')' . '</td>';
-                        echo '<td class="useraccess">' . $val[4] . '</td>';
-                        echo '<td class="useraccess numeric" data-clientts="' . $val[5] . '" data-serverts="' . $val[0] . '">' . ($val[0]-$val[5]) . '</td>';
-                        echo '<td class="useraccess">' . $val[6] . '</td>';
+                        echo '<th class="useraccess" title="' . $data[$i][0] . '">' . $data[$i][1] . '</th>';
+                        echo '<td class="useraccess">' . $data[$i][3] . '(' . $data[$i][2] . ')' . '</td>';
+                        echo '<td class="useraccess">' . $data[$i][4] . '</td>';
+                        echo '<td class="useraccess numeric" data-clientts="' . $data[$i][5] . '" data-serverts="' . $data[$i][0] . '">' . ($data[$i][0]-$data[$i][5]) . '</td>';
+                        echo '<td class="useraccess">' . $data[$i][6] . '</td>';
                         echo '</tr>';
                     }
                 ?>
