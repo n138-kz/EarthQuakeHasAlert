@@ -24,7 +24,37 @@ function saveCache($cache_name = '', $data=[]){
 		error_log('Feed cache save failed: ' . $cache_name);
 	}
 }
-function loadSystemSecret($secret_keyfile = 'secret.txt'){
+function saveStore($cache_name = '', $data=[]){
+	if ( is_array($data) ) { $data = json_encode($data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE); }
+	$data=json_decode($data, TRUE);
+
+	$store=file_get_contents($cache_name);
+	$store=json_decode($store, TRUE);
+
+	$dat1=[];
+	if(!isset($data['entry']) || !is_array($data['entry'])){
+		error_log('Object(key=entry) is not accesable.');
+		return FALSE;
+	}
+	/* EventID をIDとして管理できるようにする */
+	foreach($data['entry'] as $key => $val){
+		$dat1[$val['detail']['Head']['EventID']]=$val;
+	}
+
+	/* すでに項目がある場合は上書きして保存 */
+	foreach($data['entry'] as $key => $val){
+		$store[$key]=$val;
+	}
+
+	/* jsonにして保存 */
+	$store=json_encode($store, JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE);
+	$cache_result = file_put_contents($cache_name, $store, LOCK_EX);
+	if ( $cache_result === FALSE ) {
+		error_log('Store cache save failed: ' . $cache_name);
+	}
+
+	return $cache_result !== FALSE;
+}function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	if (!is_readable($secret_keyfile)) {
 		return FALSE;
 	}
