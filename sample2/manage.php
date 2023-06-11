@@ -72,7 +72,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                 });
             }
         </script>
-        <table border="1">
+        <table class="feedaccess" border="1">
             <thead>
                 <tr>
                     <th rowspan="2">通信日時</th>
