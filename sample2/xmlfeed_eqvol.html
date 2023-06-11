@@ -124,6 +124,7 @@
         }
         function getFeedXML_eqvol() {
             if(debugInfo('stop_refresh')!==false){
+                console.log('** STOP**', 'Turn on refresh = stop');
                 return false;
             }
             let xhr = new XMLHttpRequest();
