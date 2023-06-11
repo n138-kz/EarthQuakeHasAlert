@@ -145,7 +145,6 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
