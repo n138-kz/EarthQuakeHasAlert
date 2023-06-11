@@ -59,7 +59,8 @@ function saveStore($cache_name = '', $data=[]){
 	}
 
 	return $cache_result !== FALSE;
-}function loadSystemSecret($secret_keyfile = 'secret.txt'){
+}
+function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	if (!is_readable($secret_keyfile)) {
 		return FALSE;
 	}
