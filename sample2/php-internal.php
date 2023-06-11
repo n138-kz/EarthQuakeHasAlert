@@ -58,7 +58,7 @@ function var_dump_text($text) {
 	/* ⑤取得したテキストを返す */
 	return $out_text;
 }
-function calcFeedAccessVol($database='database_feedaccess.db', $grep_time=[time(), time()]){
+function calcFeedAccessVol($database='database_feedaccess.db', $grep_time){
 	$database=new internalDB(dirname(__FILE__).'/'.$database);
 	$data=$database->select();
 	
