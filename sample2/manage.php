@@ -143,7 +143,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     <th>通信日時</th>
                     <th>接続元アドレス</th>
                     <th></th>
-                    <th></th>
+                    <th>Method</th>
                     <th></th>
                 </tr>
             </thead>
