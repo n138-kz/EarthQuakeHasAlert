@@ -128,7 +128,10 @@
                     '** STOP **',
                     'Debug mode is Turn on.(refresh = stop)',
                     'How to Turn off Debug mode is:',
-                    "sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.debug', JSON.stringify([]) )",
+                    [
+                        "sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.debug' )",
+                        "sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.debug', JSON.stringify([]) )",
+                    ],
                 );
                 return false;
             }
