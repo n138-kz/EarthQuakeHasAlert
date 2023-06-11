@@ -128,6 +128,45 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 ** -6 ) ) . '</td>';
                         echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 ** -9 ) ) . '</td>';
                         echo '</tr>';
+                    }
+                ?>
+                <tr>
+                    <td><a href="#" onclick="feedaccess_detail_open()">詳細</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table class="useraccesslog" border="1">
+        <thead>
+                <tr>
+                    <th rowspan="2">通信日時</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $database='database_useraccess.db';
+                    $database=new internalDB(dirname(__FILE__).'/'.$database);
+                    $data=$database->select();
+                    $grep_time=[
+                        (int)(new DateTime)->modify('first day of')->setTime(0,0,0)->format('U'),
+                        (int)(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('U'),
+                    ];
+                    foreach( $data as $key => $val ){
+                        if ( $val[0] < $grep_time[0] ) { continue; }
+                        if ( $val[0] > $grep_time[1] ) { continue; }
+                        echo '<tr class="useraccess">';
+                        echo '<th class="useraccess" title="' . $val[0] . '">' . $val[1] . '</th>';
+                        echo '<th class="useraccess">' . $val[2] . '</th>';
+                        echo '<th class="useraccess">' . $val[3] . '</th>';
+                        echo '<th class="useraccess">' . $val[4] . '</th>';
+                        echo '<th class="useraccess">' . $val[5] . '</th>';
+                        echo '<th class="useraccess">' . $val[6] . '</th>';
                         echo '</tr>';
                     }
                 ?>
