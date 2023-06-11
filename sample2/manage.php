@@ -141,7 +141,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         <thead>
                 <tr>
                     <th rowspan="2">通信日時</th>
-                    <th></th>
+                    <th>接続元アドレス</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -162,8 +162,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         if ( $val[0] > $grep_time[1] ) { continue; }
                         echo '<tr class="useraccess">';
                         echo '<th class="useraccess" title="' . $val[0] . '">' . $val[1] . '</th>';
-                        echo '<th class="useraccess">' . $val[2] . '</th>';
-                        echo '<th class="useraccess">' . $val[3] . '</th>';
+                        echo '<th class="useraccess">' . $val[3] . '(' . $val[2] . ')' . '</th>';
                         echo '<th class="useraccess">' . $val[4] . '</th>';
                         echo '<th class="useraccess">' . $val[5] . '</th>';
                         echo '<th class="useraccess">' . $val[6] . '</th>';
