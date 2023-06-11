@@ -83,7 +83,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     <th colspan="4">通信量</th>
                 </tr>
                 <tr>
-                    <th>byte</th>
+                    <th>Byte</th>
                     <th>KB</th>
                     <th>MB</th>
                     <th>GB</th>
