@@ -73,6 +73,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
             </thead>
             <tbody>
                 <?php
+                    $database='database_feedaccess.db';
                     $database=new internalDB(dirname(__FILE__).'/'.$database);
                     $data=$database->select();
                     $grep_time=[
