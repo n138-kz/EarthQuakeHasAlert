@@ -63,8 +63,14 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         <table border="1">
             <thead>
                 <tr>
-                    <th>アクセス日時</th>
-                    <th>通信量</th>
+                    <th rowspan="2">アクセス日時</th>
+                    <th colspan="4">通信量</th>
+                </tr>
+                <tr>
+                    <th>byte</th>
+                    <th>KB</th>
+                    <th>MB</th>
+                    <th>GB</th>
                 </tr>
                 <tr>
                     <td class="feedaccess_summary">合計通信量</td>
