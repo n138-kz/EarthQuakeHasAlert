@@ -67,9 +67,9 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         </style>
         <script>
             function feedaccess_detail_open(){
-                document.querySelectorAll('tr.feedaccess').style.display='table-row';
-                document.querySelectorAll('th.feedaccess').style.display='table-cell;';
-                document.querySelectorAll('td.feedaccess').style.display='table-cell;';
+                Array.prototype.forEach.call(document.querySelectorAll('tr.feedaccess'), function(element) {
+                    element.style.display='table-row';
+                });
             }
         </script>
         <table border="1">
@@ -86,10 +86,10 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                 </tr>
                 <tr>
                     <th class="feedaccess_summary">合計通信量</th>
-                    <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[0];?></td>
-                    <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[1];?></td>
-                    <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[2];?></td>
-                    <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[3];?></td>
+                    <td class="feedaccess_summary feedaccess_numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[0] );?></td>
+                    <td class="feedaccess_summary feedaccess_numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[1] );?></td>
+                    <td class="feedaccess_summary feedaccess_numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[2] );?></td>
+                    <td class="feedaccess_summary feedaccess_numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[3] );?></td>
                 </tr>
             </thead>
             <tbody>
@@ -102,7 +102,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                             } elseif ( $num < PHP_INT_MIN ) {
                                 return '';
                             }
-                            return $num;
+                            return number_format($num);
                         } catch (\Throwable $th) {
                             return '';
                         }
@@ -127,7 +127,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     }
                 ?>
                 <tr>
-                    <td><a href="" onclick="feedaccess_detail_open()">詳細</a></td>
+                    <td><a href="#" onclick="feedaccess_detail_open()">詳細</a></td>
                 </tr>
             </tbody>
         </table>
