@@ -41,6 +41,7 @@ function saveStore($cache_name = '', $data=[]){
 		error_log('Object(key=entry) is not accesable.');
 		return FALSE;
 	}
+
 	/* EventID をIDとして管理できるようにする */
 	foreach($data['entry'] as $key => $val){
 		$dat1[$val['detail']['Head']['EventID']]=$val;
