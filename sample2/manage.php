@@ -67,11 +67,11 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     <th>通信量</th>
                 </tr>
                 <tr>
-                    <td><span class="feedaccess_summary">合計通信量</span></td>
-                    <td><span class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[0];?></span></td>
-                    <td><span class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[1];?></span></td>
-                    <td><span class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[2];?></span></td>
-                    <td><span class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[3];?></span></td>
+                    <td class="feedaccess_summary">合計通信量</td>
+                    <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[0];?></td>
+                    <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[1];?></td>
+                    <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[2];?></td>
+                    <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[3];?></td>
                 </tr>
             </thead>
             <tbody>
@@ -87,11 +87,11 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         if ( $val[0] < $grep_time[0] ) { continue; }
                         if ( $val[0] > $grep_time[1] ) { continue; }
                         echo '<tr>';
-                        echo '<td><span class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</span></td>';
-                        echo '<td><span class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 **  0 ) ) . '</span></td>';
-                        echo '<td><span class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -3 ) ) . '</span></td>';
-                        echo '<td><span class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -6 ) ) . '</span></td>';
-                        echo '<td><span class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -9 ) ) . '</span></td>';
+                        echo '<td class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</td>';
+                        echo '<td class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 **  0 ) ) . '</td>';
+                        echo '<td class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -3 ) ) . '</td>';
+                        echo '<td class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -6 ) ) . '</td>';
+                        echo '<td class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -9 ) ) . '</td>';
                         echo '</tr>';
                     }
                 ?>
