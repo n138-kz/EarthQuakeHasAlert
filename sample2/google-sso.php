@@ -69,6 +69,8 @@ $payload = $client->verifyIdToken(CLIENT_TOKEN);
 if ($payload) {
     $userid = $payload['sub'];
     $_SESSION = [];
+    $_SESSION['user']['google']['client_id']      = CLIENT_ID;
+    $_SESSION['user']['google']['client_token']   = CLIENT_TOKEN;
     $_SESSION['user']['google']['userid']         = $payload['sub'];
     $_SESSION['user']['google']['email']          = $payload['email'];
     $_SESSION['user']['google']['name']           = $payload['name'];
