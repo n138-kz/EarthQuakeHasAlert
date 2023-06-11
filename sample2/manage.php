@@ -58,6 +58,9 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
 <body>
     <div>
         <style>
+            table.feedaccess th, table.feedaccess td {
+                min-width: 100px;
+            }
             .feedaccess_numeric {
                 text-align: right;
             }
