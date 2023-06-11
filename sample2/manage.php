@@ -57,7 +57,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
 </head>
 <body>
     <div>
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th>アクセス日時</th>
