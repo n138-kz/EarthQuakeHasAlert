@@ -89,7 +89,7 @@ function calcFeedAccessVol($database='database_feedaccess.db'){
 		$sum * ( 10 ** -9 ), /* Giga-byte */
 	];	
 
-	file_put_contents('var_dump_export.dat', var_dump_text($sum), LOCK_EX);
+	return $sum;
 }
 require_once './php-internal.php';
 $database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
@@ -160,7 +160,6 @@ $google_res['mesg'] = $google->get_resultMesg($google_res);
 if ($google_res['success'] != TRUE || $google_res['score'] < 0.3) {
 }
 
-calcFeedAccessVol('database_feedaccess.db');
 $data_recv='';
 $data_recv_length=0;
 $data=loadCache(dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json');
