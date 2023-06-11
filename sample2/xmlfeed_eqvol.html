@@ -104,6 +104,24 @@
                 return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
             });
         }
+        function debugInfo(item='') {
+            let DEBUG = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.debug' );
+            if ( (DEBUG === null) ) {
+                DEBUG = [];
+                sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.debug', JSON.stringify(DEBUG) );
+            }
+            try {
+                DEBUG = JSON.parse(DEBUG);
+            } catch (error) {
+                DEBUG = [];
+                sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.debug', JSON.stringify(DEBUG) );
+            }
+            if (isset(DEBUG[item])) {
+                return DEBUG[item];
+            } else {
+                return false;
+            }
+        }
         function getFeedXML_eqvol() {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
