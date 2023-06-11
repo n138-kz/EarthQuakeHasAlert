@@ -83,10 +83,14 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     foreach( $data as $key => $val ){
                         if ( $val[0] < $grep_time[0] ) { continue; }
                         if ( $val[0] > $grep_time[1] ) { continue; }
+                        echo '<tr>';
+                        echo '<td><span class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</span></td>';
+                        echo '<td><span class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 **  0 ) ) . '</span></td>';
+                        echo '<td><span class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -3 ) ) . '</span></td>';
+                        echo '<td><span class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -6 ) ) . '</span></td>';
+                        echo '<td><span class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -9 ) ) . '</span></td>';
+                        echo '</tr>';
                     }
-                    echo '<tr>';
-                    echo '<td><span class="feedaccess">' . $val . '</span></td>';
-                    echo '</tr>';
                 ?>
             </tbody>
         </table>
