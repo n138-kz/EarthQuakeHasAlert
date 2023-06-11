@@ -25,7 +25,7 @@ function saveCache($cache_name = '', $data=[]){
 	}
 
 	saveStore(
-		dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json',
+		dirname(__FILE__) . '/' . 'xmlfeed_eqvol_log.json',
 		json_encode( $data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE )
 	);
 }
