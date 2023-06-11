@@ -40,6 +40,7 @@ try {
         });
         window.addEventListener('DOMContentLoaded', function() {
             init_pageloaded_eqvol();
+            console.log('DOMContent loaded');
         });
         setInterval(() => {
             getFeedXML_eqvol();
