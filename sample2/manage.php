@@ -53,6 +53,9 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         });
     </script>
     <style>
+        .numeric {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -60,9 +63,6 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         <style>
             table.feedaccess th, table.feedaccess td {
                 min-width: 100px;
-            }
-            .feedaccess_numeric {
-                text-align: right;
             }
         </style>
         <script>
@@ -90,10 +90,10 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                 </tr>
                 <tr>
                     <th class="feedaccess_summary">合計通信量</th>
-                    <td class="feedaccess_summary feedaccess_numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[0] );?></td>
-                    <td class="feedaccess_summary feedaccess_numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[1] );?></td>
-                    <td class="feedaccess_summary feedaccess_numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[2] );?></td>
-                    <td class="feedaccess_summary feedaccess_numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[3] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[0] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[1] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[2] );?></td>
+                    <td class="feedaccess_summary numeric"><?php echo number_format( calcFeedAccessVol('database_feedaccess.db')[3] );?></td>
                 </tr>
             </thead>
             <tbody>
@@ -123,10 +123,11 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         if ( $val[0] > $grep_time[1] ) { continue; }
                         echo '<tr class="feedaccess" style="display: none;">';
                         echo '<th class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</th>';
-                        echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 **  0 ) ) . '</td>';
-                        echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -3 ) ) . '</td>';
-                        echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -6 ) ) . '</td>';
-                        echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -9 ) ) . '</td>';
+                        echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 **  0 ) ) . '</td>';
+                        echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 ** -3 ) ) . '</td>';
+                        echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 ** -6 ) ) . '</td>';
+                        echo '<td class="feedaccess numeric">' . overap_int( $val[2] * ( 10 ** -9 ) ) . '</td>';
+                        echo '</tr>';
                         echo '</tr>';
                     }
                 ?>
