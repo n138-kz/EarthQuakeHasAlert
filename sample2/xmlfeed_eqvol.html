@@ -123,6 +123,9 @@
             }
         }
         function getFeedXML_eqvol() {
+            if(debugInfo('stop_refresh')!==false){
+                return false;
+            }
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 console.debug(xhr.readyState);
