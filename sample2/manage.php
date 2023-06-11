@@ -53,13 +53,18 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         });
     </script>
     <style>
-        .feedaccess_numeric {
-            text-align: right;
-        }
     </style>
 </head>
 <body>
     <div>
+        <style>
+            .feedaccess {
+                display: none;
+            }
+            .feedaccess_numeric {
+                text-align: right;
+            }
+        </style>
         <table border="1">
             <thead>
                 <tr>
