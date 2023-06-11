@@ -53,6 +53,9 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         });
     </script>
     <style>
+        .feedaccess_numeric {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -65,10 +68,10 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                 </tr>
                 <tr>
                     <td><span class="feedaccess_summary">合計通信量</span></td>
-                    <td><span class="feedaccess_summary"><?php echo calcFeedAccessVol('database_feedaccess.db')[0];?></span></td>
-                    <td><span class="feedaccess_summary"><?php echo calcFeedAccessVol('database_feedaccess.db')[1];?></span></td>
-                    <td><span class="feedaccess_summary"><?php echo calcFeedAccessVol('database_feedaccess.db')[2];?></span></td>
-                    <td><span class="feedaccess_summary"><?php echo calcFeedAccessVol('database_feedaccess.db')[3];?></span></td>
+                    <td><span class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[0];?></span></td>
+                    <td><span class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[1];?></span></td>
+                    <td><span class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[2];?></span></td>
+                    <td><span class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[3];?></span></td>
                 </tr>
             </thead>
             <tbody>
