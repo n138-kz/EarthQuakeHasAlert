@@ -23,6 +23,17 @@ try {
     die('Unauthorized');
 }
 
+if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_array($_POST) ) {
+    $request['post'] = $_POST;
+    if ( $request['post']['request'] == base64_encode('issueAlert') ) {
+    }
+    exit();
+} elseif ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'get' ) {
+} else {
+	http_response_code(404);
+    exit();
+}
+
 ?><!DOCTYPE html><html lang="ja">
 <head>
     <meta charset="utf-8" />
