@@ -121,7 +121,7 @@
         function init_pageloaded_eqvol() {
             root_body = document.getElementById('eqvol');
             object_block = document.createElement('div');
-            object_block.style.height = screen.height + 'px';
+            object_block.style.height = window.innerHeight + 'px';
             root_body.append(object_block);
         }
         function getFeedXML_eqvol() {
