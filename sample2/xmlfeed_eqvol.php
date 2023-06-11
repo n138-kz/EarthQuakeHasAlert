@@ -175,6 +175,7 @@ if (FALSE) {
 } elseif ($feedaccessvol[3] >=  5.0) {
 	/* Warning: feed access limit reached!! ( =  50%) */
 }
+
 $data_recv='';
 $data_recv_length=0;
 $data=loadCache(dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json');
