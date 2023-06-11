@@ -74,8 +74,8 @@ function calcFeedAccessVol($database='database_feedaccess.db'){
 	
 	$sum=0;
 	$grep_time=[
-		(new DateTime)->modify('first day of')->setTime(0,0,0)->format('Y-m-d_H-i-s-T;U'),
-		(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('Y-m-d_H-i-s-T;U'),
+		(int)(new DateTime)->modify('first day of')->setTime(0,0,0)->format('U'),
+		(int)(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('U'),
 	];
 	foreach( $data as $key => $val ){
 		if ( $val[0] < $grep_time[0] ) { continue; }
