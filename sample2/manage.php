@@ -57,6 +57,17 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
             text-align: right;
         }
     </style>
+    <script>
+        function item_detail_open(param){
+            Array.prototype.forEach.call(document.querySelectorAll('tr.'+param), function(element) {
+                if (element.style.display=='none') {
+                    element.style.display='table-row';
+                } else {
+                    element.style.display='none';
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <div>
@@ -170,7 +181,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     }
                 ?>
                 <tr>
-                    <td><a href="#" onclick="feedaccess_detail_open()">詳細</a></td>
+                    <td><a href="#" onclick="item_detail_open('useraccess')">詳細</a></td>
                 </tr>
             </tbody>
         </table>
