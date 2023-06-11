@@ -68,7 +68,11 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         <script>
             function feedaccess_detail_open(){
                 Array.prototype.forEach.call(document.querySelectorAll('tr.feedaccess'), function(element) {
-                    element.style.display='table-row';
+                    if (element.style.display=='none') {
+                        element.style.display='table-row';
+                    } else {
+                        element.style.display='none';
+                    }
                 });
             }
         </script>
