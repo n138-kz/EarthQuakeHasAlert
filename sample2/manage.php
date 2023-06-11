@@ -76,6 +76,19 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
             </thead>
             <tbody>
                 <?php
+                    function overap_int($num) {
+                        try {
+                            if (false) {
+                            } elseif ( $num > PHP_INT_MAX ) {
+                                return '';
+                            } elseif ( $num < PHP_INT_MIN ) {
+                                return '';
+                            }
+                            return $num;
+                        } catch (\Throwable $th) {
+                            return '';
+                        }
+                    }
                     $database='database_feedaccess.db';
                     $database=new internalDB(dirname(__FILE__).'/'.$database);
                     $data=$database->select();
@@ -88,10 +101,10 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         if ( $val[0] > $grep_time[1] ) { continue; }
                         echo '<tr>';
                         echo '<td class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</td>';
-                        echo '<td class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 **  0 ) ) . '</td>';
-                        echo '<td class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -3 ) ) . '</td>';
-                        echo '<td class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -6 ) ) . '</td>';
-                        echo '<td class="feedaccess feedaccess_numeric">' . ( $val[2] * ( 10 ** -9 ) ) . '</td>';
+                        echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 **  0 ) ) . '</td>';
+                        echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -3 ) ) . '</td>';
+                        echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -6 ) ) . '</td>';
+                        echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -9 ) ) . '</td>';
                         echo '</tr>';
                     }
                 ?>
