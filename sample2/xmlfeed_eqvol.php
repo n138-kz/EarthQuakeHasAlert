@@ -38,7 +38,8 @@ function saveStore($cache_name = '', $data=[]){
 
 	$dat1=[];
 	if(!isset($data['entry']) || !is_array($data['entry'])){
-		error_log('Object(key=entry) is not accesable.');
+		error_log('Object(key=entry) is not accessable.');
+		file_put_contents('var_dump_export.dat', var_dump_text($data), LOCK_EX);
 		return FALSE;
 	}
 
