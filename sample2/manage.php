@@ -2,6 +2,15 @@
 require_once './vendor/autoload.php';
 require_once './php-internal.php';
 
+if (!isset($_SESSION['user']) || !isset($_SESSION['user']['google']) || !isset($_SESSION['user']['google']['client_id']) ) {
+	http_response_code(404);
+    exit();
+}
+if (!isset($_SESSION['user']) || !isset($_SESSION['user']['google']) || !isset($_SESSION['user']['google']['client_token']) ) {
+	http_response_code(404);
+    exit();
+}
+
 define('CLIENT_ID', $_SESSION['user']['google']['client_id']);
 define('CLIENT_TOKEN', $_SESSION['user']['google']['client_token']);
 
