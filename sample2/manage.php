@@ -162,9 +162,9 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         echo '<tr class="useraccess">';
                         echo '<th class="useraccess" title="' . $val[0] . '">' . $val[1] . '</th>';
                         echo '<td class="useraccess">' . $val[3] . '(' . $val[2] . ')' . '</td>';
-                        echo '<th class="useraccess">' . $val[4] . '</th>';
-                        echo '<th class="useraccess" data-clientts="' . $val[5] . '" data-serverts="' . $val[0] . '">' . ($val[0]-$val[5]) . '</th>';
-                        echo '<th class="useraccess">' . $val[6] . '</th>';
+                        echo '<td class="useraccess">' . $val[4] . '</td>';
+                        echo '<td class="useraccess" data-clientts="' . $val[5] . '" data-serverts="' . $val[0] . '">' . ($val[0]-$val[5]) . '</td>';
+                        echo '<td class="useraccess">' . $val[6] . '</td>';
                         echo '</tr>';
                     }
                 ?>
