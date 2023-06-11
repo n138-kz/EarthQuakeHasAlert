@@ -36,15 +36,10 @@ try {
     <script>
         window.addEventListener('load', function() {
             console.log('page is fully loaded');
-            getFeedXML_eqvol();
         });
         window.addEventListener('DOMContentLoaded', function() {
-            init_pageloaded_eqvol();
             console.log('DOMContent loaded');
         });
-        setInterval(() => {
-            getFeedXML_eqvol();
-        }, 1000*10);
     </script>
     <style>
     </style>
