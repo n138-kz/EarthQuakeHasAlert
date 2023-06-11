@@ -63,7 +63,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
         <table border="1">
             <thead>
                 <tr>
-                    <th rowspan="2">アクセス日時</th>
+                    <th rowspan="2">通信日時</th>
                     <th colspan="4">通信量</th>
                 </tr>
                 <tr>
@@ -73,7 +73,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                     <th>GB</th>
                 </tr>
                 <tr>
-                    <td class="feedaccess_summary">合計通信量</td>
+                    <th class="feedaccess_summary">合計通信量</th>
                     <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[0];?></td>
                     <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[1];?></td>
                     <td class="feedaccess_summary feedaccess_numeric"><?php echo calcFeedAccessVol('database_feedaccess.db')[2];?></td>
@@ -106,7 +106,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) == 'post' && isset($_POST) && is_
                         if ( $val[0] < $grep_time[0] ) { continue; }
                         if ( $val[0] > $grep_time[1] ) { continue; }
                         echo '<tr>';
-                        echo '<td class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</td>';
+                        echo '<th class="feedaccess" title="' . $val[0] . '">' . $val[1] . '</th>';
                         echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 **  0 ) ) . '</td>';
                         echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -3 ) ) . '</td>';
                         echo '<td class="feedaccess feedaccess_numeric">' . overap_int( $val[2] * ( 10 ** -6 ) ) . '</td>';
