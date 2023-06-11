@@ -70,29 +70,6 @@ function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	$secret_keyfile = json_decode($secret_keyfile, TRUE);
 	return $secret_keyfile;
 }
-function calcFeedAccessVol($database='database_feedaccess.db'){
-	$database=new internalDB(dirname(__FILE__).'/'.$database);
-	$data=$database->select();
-	
-	$sum=0;
-	$grep_time=[
-		(int)(new DateTime)->modify('first day of')->setTime(0,0,0)->format('U'),
-		(int)(new DateTime)->modify('first day of next month')->setTime(0,0,0)->format('U'),
-	];
-	foreach( $data as $key => $val ){
-		if ( $val[0] < $grep_time[0] ) { continue; }
-		if ( $val[0] > $grep_time[1] ) { continue; }
-		$sum+=$val[2];
-	}
-	$sum=[
-		$sum * ( 10 **  0 ), /* byte */
-		$sum * ( 10 ** -3 ), /* Kilo-byte */
-		$sum * ( 10 ** -6 ), /* Mega-byte */
-		$sum * ( 10 ** -9 ), /* Giga-byte */
-	];	
-
-	return $sum;
-}
 require_once './php-internal.php';
 $database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
 if ( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ) {
