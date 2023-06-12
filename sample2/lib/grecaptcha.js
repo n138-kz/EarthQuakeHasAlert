@@ -24,8 +24,13 @@ function grecaptcha_init(act = 'homepage')
   
           sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.reCAPTCHA', token );
         }).catch((e) => {
-          console.error('Error: Google reCAPTCHA Failed.');
-          console.trace(e);
+          if ( false ) {
+          } else if ( e=='Timeout' ) {  
+          } else {
+            console.error('Error: Google reCAPTCHA Failed.');
+            console.error(e);
+            console.trace(e);
+          }
         });
       } catch (e) {
         console.error('Error: Google reCAPTCHA Failed.');
