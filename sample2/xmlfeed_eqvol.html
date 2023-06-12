@@ -318,7 +318,7 @@
                 sub1_tableBlock.border = 1;
                 sub1_tableMeta = document.createElement('thead');
                 sub1_val_r = [0];
-                arrayList = [ '都道府県', '地区', '最大震度', ];
+                arrayList = [ '都道府県', '地区', '最大震度', '', '' ];
                 Object.keys(sub1_val_r).forEach(function(key1) {
                     sub1_tableLine = document.createElement('tr');
                     Object.keys(arrayList).forEach(function(key2) {
@@ -376,6 +376,10 @@
 
                             sub1_tableCell = document.createElement('td');
                             sub1_tableCell.innerText = sub1_val_r[key1].Area[key2].City[key3].Name;
+                            sub1_tableLine.append(sub1_tableCell);
+
+                            sub1_tableCell = document.createElement('td');
+                            sub1_tableCell.innerText = sub1_val_r[key1].Area[key2].City[key3].MaxInt;
                             sub1_tableLine.append(sub1_tableCell);
                         });
 
