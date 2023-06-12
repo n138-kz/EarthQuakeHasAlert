@@ -198,6 +198,7 @@ if (!$data) {
 
 		$val=$data['entry'][$key]['detail'];
 		/* 各地の震度の項目が不定形だったので定形に変更 */
+		error_log( json_encode( [ 'isset', isset( $val['Body']['Intensity']['Observation']['Pref']['Area'] ) ] ) );
 		if( isset( $val['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
 			/* $data['entry'][$key] --> $val */
 			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][] = $val['Body']['Intensity']['Observation']['Pref']['Area'];
