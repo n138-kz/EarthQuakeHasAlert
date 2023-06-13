@@ -218,15 +218,11 @@ if (!$data) {
 	}
 
 	$database['feedaccesslog']=new internalDB(dirname(__FILE__).'/'.'database_feedaccess.db');
-	$discord->setValue('content', json_encode([
+	$database['feedaccesslog']->insert([
 		time(),
 		date('Y/m/d H:i:s T'),
-		$database['feedaccesslog']->insert([
-			time(),
-			date('Y/m/d H:i:s T'),
-			$data_recv_length,
-		]),
-	]));$discord->exec_curl();
+		$data_recv_length,
+	]);
 
 	saveCache(
 		dirname(__FILE__) . '/' . 'xmlfeed_eqvol.json',
