@@ -213,6 +213,7 @@ if (!$data) {
 		/* 各地の震度の項目が不定形だったので定形に変更 */
 		error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( [ 'isset->('.__LINE__.')', isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ] ) );
 		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
+			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( __LINE__ ) );
 			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][]=
 			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'];
 		}
@@ -220,6 +221,7 @@ if (!$data) {
 		foreach($val['Body']['Intensity']['Observation']['Pref']['Area'] as $key2 => $val2){
 			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( [ 'isset->('.__LINE__.')', isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City']['Name'] ) ] ) );
 			if( isset( $val['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City']['Name'] ) ) {
+				error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( __LINE__ ) );
 				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City'][]=
 				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City'];
 			}
