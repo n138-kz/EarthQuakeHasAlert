@@ -12,7 +12,7 @@ function loadCache($cache_name = ''){
 	}
 	$cache_mtime = filemtime($cache_name);
 	$cache_result = FALSE;
-	$cache_expire = 300;
+	$cache_expire = 60;
 	if ( $cache_mtime!==FALSE && (time()-$cache_mtime)<$cache_expire ) {
 		$cache_result = json_decode(file_get_contents($cache_name), TRUE);
 	}
@@ -40,7 +40,6 @@ function saveStore($cache_name = '', $data=[]){
 	$dat1=[];
 	if(!isset($data['entry']) || !is_array($data['entry'])){
 		error_log('Object(key=entry) is not accessable.');
-		file_put_contents('var_dump_export.dat', var_dump_text($data), LOCK_EX);
 		return FALSE;
 	}
 
@@ -207,13 +206,16 @@ if (!$data) {
 			unset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']['Name'] );
 			unset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']['MaxInt'] );
 		}
-	}
 
-	$discord->setValue('content', json_encode([
-		time(),
-		date('Y/m/d H:i:s T'),
-		['received packets(byte)', $data_recv_length]
-	]));$discord->exec_curl();
+		foreach($val['Body']['Intensity']['Observation']['Pref']['Area'] as $key2 => $val2){
+			if( isset( $val['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City']['Name'] ) ) {
+				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City'][] = $val['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City'];
+			}
+
+		}
+
+		file_put_contents('var_dump_export.dat', var_dump_text([$data]), LOCK_EX);
+	}
 
 	$database['feedaccesslog']=new internalDB(dirname(__FILE__).'/'.'database_feedaccess.db');
 	$discord->setValue('content', json_encode([
