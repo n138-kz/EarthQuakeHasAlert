@@ -19,6 +19,7 @@ function loadCache($cache_name = ''){
 	return $cache_result;
 }
 function saveCache($cache_name = '', $data=[]){
+	return FALSE;/* Temporary deactivate */
 	if ( is_array($data) ) { $data = json_encode($data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE); }
 	$cache_result = file_put_contents($cache_name, $data, LOCK_EX);
 	if ( $cache_result === FALSE ) {
