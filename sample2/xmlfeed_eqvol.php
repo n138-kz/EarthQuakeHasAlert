@@ -214,8 +214,8 @@ if (!$data) {
 		error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( [ 'isset->('.__LINE__.')', isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ] ) );
 		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
 			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( __LINE__ ) );
-			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']=
-			[$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']];
+			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][]=
+			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'];
 		}
 
 		foreach($val['Body']['Intensity']['Observation']['Pref']['Area'] as $key2 => $val2){
