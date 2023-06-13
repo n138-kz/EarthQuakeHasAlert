@@ -84,7 +84,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ) {
 		NULL,/* Google reCAPTCHA v3 result */
 	]);
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
-	die('[HTTP405]Method NOT allowed.('.dechex(__LINE__).')');
+	die('[HTTP405]Method NOT allowed.('.__LINE__.')');
 }
 if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
 	http_response_code(400); 
@@ -98,7 +98,7 @@ if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
 		NULL,/* Google reCAPTCHA v3 result */
 	]);
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
-	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
+	die('[HTTP400]Bad request.('.__LINE__.')');
 }
 if ( !isset($_GET['id']) || strlen(trim($_GET['id']))==0 ) {
 	http_response_code(400); 
@@ -112,7 +112,7 @@ if ( !isset($_GET['id']) || strlen(trim($_GET['id']))==0 ) {
 		-1,/* Google reCAPTCHA v3 result *//* -1:not set */
 	]);
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
-	die('[HTTP400]Bad request.('.dechex(__LINE__).')');
+	die('[HTTP400]Bad request.('.__LINE__.')');
 }
 if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
 	$database['useraccesslog']->insert([
