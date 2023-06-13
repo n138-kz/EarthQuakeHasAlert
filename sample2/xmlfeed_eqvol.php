@@ -156,16 +156,22 @@ $feedaccessvol = calcFeedAccessVol('database_feedaccess.db', $grep_time);
 if (FALSE) {
 } elseif ($feedaccessvol[3] >= 10.0) {
 	/* Warning: feed access limit reached!! ( = 100%) */
+	$discord->setValue('content', json_encode([ time(), date('Y/m/d H:i:s T'), 'Warning: feed access limit reached!! ( = 100%)' ]));$discord->exec_curl();
 } elseif ($feedaccessvol[3] >=  9.9) {
 	/* Warning: feed access limit reached!! ( =  99%) */
+	$discord->setValue('content', json_encode([ time(), date('Y/m/d H:i:s T'), 'Warning: feed access limit reached!! ( =  99%)' ]));$discord->exec_curl();
 } elseif ($feedaccessvol[3] >=  9.5) {
 	/* Warning: feed access limit reached!! ( =  95%) */
+	$discord->setValue('content', json_encode([ time(), date('Y/m/d H:i:s T'), 'Warning: feed access limit reached!! ( =  95%)' ]));$discord->exec_curl();
 } elseif ($feedaccessvol[3] >=  9.0) {
 	/* Warning: feed access limit reached!! ( =  90%) */
+	$discord->setValue('content', json_encode([ time(), date('Y/m/d H:i:s T'), 'Warning: feed access limit reached!! ( =  90%)' ]));$discord->exec_curl();
 } elseif ($feedaccessvol[3] >=  7.5) {
 	/* Warning: feed access limit reached!! ( =  75%) */
+	$discord->setValue('content', json_encode([ time(), date('Y/m/d H:i:s T'), 'Warning: feed access limit reached!! ( =  75%)' ]));$discord->exec_curl();
 } elseif ($feedaccessvol[3] >=  5.0) {
 	/* Warning: feed access limit reached!! ( =  50%) */
+	$discord->setValue('content', json_encode([ time(), date('Y/m/d H:i:s T'), 'Warning: feed access limit reached!! ( =  50%)' ]));$discord->exec_curl();
 }
 
 $data_recv='';
