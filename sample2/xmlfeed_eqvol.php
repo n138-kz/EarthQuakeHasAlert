@@ -73,6 +73,12 @@ function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	return $secret_keyfile;
 }
 require_once './php-internal.php';
+
+if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) == 'localhost' ) {
+	http_response_code(503); 
+	exit();
+}
+
 $database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
 if ( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ) {
 	http_response_code(405); 
