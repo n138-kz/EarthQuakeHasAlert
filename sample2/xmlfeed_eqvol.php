@@ -209,6 +209,7 @@ if (!$data) {
 		}
 
 		foreach($val['Body']['Intensity']['Observation']['Pref']['Area'] as $key2 => $val2){
+			error_log( json_encode( [ 'isset->('.__LINE__.')', isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City']['Name'] ) ] ) );
 			if( isset( $val['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City']['Name'] ) ) {
 				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City'][] = $val['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City'];
 			}
