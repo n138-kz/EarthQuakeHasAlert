@@ -86,7 +86,7 @@ if ( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ) {
 	error_log('Error on '.__FILE__.'#'.__LINE__.'');
 	die('[HTTP405]Method NOT allowed.('.__LINE__.')');
 }
-if ( !isset($_GET['ts']) || ( time() - $_GET['ts'] ) > 300 ) {
+if ( !isset($_GET['ts']) || ( time() - (int)$_GET['ts'] ) > 300 ) {
 	http_response_code(400); 
 	$database['useraccesslog']->insert([
 		time(),/* Server ts */
