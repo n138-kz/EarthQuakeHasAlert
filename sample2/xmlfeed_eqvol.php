@@ -266,6 +266,14 @@ if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
 	$curl_res=json_decode($curl_res, TRUE);
 }
 
+/*
+ * Mail API を使用したメールの送受信
+ * https://cloud.google.com/appengine/docs/standard/php/mail/sending-receiving-with-mail-api?hl=ja
+ *
+ * is not set
+ *
+*/
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
 header('Content-Type: application/json');
