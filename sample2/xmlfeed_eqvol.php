@@ -72,6 +72,75 @@ function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	$secret_keyfile = json_decode($secret_keyfile, TRUE);
 	return $secret_keyfile;
 }
+/* PHPMailer のクラスをグローバル名前空間（global namespace）にインポート */
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+function sendEmail(){
+	/*
+	 * Mail API を使用したメールの送受信
+	 * https://cloud.google.com/appengine/docs/standard/php/mail/sending-receiving-with-mail-api?hl=ja
+	 *
+	 * is not set
+	 *
+	*/
+
+	/* Composer のオートローダーの読み込み */
+	require 'vendor/autoload.php';
+
+	/* エラーメッセージ用日本語言語ファイルを読み込む場合 */
+	require 'vendor/phpmailer/phpmailer/language/phpmailer.lang-ja.php';
+
+	/* 言語、内部エンコーディングを指定 */
+	mb_language("japanese");
+	mb_internal_encoding("UTF-8");
+	 
+	/* インスタンスを生成（引数に true を指定して例外 Exception を有効に） */
+	$mail = new PHPMailer(true);
+
+	/* 日本語用設定 */
+	$mail->CharSet = "iso-2022-jp";
+	$mail->Encoding = "7bit";
+	 
+	/* エラーメッセージ用言語ファイルを使用する場合に指定 */
+	$mail->setLanguage('ja', 'vendor/phpmailer/phpmailer/language/');
+	 
+	try {
+	  /* サーバの設定 */
+	  $mail->SMTPDebug = SMTP::DEBUG_SERVER; /* Debugの出力を有効に（テスト環境での検証用） */
+	  $mail->isSMTP(); /* SMTP を使用 */
+	  $mail->Host       = 'smtp.gmail.com'; /* Gmail SMTP サーバーを指定 */
+	  $mail->SMTPAuth   = true; /* SMTP authentication を有効に */
+	  $mail->Username   = 'gandy.lent.38@gmail.com'; /* ★★★ Gmail ユーザ名 */
+	  $mail->Password   = 'bjyeietpzhsxhqol'; /* ★★★ Gmail パスワード */
+	  $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; /* ★★★ 暗号化（TLS)を有効に */
+	  $mail->Port = 587; /* ★★★ ポートは 587 */
+
+	  /* 受信者設定 */
+	  /* 差出人アドレス, 差出人名 */
+	  $mail->setFrom('noreply+EarthQuakeHasAlert@gmail.com', mb_encode_mimeheader('noreply')); 
+	  /* 受信者アドレス, 受信者名（受信者名はオプション） */
+	  $mail->addAddress('n138-pubnet-box@googlegroups.com');   
+	  /* Cc 受信者の指定 */
+	  $mail->addCC('n138-pubnet-box@googlegroups.com'); 
+	 
+	  /* コンテンツ設定 */
+	  $mail->isHTML(true); /* HTML形式を指定 */
+	  /* メール表題（タイトル） */
+	  $mail->Subject = mb_encode_mimeheader('日本語メールタイトル'); 
+	  /* 本文（HTML用） */
+	  $mail->Body  = mb_convert_encoding('HTML メッセージ <b>BOLD</b>',"JIS","UTF-8");  
+	  /* テキスト表示の本文 */
+	  $mail->AltBody = mb_convert_encoding('プレインテキストメッセージ non-HTML mail clients',"JIS","UTF-8"); 
+	 
+	  #$mail->send(); /* 送信 */
+	} catch (Exception $e) {
+	  /* エラー（例外：Exception）が発生した場合 */
+	  error_log( 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo );
+	}
+
+}
+
 require_once './php-internal.php';
 
 if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) == 'localhost' ) {
@@ -266,13 +335,6 @@ if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
 	$curl_res=json_decode($curl_res, TRUE);
 }
 
-/*
- * Mail API を使用したメールの送受信
- * https://cloud.google.com/appengine/docs/standard/php/mail/sending-receiving-with-mail-api?hl=ja
- *
- * is not set
- *
-*/
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
