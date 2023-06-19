@@ -133,6 +133,7 @@ function sendEmail(){
 	  /* テキスト表示の本文 */
 	  $mail->AltBody = mb_convert_encoding('プレインテキストメッセージ non-HTML mail clients',"JIS","UTF-8"); 
 	 
+	  file_put_contents('var_dump_export.dat', var_dump_text($mail));
 	  #$mail->send(); /* 送信 */
 	} catch (Exception $e) {
 	  /* エラー（例外：Exception）が発生した場合 */
