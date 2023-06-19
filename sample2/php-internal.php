@@ -42,6 +42,9 @@ function var_dump_text($text) {
 	/*
 	* https://office-obata.com/report/memorandum/post-4494/
         */
+	/* 言語、内部エンコーディングを指定 */
+	mb_language("japanese");
+	mb_internal_encoding("UTF-8");
 	
 	/* ①画面出力バッファリング開始 */
 	ob_start();
