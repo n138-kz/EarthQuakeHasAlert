@@ -197,6 +197,7 @@
             });
             arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'));
             arrayList.push('https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/sample2');
+            arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat');
             console.debug(arrayList);
             arrayList.map(function(val) {
                 listLine = document.createElement('li');
