@@ -195,7 +195,7 @@
             Object.keys(eqvol.link).forEach(function(key) {
                 arrayList.push(eqvol.link[key]['@attributes']['href']);
             });
-            arrayList.push(location.pathname.replace(/html$/,'json'));
+            arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'));
             arrayList.push('https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/sample2');
             console.debug(arrayList);
             arrayList.map(function(val) {
