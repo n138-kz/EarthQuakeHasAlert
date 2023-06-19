@@ -336,6 +336,37 @@ if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
 	$curl_res=json_decode($curl_res, TRUE);
 }
 
+foreach( $data['entry'] as $key => $val ){
+	/*
+	 * 
+	 * 関東地方で震度n以上の地震が発生したとき
+	 * n = 4
+	 * 関東地方 = {東京都, 神奈川県, 千葉県, 埼玉県, 茨城県, 栃木県, 群馬県}
+	*/
+	file_put_contents('var_dump_export.dat', json_encode([
+		$val['detail']['Body']['Earthquake']['Hypocenter']['Area'],
+		$val['detail']['Body']['Intensity']['Observation']['MaxInt'],
+		$val['detail']['Body'],
+	]));
+	if ( FALSE ) {
+	} elseif (
+		$val['detail']['Body']['Intensity']['Observation']['MaxInt'] >= 4
+		&& (
+			FALSE
+			|| mb_substr( $val['detail']['Body']['Earthquake']['Hypocenter']['Area']['Name'], 0, 3) == '東京都'
+			|| mb_substr( $val['detail']['Body']['Earthquake']['Hypocenter']['Area']['Name'], 0, 3) == '千葉県'
+			|| mb_substr( $val['detail']['Body']['Earthquake']['Hypocenter']['Area']['Name'], 0, 3) == '埼玉県'
+			|| mb_substr( $val['detail']['Body']['Earthquake']['Hypocenter']['Area']['Name'], 0, 3) == '茨城県'
+			|| mb_substr( $val['detail']['Body']['Earthquake']['Hypocenter']['Area']['Name'], 0, 3) == '栃木県'
+			|| mb_substr( $val['detail']['Body']['Earthquake']['Hypocenter']['Area']['Name'], 0, 3) == '群馬県'
+			|| mb_substr( $val['detail']['Body']['Earthquake']['Hypocenter']['Area']['Name'], 0, 4) == '神奈川県'
+		)
+	) {
+		file_put_contents('var_dump_export.dat', json_encode($val['detail']['Body']['Earthquake']['Hypocenter']['Area']));
+		$discord->setValue('content', json_encode([ time(), date('Y/m/d H:i:s T'), 'Warning: Earthquake has occured!' ]));$discord->exec_curl();
+		sendEmail();
+	}
+}
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
