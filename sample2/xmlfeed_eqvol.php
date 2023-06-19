@@ -84,6 +84,11 @@ function sendEmail(){
 	 * is not set
 	 *
 	*/
+	/*
+	 *
+	 * Gmail の SMTP サーバを使う例
+	 * https://www.webdesignleaves.com/pr/php/php_phpmailer.php
+	*/
 
 	/* Composer のオートローダーの読み込み */
 	require 'vendor/autoload.php';
