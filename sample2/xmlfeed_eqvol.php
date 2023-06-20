@@ -348,11 +348,6 @@ foreach( $data['entry'] as $key => $val ){
 	 * n = 4
 	 * 関東地方 = {東京都, 神奈川県, 千葉県, 埼玉県, 茨城県, 栃木県, 群馬県}
 	*/
-	file_put_contents('var_dump_export.dat', json_encode([
-		$val['detail']['Body']['Earthquake']['Hypocenter']['Area'],
-		$val['detail']['Body']['Intensity']['Observation']['MaxInt'],
-		$val['detail']['Body'],
-	]));
 	if ( FALSE ) {
 	} elseif (
 		$val['detail']['Body']['Intensity']['Observation']['MaxInt'] >= 4
@@ -367,7 +362,11 @@ foreach( $data['entry'] as $key => $val ){
 			|| mb_substr( $val['detail']['Body']['Earthquake']['Hypocenter']['Area']['Name'], 0, 4) == '神奈川県'
 		)
 	) {
-		file_put_contents('var_dump_export.dat', json_encode($val['detail']['Body']['Earthquake']['Hypocenter']['Area']));
+		file_put_contents('var_dump_export.dat', json_encode([
+			$val['detail']['Body']['Earthquake']['Hypocenter']['Area'],
+			$val['detail']['Body']['Intensity']['Observation']['MaxInt'],
+			$val['detail']['Body'],
+		]));
 		$discord->setValue('content', json_encode([ time(), date('Y/m/d H:i:s T'), 'Warning: Earthquake has occured!' ]));$discord->exec_curl();
 		sendEmail();
 	}
