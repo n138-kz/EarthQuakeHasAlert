@@ -485,6 +485,11 @@
             getFeedXML_eqvol();
             init_pageloaded_eqvol();
         });
+        window.addEventListener("resize", function() {
+            console.log('Window resized');
+            getFeedXML_eqvol();
+            init_pageloaded_eqvol();
+        });
         setInterval(() => {
             getFeedXML_eqvol();
             document.querySelectorAll('body>div:not([id]):not([class])').forEach(function(elm){
