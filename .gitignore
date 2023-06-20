@@ -4,5 +4,6 @@
 *.dat
 *.db
 *.json
+*.swp
 vendor/
 secret.txt
