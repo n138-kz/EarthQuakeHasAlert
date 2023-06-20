@@ -125,13 +125,17 @@
             if ( isArray( credential ) ) {
                 credential = JSON.stringify( credential );
             }
-            return sessionStorage.setItem(
+            sessionStorage.setItem(
+                (btoa(location.href)).slice(0, 16) + '.google-sso',
+                credential
+            );
+            return localStorage.setItem(
                 (btoa(location.href)).slice(0, 16) + '.google-sso',
                 credential
             );
         }
         function get_gsso() {
-            credential = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
+            credential = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
             return JSON.parse(credential);
         }
         function replaceFullToHalf(str){
