@@ -377,16 +377,21 @@
                 try {
                     sub1_tableBlock = document.createElement('table');
                     sub1_tableBlock.classList.add('content');
+                    sub1_tableBlock.classList.add('subtable');
+                    sub1_tableBlock.classList.add('subtable1');
                     sub1_tableBlock.style.width = '300px';
                     sub1_tableBlock.border = 1;
                     sub1_tableMeta = document.createElement('thead');
                     sub1_val_r = [0];
-                    arrayList = [ '都道府県', '最大震度' ];
+                    arrayList = [ ['都道府県',4], ['最大震度',1] ];
                     Object.keys(sub1_val_r).forEach(function(key1) {
                         sub1_tableLine = document.createElement('tr');
                         Object.keys(arrayList).forEach(function(key2) {
                             sub1_tableCell = document.createElement('th');
-                            sub1_tableCell.innerText = arrayList[key2];
+                            sub1_tableCell.innerText = arrayList[key2][0];
+                            sub1_tableCell.classList.add('subtable');
+                            sub1_tableCell.classList.add('subtable1');
+                            sub1_tableCell.style.width='10px';
                             sub1_tableLine.append(sub1_tableCell);
                         });
                         sub1_tableMeta.append(sub1_tableLine);
