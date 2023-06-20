@@ -68,7 +68,6 @@
             if ( typeof params == 'object' ) {
                 let result=0;
                 for (let [key, value] of Object.entries(params)) {
-                    console.log('key:' + key + ' value:' + value);
                     result=result&1;
                 }
                 return Boolean(result);
