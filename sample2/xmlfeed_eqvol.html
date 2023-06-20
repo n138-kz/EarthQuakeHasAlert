@@ -14,8 +14,10 @@
             return onSignIn(credential);
         }
         function onSignIn(googleUser) {
-            console.log(googleUser);
-            console.log(googleUser.credential);
+            try {
+                console.log(googleUser);
+                console.log(googleUser.credential);
+            } catch (error) {}
 
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
