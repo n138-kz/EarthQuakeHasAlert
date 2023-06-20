@@ -55,6 +55,25 @@
     </script>
     <script src="./lib/isset.js"></script>
     <script>
+        function isArray(params) {
+            if ( Array.isArray( params ) ) {
+                return true;
+            }
+            if (params === null) {
+                return false;
+            }
+            if (params === undefined) {
+                return false;
+            }
+            if ( typeof params == 'object' ) {
+                let result=0;
+                for (let [key, value] of Object.entries(hash)) {
+                    console.log('key:' + key + ' value:' + value);
+                    result=result&1;
+                }
+                return Boolean(result);
+            }
+        }
         function issueAlert(issuer_object) {
             console.log(issuer_object.dataset.eventid);
             alert(issuer_object.dataset.eventid);
