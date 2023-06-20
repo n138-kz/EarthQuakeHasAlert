@@ -399,22 +399,18 @@
                     sub1_tableBlock.append(sub1_tableMeta);
                     sub1_tableMeta = document.createElement('tbody');
                     sub1_val_r = val_r.detail.Body.Intensity.Observation.Pref;
-                    console.debug(sub1_val_r);
                     Object.keys(sub1_val_r).forEach(function(key1) {
-                        console.log(sub1_val_r[key1].Name);
-                        Object.keys(sub1_val_r[key1].Area).forEach(function(key2) {
-                            sub1_tableLine = document.createElement('tr');
-    
-                            sub1_tableCell = document.createElement('td');
-                            sub1_tableCell.innerText = sub1_val_r[key1].Name;
-                            sub1_tableLine.append(sub1_tableCell);
-                            sub1_tableCell = document.createElement('td');
-                            sub1_tableCell.innerText = sub1_val_r[key1].MaxInt;
-                            sub1_tableLine.append(sub1_tableCell);
-    
-                            sub1_tableMeta.append(sub1_tableLine);
-                        });
-                        console.log(sub1_val_r);
+                        console.debug(sub1_val_r[key1].Name,sub1_val_r[key1].MaxInt);
+                        sub1_tableLine = document.createElement('tr');
+                        sub1_tableCell = document.createElement('td');
+                        sub1_tableCell.innerText = sub1_val_r[key1].Name;
+                        sub1_tableLine.append(sub1_tableCell);
+                        sub1_tableCell = document.createElement('td');
+                        sub1_tableCell.innerText = sub1_val_r[key1].MaxInt;
+                        sub1_tableLine.append(sub1_tableCell);
+
+                        sub1_tableMeta.append(sub1_tableLine);
+                        console.debug(sub1_val_r);
                     });
                     sub1_tableBlock.append(sub1_tableMeta);
 
