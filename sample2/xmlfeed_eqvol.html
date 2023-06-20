@@ -11,7 +11,7 @@
     <script>
         function onLoadSignin() {
             credential = get_gsso();
-            if (!Array.isArray(credential)) {
+            if (!isArray(credential)) {
                 return false;
             }
             return onSignIn(credential);
@@ -112,7 +112,7 @@
             return dateftext.resultText;
         }
         function set_eqvol(eqvol) {
-            if ( Array.isArray( eqvol ) ) {
+            if ( isArray( eqvol ) ) {
                 eqvol = JSON.stringify( eqvol );
             }
             return sessionStorage.setItem(
@@ -125,7 +125,7 @@
             return JSON.parse(eqvol);
         }
         function set_gsso(credential) {
-            if ( Array.isArray( credential ) ) {
+            if ( isArray( credential ) ) {
                 credential = JSON.stringify( credential );
             }
             return sessionStorage.setItem(
