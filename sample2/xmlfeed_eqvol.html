@@ -298,6 +298,7 @@
                 tableCell.append(tableText);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
+                tableCell.style.textAlign='center';
                 linkText = document.createElement('a');
                 linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
                 linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
@@ -306,6 +307,8 @@
                 tableCell = document.createElement('td');
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
+                tableCell.style.textAlign='center';
+                tableCell.style.textAlign='center';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
