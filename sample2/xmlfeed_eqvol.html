@@ -125,6 +125,11 @@
             return JSON.parse(eqvol);
         }
         function set_gsso(credential) {
+            if ( credential == null ) {
+                sessionStorage.removeItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
+                localStorage.removeItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
+                return false;
+            }
             if ( isArray( credential ) ) {
                 credential = JSON.stringify( credential );
             }
