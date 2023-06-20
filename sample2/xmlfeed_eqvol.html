@@ -235,7 +235,7 @@
             Object.keys(eqvol.link).forEach(function(key) {
                 console.debug(eqvol.link[key]['@attributes']['href']);
             });
-            arrayList.push(['https://www.jma.go.jp/']);
+            arrayList.push(['https://www.jma.go.jp/', '気象庁 Japan Meteorological Agency']);
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json')]);
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat']);
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php']);
