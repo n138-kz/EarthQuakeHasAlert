@@ -381,7 +381,7 @@
                     sub1_tableBlock.border = 1;
                     sub1_tableMeta = document.createElement('thead');
                     sub1_val_r = [0];
-                    arrayList = [ '都道府県', '地区', '最大震度', '', '' ];
+                    arrayList = [ '都道府県', '最大震度' ];
                     Object.keys(sub1_val_r).forEach(function(key1) {
                         sub1_tableLine = document.createElement('tr');
                         Object.keys(arrayList).forEach(function(key2) {
@@ -394,72 +394,23 @@
                     sub1_tableBlock.append(sub1_tableMeta);
                     sub1_tableMeta = document.createElement('tbody');
                     sub1_val_r = val_r.detail.Body.Intensity.Observation.Pref;
-                    arrayList = [];
                     console.debug(sub1_val_r);
                     Object.keys(sub1_val_r).forEach(function(key1) {
-                        Object.keys(arrayList).forEach(function(key2) {
-                        });
                         console.log(sub1_val_r[key1].Name);
-                        console.log([
-                            [
-                                'sub1_val_r.length',
-                                'sub1_val_r',
-                                'JSON.stringify( sub1_val_r, null, \'   \' )',
-                            ],
-                            [
-                                sub1_val_r.length,
-                                sub1_val_r,
-                                JSON.stringify( sub1_val_r, null, '   ' ),
-                            ],
-                        ]);
                         Object.keys(sub1_val_r[key1].Area).forEach(function(key2) {
                             sub1_tableLine = document.createElement('tr');
     
-                            if ( key2 == 0 ) {
-                                sub1_tableCell = document.createElement('td');
-                                sub1_tableCell.innerText = sub1_val_r[key1].Name;
-                                sub1_tableCell.rowSpan = sub1_val_r[key1].Area.length;
-                                sub1_tableLine.append(sub1_tableCell);
-                            }
-    
-                            Object.keys(sub1_val_r[key1].Area[key2].City).forEach(function(key3) {
-                                if ( key3 == 0 ) {
-                                    sub1_tableCell = document.createElement('td');
-                                    sub1_tableCell.innerText = sub1_val_r[key1].Area[key2].Name;
-                                    sub1_tableCell.rowSpan = sub1_val_r[key1].Area[key2].City.length;
-                                    sub1_tableLine.append(sub1_tableCell);
-                                }
-    
-                                if ( key3 == 0 ) {
-                                    sub1_tableCell = document.createElement('td');
-                                    sub1_tableCell.innerText = sub1_val_r[key1].Area[key2].MaxInt;
-                                    sub1_tableCell.rowSpan = sub1_val_r[key1].Area[key2].City.length;
-                                    sub1_tableLine.append(sub1_tableCell);
-                                }
-    
-                                sub1_tableCell = document.createElement('td');
-                                sub1_tableCell.innerText = sub1_val_r[key1].Area[key2].City[key3].Name;
-                                sub1_tableLine.append(sub1_tableCell);
-    
-                                sub1_tableCell = document.createElement('td');
-                                sub1_tableCell.innerText = sub1_val_r[key1].Area[key2].City[key3].MaxInt;
-                                sub1_tableLine.append(sub1_tableCell);
-                            });
+                            sub1_tableCell = document.createElement('td');
+                            sub1_tableCell.innerText = sub1_val_r[key1].Name;
+                            sub1_tableCell.rowSpan = sub1_val_r[key1].Area.length;
+                            sub1_tableLine.append(sub1_tableCell);
     
                             sub1_tableMeta.append(sub1_tableLine);
                         });
                         console.log(sub1_val_r);
                     });
                     sub1_tableBlock.append(sub1_tableMeta);
-                    /*
-                    arrayList = [];
-                    Object.keys(sub1_val_r).forEach(function(key1) {
-                        console.log( sub1_val_r[key1] );
-                        //Object.keys(val_r.detail.Body.Intensity.Observation.Pref[key1]['Area']).forEach(function(key2) {
-                            // arrayList.push(val_r.detail.Body.Intenstiy.Observation.Pref[key1]['Area'][key2]);
-                        //});
-                    });
-                    */
+
                     tableCell.append(sub1_tableBlock);
                 } catch (error) {
                     /*
@@ -483,16 +434,12 @@
                     console.error(error);
                 }
                 tableLine.append(tableCell);
-                
                 tableMeta.append(tableLine);
                 
             });
             tableBlock.append(tableMeta);
             wrapLine.append(tableBlock);
             root_body.append(wrapLine);
-
-
-
         }
     </script>
     <script>
