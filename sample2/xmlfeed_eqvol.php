@@ -283,6 +283,13 @@ if (!$data) {
 		$data_recv_length+=strlen($data_recv);
 		$data['entry'][$key]['detail'] = json_decode( xml2json( $data_recv ), TRUE);
 
+		/* jma(気象庁)発行の詳細ページに紐付けるためにjmaのEventIDを取得 */
+		$data['entry'][$key]['detail']['Head']['jma']['EventID'] = date( 'YmdHis', strtotime( $data['entry'][$key]['detail']['Control']['DateTime'] ) );
+		$data['entry'][$key]['detail']['Head']['jma']['link']['@attributes'] = [
+			'type'=>'text/html',
+			'href'=>'https://www.data.jma.go.jp/multi/quake/quake_detail.html?lang=jp&eventID=' . $data['entry'][$key]['detail']['Head']['jma']['EventID'],
+		];
+
 		$val=$data['entry'][$key]['detail'];
 
 		/*
@@ -356,14 +363,9 @@ if (!$data) {
 			}
 
 		}
+*/
 
-		/* jma(気象庁)発行の詳細ページに紐付けるためにjmaのEventIDを取得 */
-		$data['entry'][$key]['detail']['Head']['jma']['EventID'] = date( 'YmdHis', strtotime( $data['entry'][$key]['detail']['Control']['DateTime'] ) );
-		$data['entry'][$key]['detail']['Head']['jma']['link']['@attributes'] = [
-			'type'=>'text/html',
-			'href'=>'https://www.data.jma.go.jp/multi/quake/quake_detail.html?lang=jp&eventID=' . $data['entry'][$key]['detail']['Head']['jma']['EventID'],
-		];
-		file_put_contents('var_dump_export.dat', var_dump_text([$data]), LOCK_EX);
+		#file_put_contents('var_dump_export.dat', var_dump_text([$data]), LOCK_EX);
 	}
 
 	$database['feedaccesslog']=new internalDB(dirname(__FILE__).'/'.'database_feedaccess.db');
