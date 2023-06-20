@@ -372,7 +372,18 @@ if (!$data) {
 				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']=[];
 				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][0]=$tmp;
 
-				
+				foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'] as $key4 => $val4 ){
+					if( !isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'] ) ) {
+						continue;
+					}
+					$tmp=[
+						'Name' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'],
+						'Code' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Code'],
+						'Int'  => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Int'],
+					];
+					$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']=[];
+					$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation'][0]=$tmp;
+				}
 			}
 
 		}
