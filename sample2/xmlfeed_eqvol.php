@@ -302,8 +302,7 @@ if (!$data) {
 		}
 
 		foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'] as $key2 => $val2 ){
-			if( !isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'] ) ) {
-			} else {
+			if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'] ) ) {
 				$tmp=[
 					'Name'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'],
 					'Code'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Code'],
@@ -315,8 +314,7 @@ if (!$data) {
 			}
 
 			foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'] as $key3 => $val3 ){
-				if( !isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Name'] ) ) {
-				} else {
+				if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Name'] ) ) {
 					$tmp=[
 						'Name'             => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Name'],
 						'Code'             => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Code'],
@@ -328,8 +326,7 @@ if (!$data) {
 				}
 
 				foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'] as $key4 => $val4 ){
-					if( !isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'] ) ) {
-					} else {
+					if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'] ) ) {
 						$tmp=[
 							'Name' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'],
 							'Code' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Code'],
