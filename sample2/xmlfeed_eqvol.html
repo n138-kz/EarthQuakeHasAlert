@@ -308,7 +308,7 @@
                 tableText.classList.add('priv');
                 tableText.value = '手動発報';
                 tableText.type = 'button';
-                tableText.dataset.eventid = val_r.detail.Head.EventID;
+                tableText.dataset.eventid = val_r.detail.Head.EventID + ',' + val_r.detail.Head.jma.EventID + ',' + (val_r.detail.Head.EventID&val_r.detail.Head.jma.EventID);
                 tableText.setAttribute('onclick', 'issueAlert(this)');
                 tableCell.append(tableText);
                 tableText = document.createComment(JSON.stringify(val_r));
