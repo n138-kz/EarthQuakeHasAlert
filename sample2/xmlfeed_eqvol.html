@@ -11,9 +11,6 @@
     <script>
         function onLoadSignin() {
             credential = get_gsso();
-            if (!isArray(credential)) {
-                return false;
-            }
             return onSignIn(credential);
         }
         function onSignIn(googleUser) {
