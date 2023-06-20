@@ -309,6 +309,7 @@
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
+                tableCell.style.textAlign='right';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
