@@ -235,18 +235,22 @@
             Object.keys(eqvol.link).forEach(function(key) {
                 console.debug(eqvol.link[key]['@attributes']['href']);
             });
-            arrayList.push('https://www.jma.go.jp/');
-            arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'));
-            arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat');
-            arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php');
-            arrayList.push('https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/sample2');
+            arrayList.push(['https://www.jma.go.jp/']);
+            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json')]);
+            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat']);
+            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php']);
+            arrayList.push(['https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/sample2']);
             console.debug(arrayList);
             arrayList.map(function(val) {
                 listLine = document.createElement('li');
                 linkText = document.createElement('a');
-                linkText.href = val;
+                linkText.href = val[0];
                 smallText = document.createElement('small');
-                smallText.innerText = val;
+                try {
+                    smallText.innerText = val[1];
+                } catch (e) {
+                    smallText.innerText = val[0];
+                }
                 linkText.append(smallText);
                 listLine.append(linkText);
                 listBlock.append(listLine);
