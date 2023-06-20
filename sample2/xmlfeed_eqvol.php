@@ -349,40 +349,42 @@ if (!$data) {
 		foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'] as $key2 => $val2 ){
 			if( !isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'] ) ) {
 				continue;
+			} else {
+				$tmp=[
+					'Name'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'],
+					'Code'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Code'],
+					'City'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['City'],
+					'MaxInt' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['MaxInt'],
+				];
+				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']=[];
+				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][0]=$tmp;
 			}
-			$tmp=[
-				'Name'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'],
-				'Code'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Code'],
-				'City'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['City'],
-				'MaxInt' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['MaxInt'],
-			];
-			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']=[];
-			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][0]=$tmp;
 
 			foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'] as $key3 => $val3 ){
 				if( !isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Name'] ) ) {
 					continue;
+				} else {
+					$tmp=[
+						'Name'             => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Name'],
+						'Code'             => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Code'],
+						'MaxInt'           => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['MaxInt'],
+						'IntensityStation' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['IntensityStation'],
+					];
+					$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']=[];
+					$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][0]=$tmp;
 				}
-				$tmp=[
-					'Name'             => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Name'],
-					'Code'             => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Code'],
-					'MaxInt'           => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['MaxInt'],
-					'IntensityStation' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['IntensityStation'],
-				];
-				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']=[];
-				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][0]=$tmp;
 
 				foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'] as $key4 => $val4 ){
 					if( !isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'] ) ) {
-						continue;
+					} else {
+						$tmp=[
+							'Name' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'],
+							'Code' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Code'],
+							'Int'  => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Int'],
+						];
+						$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']=[];
+						$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation'][0]=$tmp;
 					}
-					$tmp=[
-						'Name' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'],
-						'Code' => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Code'],
-						'Int'  => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Int'],
-					];
-					$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']=[];
-					$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation'][0]=$tmp;
 				}
 			}
 
