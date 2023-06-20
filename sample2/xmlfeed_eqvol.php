@@ -375,5 +375,6 @@ foreach( $data['entry'] as $key => $val ){
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 header('Content-Type: application/json; charset=UTF-8');
 echo json_encode( $data );
