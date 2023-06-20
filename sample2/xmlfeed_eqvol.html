@@ -50,13 +50,17 @@
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
             }
-            xhr.open('POST','./google-sso.php');
-            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-            xhr.send(
-                'ts='+(Math.floor((new Date()).getTime()/1000))
-                + '&' + 'client_id=' + googleUser.client_id
-                + '&' + 'credential=' + googleUser.credential
-            );
+            try {
+                xhr.open('POST','./google-sso.php');
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                xhr.send(
+                    'ts='+(Math.floor((new Date()).getTime()/1000))
+                    + '&' + 'client_id=' + googleUser.client_id
+                    + '&' + 'credential=' + googleUser.credential
+                );
+            } catch (error) {
+                console.error(error);
+            }
         }
     </script>
     <script src="./lib/isset.js"></script>
