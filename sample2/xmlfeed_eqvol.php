@@ -343,17 +343,14 @@ if (!$data) {
 		] ) );
 		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
 			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( __LINE__ ) );
-			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']=
-			[$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']];
+			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'] ,JSON_INVALID_UTF8_IGNORE|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) );
+			$tmp=$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'];
+			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']=[];
+			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][0]=$tmp;
+			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'] ,JSON_INVALID_UTF8_IGNORE|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) );
 		}
 
-		error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( [ 'isset->('.__LINE__.')', isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ] ) );
-		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
-			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( __LINE__ ) );
-			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][]=
-			[$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']];
-		}
-
+/*
 		foreach($val['Body']['Intensity']['Observation']['Pref']['Area'] as $key2 => $val2){
 			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( [ 'isset->('.__LINE__.')', isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City']['Name'] ) ] ) );
 			if( isset( $val['Body']['Intensity']['Observation']['Pref']['Area'][$key2]['City']['Name'] ) ) {
