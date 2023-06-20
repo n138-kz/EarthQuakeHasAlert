@@ -307,7 +307,7 @@
                 try {
                     if ( isset(get_gsso().email) && !( get_gsso().email == null ) ) {
                     } else {
-                        tableText.setAttribute('disabled', 'disabled');
+                        tableText.disabled = true;
                     }
                 } catch (error) {}
                 tableCell.append(tableText);
