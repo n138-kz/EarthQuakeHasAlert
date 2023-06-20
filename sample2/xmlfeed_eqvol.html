@@ -478,17 +478,14 @@
         });
         window.addEventListener('DOMContentLoaded', function() {
             console.log('DOMContent loaded');
-            init_pageloaded_eqvol();
         });
         window.addEventListener("orientationchange", function() {
             console.log('Device rotated');
             getFeedXML_eqvol();
-            init_pageloaded_eqvol();
         });
         window.addEventListener("resize", function() {
             console.log('Window resized');
             getFeedXML_eqvol();
-            init_pageloaded_eqvol();
         });
         setInterval(() => {
             getFeedXML_eqvol();
@@ -498,6 +495,9 @@
         }, 1000*10);
     </script>
     <style>
+        html {
+            height: 100%;
+        }
         body {
             background: linear-gradient(0.5turn, #3f87a6, #ebf8e1, #f69d3c);
             background-repeat: no-repeat;
