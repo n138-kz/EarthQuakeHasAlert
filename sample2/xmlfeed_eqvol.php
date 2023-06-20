@@ -293,55 +293,8 @@ if (!$data) {
 		$val=$data['entry'][$key]['detail'];
 
 		/*
-		 * detail                      --> detail
-		 * +                           --> +
-		 * +--Control                  --> +--Control
-		 * +--Head                     --> +--Head
-		 * +--Body                     --> +--Body
-		 * |  +                        --> |  +
-		 * |  +--Earthquake            --> |  +--Earthquake
-		 * |  +--Comments              --> |  +--Comments
-		 * |  +--Intensity {}          --> |  +--Intensity {}
-		 * |  |  +                     --> |  |  +
-		 * |  |  +--Observation {}     --> |  |  +--Observation {}
-		 * |  |  |  +                  --> |  |  |  +
-		 * |  |  |  +--CodeDefine {}   --> |  |  |  +--CodeDefine {}
-		 * |  |  |  |  +               --> |  |  |  |  +
-		 * |  |  |  |  +--Type []      --> |  |  |  |  +--Type []
-		 * |  |  |                     --> |  |  |
-		 * |  |  +--MaxInt n           --> |  |  +--MaxInt n
-		 * |  |  |                     --> |  |  |
-		 * |  |  +--Pref []{}          --> |  |  +--Pref []
-		 * |  |  |  +                  --> |  |  |  +
-		 * |  |  |  +                  --> |  |  |  +--0
-		 * |  |  |  +                  --> |  |  |  |  +
-		 * |  |  |  +--Name ""         --> |  |  |  |  +--Name ""
-		 * |  |  |  +--Code n          --> |  |  |  |  +--Code n
-		 * |  |  |  +--MaxInt n        --> |  |  |  |  +--MaxInt n
-		 * |  |  |  +--Area []{}       --> |  |  |  |  +--Area []
-		 * |  |  |  |  +               --> |  |  |  |  |  +
-		 * |  |  |  |  +               --> |  |  |  |  |  +--0
-		 * |  |  |  |  +               --> |  |  |  |  |  |  +
-		 * |  |  |  |  +--Name ""      --> |  |  |  |  |  |  +--Name ""
-		 * |  |  |  |  +--Code n       --> |  |  |  |  |  |  +--Code n
-		 * |  |  |  |  +--MaxInt n     --> |  |  |  |  |  |  +--MaxInt n
-		 * |  |  |  |  +--City []{}    --> |  |  |  |  |  |  +--City []{}
-		 * |  |  |  |  +               --> |  |  |  |  |  |  +
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
-		*/
-
-		/*
-		 * 各地の震度の項目が不定形だったので定形に変更
-		*/
+		 * 各地の震度の項目が不定形だったので定形に変更 rev1
+		*
 		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Name'] ) ) {
 			$tmp=$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'];
 			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']=[];
@@ -391,6 +344,7 @@ if (!$data) {
 			}
 
 		}
+		*/
 
 	}
 
