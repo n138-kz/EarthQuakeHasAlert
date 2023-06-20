@@ -24,19 +24,25 @@
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
-                    set_gsso(xhr.responseText);
-                    Array.prototype.forEach.call(document.querySelectorAll('.g_id_signin'), function(class_g_id_signin) {
-                        class_g_id_signin.innerHTML='';
-                        g_id_icon_link= document.createElement('a');
-                        g_id_icon_link.href='https://myaccount.google.com/';
-                        g_id_icon_link.target='_blank';
-                        g_id_icon_img = document.createElement('img');
-                        g_id_icon_img.alt=JSON.parse(xhr.responseText).name;
-                        g_id_icon_img.src=JSON.parse(xhr.responseText).icon;
-                        g_id_icon_img.classList.add('g_id_icon');
-                        g_id_icon_link.append(g_id_icon_img);
-                        class_g_id_signin.append(g_id_icon_link);
-                    });
+
+                    if ( isset(JSON.parse(xhr.responseText).email) && !( JSON.parse(xhr.responseText).email == null ) ) {
+                        set_gsso(xhr.responseText);
+                        Array.prototype.forEach.call(document.querySelectorAll('.g_id_signin'), function(class_g_id_signin) {
+                            class_g_id_signin.innerHTML='';
+                            g_id_icon_link= document.createElement('a');
+                            g_id_icon_link.href='https://myaccount.google.com/';
+                            g_id_icon_link.target='_blank';
+                            g_id_icon_img = document.createElement('img');
+                            g_id_icon_img.alt=JSON.parse(xhr.responseText).name;
+                            g_id_icon_img.src=JSON.parse(xhr.responseText).icon;
+                            g_id_icon_img.classList.add('g_id_icon');
+                            g_id_icon_link.append(g_id_icon_img);
+                            class_g_id_signin.append(g_id_icon_link);
+                        });
+                    } else {
+                        set_gsso(null);
+                    }
+
                 } else {
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
