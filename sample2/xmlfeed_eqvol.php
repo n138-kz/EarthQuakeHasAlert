@@ -329,6 +329,15 @@ if (!$data) {
 		*/
 
 		/* 各地の震度の項目が不定形だったので定形に変更 */
+		error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( [ 'isset->('.__LINE__.')',
+			isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] )
+		] ) );
+		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
+			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( __LINE__ ) );
+			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']=
+			[$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area']];
+		}
+
 		error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( [ 'isset->('.__LINE__.')', isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ] ) );
 		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
 			error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( __LINE__ ) );
