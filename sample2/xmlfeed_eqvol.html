@@ -314,7 +314,7 @@
                 */
                 tableCell = document.createElement('td');
                 linkText = document.createElement('a');
-                linkText.href = val_r.detail.Head.jma['@attributes'].href;
+                linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
                 linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
