@@ -480,6 +480,11 @@
             console.log('DOMContent loaded');
             init_pageloaded_eqvol();
         });
+        window.addEventListener("orientationchange", function() {
+            console.log('Device rotated');
+            getFeedXML_eqvol();
+            init_pageloaded_eqvol();
+        });
         setInterval(() => {
             getFeedXML_eqvol();
             document.querySelectorAll('body>div:not([id]):not([class])').forEach(function(elm){
