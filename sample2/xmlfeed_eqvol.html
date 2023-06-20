@@ -311,11 +311,11 @@
                 tableText.dataset.eventid = val_r.detail.Head.EventID;
                 tableText.setAttribute('onclick', 'issueAlert(this)');
                 try {
-                    console.log(
+                    console.log([
                         isset(get_gsso().email) && !( get_gsso().email == null ),
                         isset(get_gsso().email),
                         !( get_gsso().email == null )
-                    );
+                    ]);
                     if ( isset(get_gsso().email) && !( get_gsso().email == null ) ) {
                     } else {
                         tableText.disabled = true;
