@@ -76,7 +76,7 @@ function loadSystemSecret($secret_keyfile = 'secret.txt'){
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-function sendEmail(){
+function sendEmail($params=['subject'=>null,'body'=>null]){
 	/*
 	 * Mail API を使用したメールの送受信
 	 * https://cloud.google.com/appengine/docs/standard/php/mail/sending-receiving-with-mail-api?hl=ja
