@@ -12,7 +12,7 @@ function loadCache($cache_name = ''){
 	}
 	$cache_mtime = filemtime($cache_name);
 	$cache_result = FALSE;
-	$cache_expire = 60;
+	$cache_expire = 10;
 	if ( $cache_mtime!==FALSE && (time()-$cache_mtime)<$cache_expire ) {
 		$cache_result = json_decode(file_get_contents($cache_name), TRUE);
 	}
@@ -382,4 +382,4 @@ header('Access-Control-Allow-Headers: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 header('Access-Control-Allow-Credentials: true');
 header('Content-Type: application/json; charset=UTF-8');
-echo json_encode( $data );
+echo json_encode( $data, JSON_INVALID_UTF8_IGNORE|JSON_NUMERIC_CHECK );
