@@ -232,14 +232,14 @@
             linkText = document.createElement('a');
             smallText = document.createElement('small');
             arrayList = [];
-            arrayList.push(eqvol.id);
             Object.keys(eqvol.link).forEach(function(key) {
-                arrayList.push(eqvol.link[key]['@attributes']['href']);
+                console.debug(eqvol.link[key]['@attributes']['href']);
             });
+            arrayList.push('https://www.jma.go.jp/');
             arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'));
-            arrayList.push('https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/sample2');
             arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat');
             arrayList.push(location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php');
+            arrayList.push('https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/sample2');
             console.debug(arrayList);
             arrayList.map(function(val) {
                 listLine = document.createElement('li');
