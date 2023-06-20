@@ -247,6 +247,9 @@
                 linkText.href = val[0];
                 smallText = document.createElement('small');
                 try {
+                    if (val[1]==null) {
+                        throw 'NullPointerException';
+                    }
                     smallText.innerText = val[1];
                 } catch (e) {
                     smallText.innerText = val[0];
