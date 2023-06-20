@@ -295,6 +295,8 @@
                 linkText.dataset.eventid = val_r.detail.Head.EventID;
                 linkText.setAttribute('onclick', 'issueAlert(this)');
                 tableCell.append(linkText);
+                dom_comment = document.createComment(JSON.parse(val_r));
+                tableCell.append(dom_comment);
                 tableLine.append(tableCell);
                 /*
                 tableCell = document.createElement('td');
