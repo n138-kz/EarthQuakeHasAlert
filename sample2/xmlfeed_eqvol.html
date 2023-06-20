@@ -239,7 +239,7 @@
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'), '開発: データ参照先(JSON)']);
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat', '開発: var_dump()']);
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php', '開発: 管理メニュー']);
-            arrayList.push(['https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/sample2']);
+            arrayList.push(['https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/sample2', 'ソースコード']);
             console.debug(arrayList);
             arrayList.map(function(val) {
                 listLine = document.createElement('li');
