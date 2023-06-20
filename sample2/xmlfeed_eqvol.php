@@ -303,7 +303,6 @@ if (!$data) {
 
 		foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'] as $key2 => $val2 ){
 			if( !isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'] ) ) {
-				continue;
 			} else {
 				$tmp=[
 					'Name'   => $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'],
