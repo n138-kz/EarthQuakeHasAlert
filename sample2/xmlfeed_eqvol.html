@@ -314,7 +314,9 @@
                 */
                 tableCell = document.createElement('td');
                 linkText = document.createElement('a');
-                linkText.href = val_r.id;
+                linkText.href  = '';
+                linkText.href += 'https://www.data.jma.go.jp/multi/quake/quake_detail.html?lang=jp&eventID=';
+                linkText.href += val_r.detail.Head.EventID;
                 linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
