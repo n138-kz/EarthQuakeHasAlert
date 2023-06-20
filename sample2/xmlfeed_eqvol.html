@@ -455,6 +455,17 @@
                     */
                     tableCell.append(sub1_tableBlock);
                 } catch (error) {
+                    tableText = document.createElement('div');
+                    tableText.innerText = JSON.stringify(val_r.detail.Body.Intensity.Observation.Pref,null,'   ');
+                    tableText.style.whiteSpace = 'pre-wrap';
+                    tableText.style.fontFamily = 'MyricaM M, MyricaM N, MyricaM P, monospace';
+                    tableText.style.fontSize = 'small';
+                    tableText.dataset.fontlist0 = 'https://myrica.estable.jp/myricamhistry/';
+                    tableText.dataset.fontlist1 = 'https://myrica.estable.jp/myricamhistry/';
+                    tableText.dataset.fontlist2 = 'https://myrica.estable.jp/myricamhistry/';
+                    tableText.dataset.fontlist3 = 'https://en.wikipedia.org/wiki/Monospace_(typeface)';
+                    tableCell.append(tableText);
+
                     console.error(error);
                 }
                 tableLine.append(tableCell);
