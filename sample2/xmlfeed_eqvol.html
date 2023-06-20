@@ -111,9 +111,7 @@
             return dateftext.resultText;
         }
         function set_eqvol(eqvol) {
-            if ( isArray( eqvol ) ) {
-                eqvol = JSON.stringify( eqvol );
-            }
+            eqvol = JSON.stringify(eqvol);
             return sessionStorage.setItem(
                 (btoa(location.href)).slice(0, 16) + '.eqvol',
                 eqvol
