@@ -466,7 +466,7 @@
                      * JavaScriptでのメディアクエリ、matchMedia()の使い方を解説
                      * https://coliss.com/articles/build-websites/operation/javascript/javascript-media-queries.html
                     */
-                    const mediaQuery = window.matchMedia('screen and (orientation: landscape)');
+                    const mediaQuery = window.matchMedia('screen and (min-width: 420px)');
                     if (mediaQuery.matches) {
                         tableText = document.createElement('div');
                         tableText.innerText = JSON.stringify(val_r.detail.Body.Intensity.Observation.Pref,null,'   ');
