@@ -339,7 +339,9 @@ if (!$data) {
 		 * |  |  |  |  +               --> |  |  |  |  |  |  + 
 		*/
 
-		/* 各地の震度の項目が不定形だったので定形に変更 */
+		/*
+		 * 各地の震度の項目が不定形だったので定形に変更
+		*/
 		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Name'] ) ) {
 			$tmp=$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'];
 			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']=[];
