@@ -271,7 +271,7 @@
             //arrayList.push('InfoKindVersion');
             //arrayList.push('InfoType');
             //arrayList.push('Serial');
-            arrayList.push('Status');
+            //arrayList.push('Status');
             arrayList.push('震央地名');
             arrayList.push('最大震度');
             arrayList.push('各地の震度');
@@ -354,9 +354,11 @@
                 tableCell.innerText = val_r.detail.Head.Serial;
                 tableLine.append(tableCell);
                 */
+                /*
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Control.Status;
                 tableLine.append(tableCell);
+                */
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
                 tableLine.append(tableCell);
