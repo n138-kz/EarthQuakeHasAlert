@@ -20,7 +20,7 @@
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
-                    sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.google-sso', xhr.responseText );
+                    set_gsso(xhr.responseText);
                     Array.prototype.forEach.call(document.querySelectorAll('.g_id_signin'), function(class_g_id_signin) {
                         class_g_id_signin.innerHTML='';
                         g_id_icon_link= document.createElement('a');
@@ -97,6 +97,19 @@
         function get_eqvol(eqvol) {
             eqvol = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol' );
             return JSON.parse(eqvol);
+        }
+        function set_gsso(credential) {
+            if ( Array.isArray( credential ) ) {
+                credential = JSON.stringify( credential );
+            }
+            return sessionStorage.setItem(
+                (btoa(location.href)).slice(0, 16) + '.google-sso',
+                credential
+            );
+        }
+        function get_gsso() {
+            credential = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
+            return JSON.parse(credential);
         }
         function replaceFullToHalf(str){
             /* 
