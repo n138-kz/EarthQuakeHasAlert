@@ -9,6 +9,13 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="./lib/grecaptcha.js" id="grecaptchajs"></script>
     <script>
+        function onLoadSignin() {
+            credential = get_gsso();
+            if (!Array.isArray(credential)) {
+                return false;
+            }
+            return onSignIn(credential);
+        }
         function onSignIn(googleUser) {
             console.log(googleUser);
             console.log(googleUser.credential);
@@ -443,6 +450,7 @@
         window.addEventListener('DOMContentLoaded', function() {
             console.log('DOMContent loaded');
             init_pageloaded_eqvol();
+            onLoadSignin();
         });
         setInterval(() => {
             getFeedXML_eqvol();
