@@ -471,11 +471,11 @@
         window.addEventListener('load', function() {
             console.log('page is fully loaded');
             getFeedXML_eqvol();
+            onLoadSignin();
         });
         window.addEventListener('DOMContentLoaded', function() {
             console.log('DOMContent loaded');
             init_pageloaded_eqvol();
-            onLoadSignin();
         });
         setInterval(() => {
             getFeedXML_eqvol();
