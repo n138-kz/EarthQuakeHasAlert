@@ -284,6 +284,50 @@ if (!$data) {
 		$data['entry'][$key]['detail'] = json_decode( xml2json( $data_recv ), TRUE);
 
 		$val=$data['entry'][$key]['detail'];
+
+		/*
+		 * detail
+		 * +
+		 * +--Control
+		 * +--Head
+		 * +--Body
+		 * +  +
+		 * +  +--Earthquake
+		 * +  +--Comments
+		 * +  +--Intensity {}
+		 * +  +  +
+		 * +  +  +--Observation {}
+		 * +  +  +  +
+		 * +  +  +  +--CodeDefine {}
+		 * +  +  +  +  +
+		 * +  +  +  +  +--Type []
+		 * +  +  +
+		 * +  +  +--MaxInt n
+		 * +  +  +
+		 * +  +  +--Pref []{}
+		 * +  +  +  +
+		 * +  +  +  +--Name ""
+		 * +  +  +  +--Code n
+		 * +  +  +  +--MaxInt n
+		 * +  +  +  +--Area []{}
+		 * +  +  +  +  +
+		 * +  +  +  +  +--Name ""
+		 * +  +  +  +  +--Code n
+		 * +  +  +  +  +--MaxInt n
+		 * +  +  +  +  +--City []{}
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		 * +  +  +  +  +
+		*/
+
 		/* 各地の震度の項目が不定形だったので定形に変更 */
 		error_log( '['.$_SERVER['REMOTE_ADDR'].']'.json_encode( [ 'isset->('.__LINE__.')', isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ] ) );
 		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Area'] ) ) {
