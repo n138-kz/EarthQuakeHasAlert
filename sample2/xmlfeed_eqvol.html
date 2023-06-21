@@ -28,7 +28,11 @@
                     console.log( JSON.parse(xhr.responseText) );
 
                     if ( isset(JSON.parse(xhr.responseText).email) && !( JSON.parse(xhr.responseText).email == null ) ) {
-                        set_gsso(xhr.responseText);
+			/* 認証後メニュー */
+			Object.entries(document.querySelectorAll('.priv')).map(function(element){element[1].classList.remove('priv');});
+
+			/* 資格情報をブラウザに保存 */
+			set_gsso(xhr.responseText);
                         Array.prototype.forEach.call(document.querySelectorAll('.g_id_signin'), function(class_g_id_signin) {
                             class_g_id_signin.innerHTML='';
                             g_id_icon_link= document.createElement('a');
