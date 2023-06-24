@@ -37,21 +37,20 @@ function saveStore($cache_name = '', $data=[]){
 	/* ファイルから読み込んだ結果何かしらの理由で配列じゃなかったとき配列に初期化 */
 	if ( !is_array($store) ) { $store = []; }
 
-	$dat1=[];
 	if(!isset($data['entry']) || !is_array($data['entry'])){
 		error_log('Object(key=entry) is not accessable.');
 		return FALSE;
 	}
 
-	/* EventID をIDとして管理できるようにする */
-	foreach($data['entry'] as $key => $val){
-		$dat1[$val['detail']['Head']['EventID']]=$val;
+	/* jma EventID をIDとして管理できるようにする */
+	$tmp = [];
+	foreach( $data['entry'] as $key => $val ){
+		$tmp[ $data['entry'][$key]['detail']['Head']['jma']['EventID'] ] = $data['entry'][$key];
 	}
+	file_put_contents('var_dump_export.dat', json_encode( ['timestamp'=>time(),'@attributes'=>$tmp] ) );
 
-	/* すでに項目がある場合は上書きして保存 */
-	foreach($dat1 as $key => $val){
-		$store=array_merge($store, [$key=>$val]);
-	}
+	/* 新規データをサーバ(ファイル)に保存，すでにあるデータは上書き */
+	$store=array_merge($store, $tmp);
 
 	/* jsonにして保存 */
 	$store=json_encode($store, JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE);
