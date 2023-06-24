@@ -28,6 +28,7 @@ function saveCache($cache_name = '', $data=[]){
 	saveStore( dirname(__FILE__) . '/' . 'xmlfeed_eqvol_log.json', $data );
 }
 function saveStore($cache_name = '', $data=[]){
+	return FALSE;
 	if ( is_array($data) ) { $data = json_encode($data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE); }
 	$data=json_decode($data, TRUE);
 
@@ -50,11 +51,11 @@ function saveStore($cache_name = '', $data=[]){
 	file_put_contents('var_dump_export.dat', json_encode( ['timestamp'=>time(),'@attributes'=>$tmp] ) );
 
 	/* 新規データをサーバ(ファイル)に保存，すでにあるデータは上書き */
-	$store=array_merge($store, $tmp);
+	$dat_array=array_replace($store, $tmp);
 
 	/* jsonにして保存 */
-	$store=json_encode($store, JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE);
-	$cache_result = file_put_contents($cache_name, $store, LOCK_EX);
+	$dat_jtext=json_encode($dat_array, JSON_NUMERIC_CHECK|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_IGNORE);
+	$cache_result = file_put_contents($cache_name, $dat_jtext, LOCK_EX);
 	if ( $cache_result === FALSE ) {
 		error_log('Store cache save failed: ' . $cache_name);
 	}
