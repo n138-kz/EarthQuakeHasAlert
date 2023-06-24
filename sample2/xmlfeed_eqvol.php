@@ -37,6 +37,7 @@ function saveStore($cache_name = '', $data=[]){
 
 	$store=file_get_contents($cache_name);
 	$store=json_decode($store, TRUE);
+	if ( !is_array($store) ) { $store = []; }
 
 	$dat1=[];
 	if(!isset($data['entry']) || !is_array($data['entry'])){
