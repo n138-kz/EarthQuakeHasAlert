@@ -375,6 +375,7 @@ if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) !== 'localhost' ) {
 	$curl_res=json_decode($curl_res, TRUE);
 }
 
+/* 関東地方で大規模地震が発生したとき */
 foreach( $data['entry'] as $key => $val ){
 	/*
 	 * 
