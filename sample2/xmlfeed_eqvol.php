@@ -148,11 +148,6 @@ function sendEmail($params=['subject'=>null,'body'=>null]){
 
 require_once './php-internal.php';
 
-if ( gethostbyaddr($_SERVER['REMOTE_ADDR']) == 'localhost' ) {
-	http_response_code(503); 
-	exit();
-}
-
 $database['useraccesslog']=new internalDB(dirname(__FILE__).'/'.'database_useraccess.db');
 if ( mb_strtolower($_SERVER['REQUEST_METHOD']) != 'get' ) {
 	http_response_code(405); 
