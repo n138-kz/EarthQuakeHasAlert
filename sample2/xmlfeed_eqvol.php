@@ -37,6 +37,8 @@ function saveStore($cache_name = '', $data=[]){
 
 	$store=file_get_contents($cache_name);
 	$store=json_decode($store, TRUE);
+
+	/* ファイルから読み込んだ結果何かしらの理由で配列じゃなかったとき配列に初期化 */
 	if ( !is_array($store) ) { $store = []; }
 
 	$dat1=[];
