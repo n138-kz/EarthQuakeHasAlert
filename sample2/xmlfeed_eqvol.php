@@ -292,15 +292,14 @@ if (!$data) {
 
 		$val=$data['entry'][$key]['detail'];
 
-		/*
-		 * 各地の震度の項目が不定形だったので定形に変更
-		*/
+		/* 各地の震度の項目が不定形だったので定形に変更 */
 		if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']['Name'] ) ) {
 			$tmp=$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'];
 			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref']=[];
 			$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][0]=$tmp;
 		}
 
+		/* 各地の震度の項目が不定形だったので定形に変更 */
 		foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'] as $key2 => $val2 ){
 			if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area']['Name'] ) ) {
 				$tmp=[
@@ -313,6 +312,7 @@ if (!$data) {
 				$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][0]=$tmp;
 			}
 
+			/* 各地の震度の項目が不定形だったので定形に変更 */
 			foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'] as $key3 => $val3 ){
 				if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City']['Name'] ) ) {
 					$tmp=[
@@ -325,6 +325,7 @@ if (!$data) {
 					$data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][0]=$tmp;
 				}
 
+				/* 各地の震度の項目が不定形だったので定形に変更 */
 				foreach( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'] as $key4 => $val4 ){
 					if( isset( $data['entry'][$key]['detail']['Body']['Intensity']['Observation']['Pref'][$key2]['Area'][$key3]['City'][$key4]['IntensityStation']['Name'] ) ) {
 						$tmp=[
