@@ -224,12 +224,15 @@
                     console.log( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
                     eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' );
+                    eqvol_hash_diff = false;
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
                         console.log( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
+                        eqvol_hash_diff = eqvol_hash == hash;
                     }).catch(function(e) {
                         console.warn(e);
                     });
+                    console.log( eqvol_hash_diff );
                     console.log( JSON.parse( set_eqvol( xhr_responseText ) ) );
                     listup_eqvol( xhr_responseText );
                     setChassisWidth();
