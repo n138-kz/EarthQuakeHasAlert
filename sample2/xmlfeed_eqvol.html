@@ -139,11 +139,10 @@
         }
         function set_eqvol(eqvol) {
             eqvol = JSON.stringify(eqvol);
-            sha256(xhr_responseText).then(function(hash){
-                sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash', eqvol );
-            });
-            sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol', eqvol );
-            return sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol' );
+            return sessionStorage.setItem(
+                (btoa(location.href)).slice(0, 16) + '.eqvol',
+                eqvol
+            );
         }
         function get_eqvol(eqvol) {
             eqvol = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol' );
@@ -223,12 +222,12 @@
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
-                    sha256_text = '';
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
-                        sha256_text = hash;
+                        xhr_responseText.hash = hash;
                     });
-                    listup_eqvol( set_eqvol( xhr_responseText ) );
+                    set_eqvol( xhr_responseText );
+                    listup_eqvol( xhr_responseText );
                     setChassisWidth();
                     sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash', xhr_responseText.hash);
                 } else {
