@@ -245,6 +245,13 @@
             xhr.send();
         }
         function listup_eqvol(eqvol){
+            if ( true ) {
+                console.trace([
+                    eqvol.hash,
+                    sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' ),
+                    eqvol.hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' )
+                ]);
+            }
             root_body = document.getElementById('eqvol');
             root_body.innerText = '';
 
