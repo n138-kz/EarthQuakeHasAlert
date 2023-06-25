@@ -227,6 +227,8 @@
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
                         eqvol_hash = hash;
+                    }).catch(function(e) {
+                        console.warn(e);
                     });
                     console.log( JSON.parse( set_eqvol( xhr_responseText ) ) );
                     listup_eqvol( xhr_responseText );
