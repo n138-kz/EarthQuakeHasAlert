@@ -376,6 +376,15 @@
             /* to Int */
             width=parseInt(width, 10);
 
+            /* 引数として無効な数値が与えられた */
+            if ( !(width>0) ) {
+                width = Math.max(
+                    document.documentElement.clientWidth,
+                    window.innerWidth || 0,
+                    document.getElementById('eqvol').offsetWidth
+                );
+            }
+            
         }
     </script>
     <script>
