@@ -210,6 +210,7 @@
                     console.log( JSON.parse(xhr.responseText) );
                     set_eqvol( JSON.parse(xhr.responseText) );
                     listup_eqvol( JSON.parse(xhr.responseText) );
+                    setChassisWidth();
                 } else {
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
                 }
