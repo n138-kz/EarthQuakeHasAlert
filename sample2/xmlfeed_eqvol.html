@@ -138,10 +138,10 @@
             return dateftext.resultText;
         }
         function set_eqvol(eqvol) {
-            eqvol = JSON.stringify(eqvol);
             sha256(eqvol).then(function(hash){
                 sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash', hash );
             });
+            eqvol = JSON.stringify(eqvol);
             sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol', eqvol );
             return sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol' );
         }
