@@ -222,6 +222,9 @@
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
                     sha256(JSON.parse(xhr.responseText)).then(hash => console.debug(hash));
+                    sha256(JSON.parse(xhr.responseText)).then(function(hash){
+                        console.debug(hash);
+                    });
                     set_eqvol( JSON.parse(xhr.responseText) );
                     listup_eqvol( JSON.parse(xhr.responseText) );
                     setChassisWidth();
