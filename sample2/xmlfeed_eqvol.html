@@ -224,6 +224,7 @@
                     xhr_responseText = JSON.parse(xhr.responseText);
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
+                        sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash', hash);
                     });
                     set_eqvol( xhr_responseText );
                     listup_eqvol( xhr_responseText );
