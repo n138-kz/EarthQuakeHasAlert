@@ -221,12 +221,13 @@
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
-                    sha256(JSON.parse(xhr.responseText)).then(hash => console.debug(hash));
-                    sha256(JSON.parse(xhr.responseText)).then(function(hash){
+                    xhr_responseText = JSON.parse(xhr.responseText);
+                    sha256(xhr_responseText).then(hash => console.debug(hash));
+                    sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
                     });
-                    set_eqvol( JSON.parse(xhr.responseText) );
-                    listup_eqvol( JSON.parse(xhr.responseText) );
+                    set_eqvol( xhr_responseText );
+                    listup_eqvol( xhr_responseText );
                     setChassisWidth();
                 } else {
                     console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
