@@ -222,7 +222,6 @@
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
-                    sha256(xhr_responseText).then(hash => console.debug(hash));
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
                     });
