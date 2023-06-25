@@ -223,9 +223,10 @@
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
+                    eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' );
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
-                        xhr_responseText.hash = hash;
+                        eqvol_hash = hash;
                     });
                     console.log( JSON.parse( set_eqvol( xhr_responseText ) ) );
                     listup_eqvol( xhr_responseText );
