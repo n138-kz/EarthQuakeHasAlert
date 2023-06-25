@@ -387,6 +387,9 @@
             }
 
             document.getElementsByTagName('body')[0].style.width=(width+'px');
+            document.querySelectorAll('meta[name="viewport"]').forEach(function(elm){
+                elm.content=('width='+width);
+            });
         }
     </script>
     <script>
