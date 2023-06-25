@@ -16,8 +16,12 @@
         function onSignIn(googleUser) {
             try {
                 console.log(googleUser);
+                console.log(googleUser.client_id);
                 console.log(googleUser.credential);
-            } catch (error) {}
+            } catch (error) {
+                set_gsso(null);
+                return false;
+            }
 
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
