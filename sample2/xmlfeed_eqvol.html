@@ -73,6 +73,15 @@
     </script>
     <script src="./lib/isset.js"></script>
     <script>
+        async function sha256(text){
+            /* 
+            * JavaScriptで文字列のハッシュ値を取得する - Qiita
+            * https://qiita.com/economist/items/768d2f6a10d54d4fa39f
+            */
+            const uint8  = new TextEncoder().encode(text)
+            const digest = await crypto.subtle.digest('SHA-256', uint8)
+            return Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('')
+        }
         function isArray(params) {
             if ( Array.isArray( params ) ) {
                 return true;
@@ -212,6 +221,7 @@
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
                     console.log( JSON.parse(xhr.responseText) );
+                    sha256(JSON.parse(xhr.responseText)).then(hash => console.debug(hash));
                     set_eqvol( JSON.parse(xhr.responseText) );
                     listup_eqvol( JSON.parse(xhr.responseText) );
                     setChassisWidth();
