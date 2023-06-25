@@ -226,7 +226,7 @@
                     eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' );
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
-                        console.log( 'eqvol_hash == hash', eqvol_hash == hash );
+                        console.log( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
                     }).catch(function(e) {
                         console.warn(e);
                     });
