@@ -227,7 +227,7 @@
                         console.debug(hash);
                         xhr_responseText.hash = hash;
                     });
-                    set_eqvol( xhr_responseText );
+                    console.log( JSON.parse( set_eqvol( xhr_responseText ) ) );
                     listup_eqvol( xhr_responseText );
                     setChassisWidth();
                     sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash', xhr_responseText.hash);
