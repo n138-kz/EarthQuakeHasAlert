@@ -478,58 +478,6 @@
             root_body = document.getElementById('eqvol_log');
             root_body.innerText = '';
 
-            header1 = document.createElement('h1');
-            header1.classList.add('meta');
-            header1.innerText = eqvol.title;
-            header1.innerText = '地震情報';
-            header1.title = eqvol.subtitle;
-            root_body.append(header1);
-
-            wrapLine = document.createElement('p');
-            wrapLine.classList.add('meta');
-            smallText = document.createElement('small');
-            smallText.innerText  = '';
-            smallText.innerText += 'updated: ';
-            smallText.innerText += eqvol.updated;
-            wrapLine.append(smallText);
-            root_body.append(wrapLine);
-
-            wrapLine = document.createElement('p');
-            wrapLine.classList.add('meta');
-            listBlock = document.createElement('ul');
-            listLine = document.createElement('li');
-            linkText = document.createElement('a');
-            smallText = document.createElement('small');
-            arrayList = [];
-            Object.keys(eqvol.link).forEach(function(key) {
-                console.debug(eqvol.link[key]['@attributes']['href']);
-            });
-            arrayList.push(['https://www.jma.go.jp/', '気象庁 Japan Meteorological Agency']);
-            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'), '開発: データ参照先(JSON)']);
-            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat', '開発: var_dump()']);
-            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php', '開発: 管理メニュー']);
-            arrayList.push(['https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/', 'ソースコード']);
-            console.debug(arrayList);
-            arrayList.map(function(val) {
-                listLine = document.createElement('li');
-                linkText = document.createElement('a');
-                linkText.href = val[0];
-                smallText = document.createElement('small');
-                try {
-                    if (val[1]==null) {
-                        throw 'NullPointerException';
-                    }
-                    smallText.innerText = val[1];
-                } catch (e) {
-                    smallText.innerText = val[0];
-                }
-                linkText.append(smallText);
-                listLine.append(linkText);
-                listBlock.append(listLine);
-            });
-            wrapLine.append(listBlock);
-            root_body.append(wrapLine);
-
             wrapLine = document.createElement('p');
             wrapLine.classList.add('content');
             tableBlock = document.createElement('table');
