@@ -149,6 +149,18 @@
             eqvol = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol' );
             return JSON.parse(eqvol);
         }
+        function set_eqvol_log(eqvol) {
+            sha256(eqvol).then(function(hash){
+                sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash', hash );
+            });
+            eqvol = JSON.stringify(eqvol);
+            sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log', eqvol );
+            return sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log' );
+        }
+        function get_eqvol_log(eqvol) {
+            eqvol = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log' );
+            return JSON.parse(eqvol);
+        }
         function set_gsso(credential) {
             if ( credential == null ) {
                 sessionStorage.removeItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
@@ -406,6 +418,210 @@
             wrapLine.append(tableBlock);
             root_body.append(wrapLine);
         }
+        function getFeedXML_eqvol_log() {
+            if(debugInfo('stop_refresh')!==false){
+                console.log(
+                    '** STOP **',
+                    'Debug mode is Turn on.(refresh = stop)',
+                    'How to Turn off Debug mode is:',
+                    [
+                        "sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.debug' )",
+                        "sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.debug', JSON.stringify([]) )",
+                    ],
+                );
+                return false;
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                console.debug(xhr.readyState);
+
+                if ( xhr.readyState === 4 && xhr.status === 200 ) {
+                    console.debug( xhr.responseText );
+                    console.log( JSON.parse(xhr.responseText) );
+                    xhr_responseText = JSON.parse(xhr.responseText);
+                    eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash' );
+                    eqvol_hash_diff = false;
+                    sha256(xhr_responseText).then(function(hash){
+                        console.debug(hash);
+                        console.log( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
+                        eqvol_hash_diff = eqvol_hash == hash;
+                    }).catch(function(e) {
+                        console.warn(e);
+                    });
+                    console.log( eqvol_hash_diff );
+                    console.log( JSON.parse( set_eqvol_log( xhr_responseText ) ) );
+                    listup_eqvol_log( xhr_responseText );
+                    setChassisWidth();
+                    sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash', xhr_responseText.hash);
+                } else {
+                    console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
+                }
+                grecaptcha_init();
+            }
+            xhr.open(
+                'GET',
+                './xmlfeed_eqvol_log.json'
+                + '?'+'ts='+(Math.floor((new Date()).getTime()/1000))
+                + '&'+'id='+grecaptcha_pickup()
+            );
+            xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+            xhr.send();
+        }
+        function listup_eqvol_log(eqvol){
+            if ( true ) {
+                console.trace([
+                    eqvol.hash,
+                    sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' ),
+                    eqvol.hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' )
+                ]);
+            }
+            root_body = document.getElementById('eqvol_log');
+            root_body.innerText = '';
+
+            header1 = document.createElement('h1');
+            header1.classList.add('meta');
+            header1.innerText = eqvol.title;
+            header1.innerText = '地震情報';
+            header1.title = eqvol.subtitle;
+            root_body.append(header1);
+
+            wrapLine = document.createElement('p');
+            wrapLine.classList.add('meta');
+            smallText = document.createElement('small');
+            smallText.innerText  = '';
+            smallText.innerText += 'updated: ';
+            smallText.innerText += eqvol.updated;
+            wrapLine.append(smallText);
+            root_body.append(wrapLine);
+
+            wrapLine = document.createElement('p');
+            wrapLine.classList.add('meta');
+            listBlock = document.createElement('ul');
+            listLine = document.createElement('li');
+            linkText = document.createElement('a');
+            smallText = document.createElement('small');
+            arrayList = [];
+            Object.keys(eqvol.link).forEach(function(key) {
+                console.debug(eqvol.link[key]['@attributes']['href']);
+            });
+            arrayList.push(['https://www.jma.go.jp/', '気象庁 Japan Meteorological Agency']);
+            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'), '開発: データ参照先(JSON)']);
+            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat', '開発: var_dump()']);
+            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php', '開発: 管理メニュー']);
+            arrayList.push(['https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/', 'ソースコード']);
+            console.debug(arrayList);
+            arrayList.map(function(val) {
+                listLine = document.createElement('li');
+                linkText = document.createElement('a');
+                linkText.href = val[0];
+                smallText = document.createElement('small');
+                try {
+                    if (val[1]==null) {
+                        throw 'NullPointerException';
+                    }
+                    smallText.innerText = val[1];
+                } catch (e) {
+                    smallText.innerText = val[0];
+                }
+                linkText.append(smallText);
+                listLine.append(linkText);
+                listBlock.append(listLine);
+            });
+            wrapLine.append(listBlock);
+            root_body.append(wrapLine);
+
+            wrapLine = document.createElement('p');
+            wrapLine.classList.add('content');
+            tableBlock = document.createElement('table');
+            tableBlock.classList.add('content');
+            tableBlock.border = 1;
+            tableMeta = document.createElement('thead');
+            tableLine = document.createElement('tr');
+            tableCell = document.createElement('th');
+            tableCell.innerText = '▶';
+            tableCell.classList.add('priv');
+            tableLine.append(tableCell);
+            tableCell = document.createElement('th');
+            tableCell.innerText = '地震検知日時';
+            tableLine.append(tableCell);
+            tableCell = document.createElement('th');
+            tableCell.innerText = '震央地名';
+            tableLine.append(tableCell);
+            tableCell = document.createElement('th');
+            tableCell.innerText = '最大震度';
+            tableLine.append(tableCell);
+            tableCell = document.createElement('th');
+            tableCell.innerText = '都道府県';
+            tableLine.append(tableCell);
+            tableCell = document.createElement('th');
+            tableCell.innerText = '震度';
+            tableLine.append(tableCell);
+            arrayList.map(function(val) {});
+            tableMeta.append(tableLine);
+            tableBlock.append(tableMeta);
+            wrapLine.append(tableBlock);
+            tableMeta = document.createElement('tbody');
+            eqvol.entry.map(function(val_r) {
+                console.log(val_r.detail.Body);
+                tableLine = document.createElement('tr');
+                tableCell = document.createElement('td');
+                tableCell.classList.add('priv');
+                tableText = document.createElement('input');
+                tableText.classList.add('priv');
+                tableText.value = '手動発報';
+                tableText.type = 'button';
+                tableText.dataset.eventid = val_r.detail.Head.EventID + ',' + val_r.detail.Head.jma.EventID + ',' + (val_r.detail.Head.EventID&val_r.detail.Head.jma.EventID);
+                tableText.setAttribute('onclick', 'issueAlert(this)');
+                tableCell.append(tableText);
+                tableText = document.createComment(JSON.stringify(val_r));
+                tableCell.append(tableText);
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.style.textAlign='center';
+                linkText = document.createElement('a');
+                linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
+                linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
+                tableCell.append(linkText);
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell = document.createElement('td');
+                tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
+                tableCell.style.textAlign='center';
+                tableCell.style.textAlign='center';
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
+                tableCell.style.textAlign='right';
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
+                    sub1_tableLine = document.createElement('div');
+                    console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].Name );
+                    sub1_tableCell = document.createElement('div');
+                    sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].Name;
+                    sub1_tableCell.style.textAlign='center';
+                    tableCell.append(sub1_tableCell);
+                });
+                tableCell.append(sub1_tableLine);
+                tableLine.append(tableCell);
+                tableCell = document.createElement('td');
+                Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
+                    sub1_tableLine = document.createElement('div');
+                    console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt );
+                    sub1_tableCell = document.createElement('div');
+                    sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt;
+                    sub1_tableCell.style.textAlign='right';
+                    tableCell.append(sub1_tableCell);
+                });
+                tableCell.append(sub1_tableLine);
+                tableLine.append(tableCell);
+
+                tableMeta.append(tableLine);
+            });
+            tableBlock.append(tableMeta);
+            wrapLine.append(tableBlock);
+            root_body.append(wrapLine);
+        }
         function setChassisWidth(width=0) {
             /* to Int */
             width=parseInt(width, 10);
@@ -429,6 +645,7 @@
         window.addEventListener('load', function() {
             console.log('page is fully loaded');
             getFeedXML_eqvol();
+            getFeedXML_eqvol_log();
             onLoadSignin();
         });
         window.addEventListener('DOMContentLoaded', function() {
@@ -437,13 +654,16 @@
         window.addEventListener("orientationchange", function() {
             console.log('Device rotated');
             getFeedXML_eqvol();
+            getFeedXML_eqvol_log();
         });
         window.addEventListener("resize", function() {
             console.log('Window resized');
             getFeedXML_eqvol();
+            getFeedXML_eqvol_log();
         });
         setInterval(() => {
             getFeedXML_eqvol();
+            getFeedXML_eqvol_log();
             document.querySelectorAll('body>div:not([id]):not([class])').forEach(function(elm){
                 elm.remove();
             });
@@ -519,5 +739,6 @@
 	    <div class="g_id_signin" data-type="standard" data-logo_alignment="left"></div>
 	</div>
 	<div id="eqvol"></div>
+	<div id="eqvol_log"></div>
 </body>
 </html>
