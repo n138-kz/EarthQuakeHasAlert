@@ -548,6 +548,7 @@
                 tableLine = document.createElement('tr');
                 tableCell = document.createElement('td');
                 tableCell.classList.add('priv');
+                tableCell.classList.add('eqvol_body');
                 tableText = document.createComment(JSON.stringify(val_r));
                 tableCell.append(tableText);
                 tableLine.append(tableCell);
