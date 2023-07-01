@@ -26,20 +26,19 @@ APIサーバは運用コストのなるべく少ないサーバを採用する�
 
 - [気象庁防災情報XMLフォーマット形式電文の公開（PULL型）](http://xml.kishou.go.jp/xmlpull.html)
 
-Atomフィード
-○高頻度フィード
-　※毎分更新し、直近少なくとも10分入電を掲載
+Atomフィード ○高頻度フィード ※毎分更新し、直近少なくとも10分入電を掲載
 
-  - [定時](https://www.data.jma.go.jp/developer/xml/feed/regular.xml)：気象に関する情報のうち、天気概況など定時に発表されるもの
-  - [随時](https://www.data.jma.go.jp/developer/xml/feed/extra.xml)：気象に関する情報のうち、警報・注意報など随時発表されるもの
-  - [地震火山](https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml)：地震、火山に関する情報
-  - [その他](https://www.data.jma.go.jp/developer/xml/feed/other.xml)：上記３種類のいずれにも属さないもの
+- [定時](https://www.data.jma.go.jp/developer/xml/feed/regular.xml)：気象に関する情報のうち、天気概況など定時に発表されるもの
+- [随時](https://www.data.jma.go.jp/developer/xml/feed/extra.xml)：気象に関する情報のうち、警報・注意報など随時発表されるもの
+- [地震火山](https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml)：地震、火山に関する情報
+- [その他](https://www.data.jma.go.jp/developer/xml/feed/other.xml)：上記３種類のいずれにも属さないもの
 
 ## ユーザ管理
 
 ユーザ情報は原則保持しないものとするが例外としてアクセス制御をアプリケーション側から制御可能とするために下記データを保持する。
 
 ### 保持するデータ
+
 - 外部SSOのユーザID
 - 通信アクセス元IPアドレス
 - 通信アクセス元ユーザエージェント(ソフトウェア名やそのバージョン)
@@ -61,5 +60,3 @@ Atomフィード
   デバッグ用ログを表示できる `Authrized user` である。なお Level `7` (Manager) のユーザも閲覧可能とする。  
   ※注：フロントエンド側のログは権限管理はしない為全ユーザーにて確認可能である。
 - 権威処理を行う必要のあるユーザには Level `7` (Manager) を設定する。
-
-
