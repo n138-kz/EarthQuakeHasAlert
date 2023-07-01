@@ -15,9 +15,9 @@
         }
         function onSignIn(googleUser) {
             try {
-                console.log(googleUser);
-                console.log(googleUser.client_id);
-                console.log(googleUser.credential);
+                console.debug(googleUser);
+                console.debug(googleUser.client_id);
+                console.debug(googleUser.credential);
             } catch (error) {
                 set_gsso(null);
                 return false;
@@ -29,7 +29,7 @@
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
-                    console.log( JSON.parse(xhr.responseText) );
+                    console.debug( JSON.parse(xhr.responseText) );
 
                     if ( isset(JSON.parse(xhr.responseText).email) && !( JSON.parse(xhr.responseText).email == null ) ) {
                         /* 認証後メニュー */
@@ -101,7 +101,7 @@
             }
         }
         function issueAlert(issuer_object) {
-            console.log(issuer_object.dataset.eventid);
+            console.debug(issuer_object.dataset.eventid);
             alert(issuer_object.dataset.eventid);
         }
         function datef(date) {
@@ -216,7 +216,7 @@
         }
         function getFeedXML_eqvol() {
             if(debugInfo('stop_refresh')!==false){
-                console.log(
+                console.debug(
                     '** STOP **',
                     'Debug mode is Turn on.(refresh = stop)',
                     'How to Turn off Debug mode is:',
@@ -233,19 +233,19 @@
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
-                    console.log( JSON.parse(xhr.responseText) );
+                    console.debug( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
                     eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' );
                     eqvol_hash_diff = false;
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
-                        console.log( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
+                        console.debug( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
                         eqvol_hash_diff = eqvol_hash == hash;
                     }).catch(function(e) {
                         console.warn(e);
                     });
-                    console.log( eqvol_hash_diff );
-                    console.log( JSON.parse( set_eqvol( xhr_responseText ) ) );
+                    console.debug( eqvol_hash_diff );
+                    console.debug( JSON.parse( set_eqvol( xhr_responseText ) ) );
                     listup_eqvol( xhr_responseText );
                     setChassisWidth();
                     sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash', xhr_responseText.hash);
@@ -371,7 +371,7 @@
             tableMeta = document.createElement('tbody');
             console.debug( eqvol );
             eqvol.entry.map(function(val_r) {
-                console.log(val_r.detail.Body);
+                console.debug(val_r.detail.Body);
                 tableLine = document.createElement('tr');
                 tableCell = document.createElement('td');
                 tableCell.classList.add('priv');
@@ -444,7 +444,7 @@
         }
         function getFeedXML_eqvol_log() {
             if(debugInfo('stop_refresh')!==false){
-                console.log(
+                console.debug(
                     '** STOP **',
                     'Debug mode is Turn on.(refresh = stop)',
                     'How to Turn off Debug mode is:',
@@ -461,19 +461,19 @@
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
-                    console.log( JSON.parse(xhr.responseText) );
+                    console.debug( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
                     eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash' );
                     eqvol_hash_diff = false;
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(hash);
-                        console.log( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
+                        console.debug( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
                         eqvol_hash_diff = eqvol_hash == hash;
                     }).catch(function(e) {
                         console.warn(e);
                     });
-                    console.log( eqvol_hash_diff );
-                    console.log( JSON.parse( set_eqvol_log( xhr_responseText ) ) );
+                    console.debug( eqvol_hash_diff );
+                    console.debug( JSON.parse( set_eqvol_log( xhr_responseText ) ) );
                     listup_eqvol_log( xhr_responseText );
                     setChassisWidth();
                     sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash', xhr_responseText.hash);
@@ -638,21 +638,21 @@
     </script>
     <script>
         window.addEventListener('load', function() {
-            console.log('page is fully loaded');
+            console.debug('page is fully loaded');
             getFeedXML_eqvol();
             getFeedXML_eqvol_log();
             onLoadSignin();
         });
         window.addEventListener('DOMContentLoaded', function() {
-            console.log('DOMContent loaded');
+            console.debug('DOMContent loaded');
         });
         window.addEventListener("orientationchange", function() {
-            console.log('Device rotated');
+            console.debug('Device rotated');
             getFeedXML_eqvol();
             getFeedXML_eqvol_log();
         });
         window.addEventListener("resize", function() {
-            console.log('Window resized');
+            console.debug('Window resized');
             getFeedXML_eqvol();
             getFeedXML_eqvol_log();
         });
