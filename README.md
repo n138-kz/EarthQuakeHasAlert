@@ -1,5 +1,7 @@
 # EarthQuakeHasAlert
 
+## 本プログラムに関して
+
 本プログラムは震度5弱以上の地震を検知した場合、または権限を持ているユーザ2名以上が同時（5分以内）に発動することにより、自動で安否確認用のメールを発信する為のプログラムである。
 メールシステム利用にはユーザ認証を必須とし、ユーザ認証はGoogleSSOを使用する。
 
@@ -21,6 +23,7 @@ APIサーバは運用コストのなるべく少ないサーバを採用する�
 また、サーバとの通信量を記録し、一定量(50%, 75, 90, 95%, 99%, 100%)を超えた場合、管理者へ通知する。
 
 ## データ参照元
+
 - [気象庁防災情報XMLフォーマット形式電文の公開（PULL型）](http://xml.kishou.go.jp/xmlpull.html)
 
 Atomフィード
@@ -31,3 +34,4 @@ Atomフィード
   - [随時](https://www.data.jma.go.jp/developer/xml/feed/extra.xml)：気象に関する情報のうち、警報・注意報など随時発表されるもの
   - [地震火山](https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml)：地震、火山に関する情報
   - [その他](https://www.data.jma.go.jp/developer/xml/feed/other.xml)：上記３種類のいずれにも属さないもの
+
