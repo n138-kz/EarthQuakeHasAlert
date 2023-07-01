@@ -188,19 +188,25 @@
             });
         }
         function checkAuthStatus() {
+            let credential;
             try {
-                let credential = get_gsso();
+                credential = get_gsso();
                 console.debug(credential);
                 console.debug(credential.client_id);
                 console.debug(credential.credential);
-                console.debug(credential.session.iat);
-                console.debug(credential.session.exp);
+                console.debug((Math.floor((new Date()).getTime()/1000)));
+                console.debug(credential.session.iat, ((Math.floor((new Date()).getTime()/1000))<credential.session.iat));
+                console.debug(credential.session.exp, ((Math.floor((new Date()).getTime()/1000))>=credential.session.exp));
             } catch (error) {
                 console.error(error);
                 return false;
             }
 
-            if ( credential.session.iat>(Math.floor((new Date()).getTime()/1000)) || credential.session.exp<=(Math.floor((new Date()).getTime()/1000)) ) {
+            if ( credential.session.iat > (Math.floor((new Date()).getTime()/1000)) ) {
+                credential = onSignIn(credential);
+            }
+
+            if ( credential.session.exp <= (Math.floor((new Date()).getTime()/1000)) ) {
                 credential = onSignIn(credential);
             }
 
