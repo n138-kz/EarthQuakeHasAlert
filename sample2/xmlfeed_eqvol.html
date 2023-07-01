@@ -532,8 +532,8 @@
             if ( true ) {
                 console.trace([
                     eqvol.hash,
-                    sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' ),
-                    eqvol.hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' )
+                    sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash' ),
+                    eqvol.hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash' )
                 ]);
             }
 
