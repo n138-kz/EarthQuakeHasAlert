@@ -377,6 +377,7 @@
                 tableCell.classList.add('priv');
                 tableText = document.createElement('input');
                 tableText.classList.add('priv');
+                tableCell.classList.add('eqvol_body');
                 tableText.value = '手動発報';
                 tableText.type = 'button';
                 tableText.dataset.eventid = val_r.detail.Head.EventID + ',' + val_r.detail.Head.jma.EventID + ',' + (val_r.detail.Head.EventID&val_r.detail.Head.jma.EventID);
@@ -386,6 +387,7 @@
                 tableCell.append(tableText);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
+                tableCell.classList.add('eqvol_body');
                 tableCell.style.textAlign='center';
                 linkText = document.createElement('a');
                 linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
@@ -394,15 +396,18 @@
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell = document.createElement('td');
+                tableCell.classList.add('eqvol_body');
                 tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
                 tableCell.style.textAlign='center';
                 tableCell.style.textAlign='center';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
+                tableCell.classList.add('eqvol_body');
                 tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
                 tableCell.style.textAlign='right';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
+                tableCell.classList.add('eqvol_body');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
                     sub1_tableLine = document.createElement('div');
                     console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].Name );
@@ -414,6 +419,7 @@
                 tableCell.append(sub1_tableLine);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
+                tableCell.classList.add('eqvol_body');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
                     sub1_tableLine = document.createElement('div');
                     console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt );
@@ -552,16 +558,19 @@
                 linkText = document.createElement('a');
                 linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
                 linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
+                tableCell.classList.add('eqvol_body');
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
+                tableCell.classList.add('eqvol_body');
                 tableCell.style.textAlign='center';
                 tableCell.style.textAlign='center';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
+                tableCell.classList.add('eqvol_body');
                 tableCell.style.textAlign='right';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
@@ -573,6 +582,7 @@
                     sub1_tableCell.style.textAlign='center';
                     tableCell.append(sub1_tableCell);
                 });
+                tableCell.classList.add('eqvol_body');
                 tableCell.append(sub1_tableLine);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
@@ -584,6 +594,7 @@
                     sub1_tableCell.style.textAlign='right';
                     tableCell.append(sub1_tableCell);
                 });
+                tableCell.classList.add('eqvol_body');
                 tableCell.append(sub1_tableLine);
                 tableLine.append(tableCell);
 
