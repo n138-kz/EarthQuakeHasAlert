@@ -254,7 +254,7 @@
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
-                    console.debug( JSON.parse(xhr.responseText) );
+                    console.log( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
                     eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' );
                     eqvol_hash_diff = false;
@@ -499,7 +499,7 @@
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     console.debug( xhr.responseText );
-                    console.debug( JSON.parse(xhr.responseText) );
+                    console.log( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
                     eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash' );
                     eqvol_hash_diff = false;
