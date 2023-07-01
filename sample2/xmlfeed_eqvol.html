@@ -198,7 +198,7 @@
                 console.debug(credential.session.iat, ((Math.floor((new Date()).getTime()/1000))<credential.session.iat));
                 console.debug(credential.session.exp, ((Math.floor((new Date()).getTime()/1000))>=credential.session.exp));
             } catch (error) {
-                console.error(error);
+                console.debug(error);
                 return false;
             }
 
