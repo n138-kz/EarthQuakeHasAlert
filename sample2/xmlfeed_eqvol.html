@@ -354,12 +354,17 @@
             tableBlock.border = 1;
             tableMeta = document.createElement('thead');
             tableLine = document.createElement('tr');
-            tableCell = document.createElement('th');
-            tableCell.innerText = '▶';
-            tableCell.classList.add('priv');
-            tableCell.classList.add('eqvol_header');
-            tableCell.classList.add('eqvol_header_alert');
-            tableLine.append(tableCell);
+            privLevel = checkAuthStatus();
+                if (!!privLevel) {
+                    if (privLevel.eqvol.userlevel & 3 == 3) {
+                        tableCell = document.createElement('th');
+                        tableCell.innerText = '▶';
+                        tableCell.classList.add('priv');
+                        tableCell.classList.add('eqvol_header');
+                        tableCell.classList.add('eqvol_header_alert');
+                        tableLine.append(tableCell);
+                    }
+                }
             tableCell = document.createElement('th');
             tableCell.innerText = '地震検知日時';
             tableCell.classList.add('eqvol_header');
@@ -394,20 +399,25 @@
             eqvol.entry.map(function(val_r) {
                 console.debug(val_r.detail.Body);
                 tableLine = document.createElement('tr');
-                tableCell = document.createElement('td');
-                tableCell.classList.add('priv');
-                tableText = document.createElement('input');
-                tableText.classList.add('priv');
-                tableCell.classList.add('eqvol_body');
-                tableCell.classList.add('eqvol_body_alert');
-                tableText.value = '手動発報';
-                tableText.type = 'button';
-                tableText.dataset.eventid = val_r.detail.Head.EventID + ',' + val_r.detail.Head.jma.EventID + ',' + (val_r.detail.Head.EventID&val_r.detail.Head.jma.EventID);
-                tableText.setAttribute('onclick', 'issueAlert(this)');
-                tableCell.append(tableText);
-                tableText = document.createComment(JSON.stringify(val_r));
-                tableCell.append(tableText);
-                tableLine.append(tableCell);
+                privLevel = checkAuthStatus();
+                if (!!privLevel) {
+                    if (privLevel.eqvol.userlevel & 3 == 3) {
+                        tableCell = document.createElement('td');
+                        tableCell.classList.add('priv');
+                        tableText = document.createElement('input');
+                        tableText.classList.add('priv');
+                        tableCell.classList.add('eqvol_body');
+                        tableCell.classList.add('eqvol_body_alert');
+                        tableText.value = '手動発報';
+                        tableText.type = 'button';
+                        tableText.dataset.eventid = val_r.detail.Head.EventID + ',' + val_r.detail.Head.jma.EventID + ',' + (val_r.detail.Head.EventID&val_r.detail.Head.jma.EventID);
+                        tableText.setAttribute('onclick', 'issueAlert(this)');
+                        tableCell.append(tableText);
+                        tableText = document.createComment(JSON.stringify(val_r));
+                        tableCell.append(tableText);
+                        tableLine.append(tableCell);
+                    }
+                }
                 tableCell = document.createElement('td');
                 tableCell.classList.add('eqvol_body');
                 tableCell.classList.add('eqvol_body_detecttime');
@@ -531,12 +541,17 @@
             tableBlock.border = 1;
             tableMeta = document.createElement('thead');
             tableLine = document.createElement('tr');
-            tableCell = document.createElement('th');
-            tableCell.innerText = '▶';
-            tableCell.classList.add('priv');
-            tableCell.classList.add('eqvol_header');
-            tableCell.classList.add('eqvol_header_alert');
-            tableLine.append(tableCell);
+            privLevel = checkAuthStatus();
+                if (!!privLevel) {
+                    if (privLevel.eqvol.userlevel & 3 == 3) {
+                        tableCell = document.createElement('th');
+                        tableCell.innerText = '▶';
+                        tableCell.classList.add('priv');
+                        tableCell.classList.add('eqvol_header');
+                        tableCell.classList.add('eqvol_header_alert');
+                        tableLine.append(tableCell);
+                    }
+                }
             tableCell = document.createElement('th');
             tableCell.innerText = '地震検知日時';
             tableCell.classList.add('eqvol_header');
@@ -574,13 +589,18 @@
 
                 console.debug( val_r.detail.Body );
                 tableLine = document.createElement('tr');
-                tableCell = document.createElement('td');
-                tableCell.classList.add('priv');
-                tableCell.classList.add('eqvol_body');
-                tableCell.classList.add('eqvol_body_alert');
-                tableText = document.createComment(JSON.stringify(val_r));
-                tableCell.append(tableText);
-                tableLine.append(tableCell);
+                privLevel = checkAuthStatus();
+                if (!!privLevel) {
+                    if (privLevel.eqvol.userlevel & 3 == 3) {
+                        tableCell = document.createElement('td');
+                        tableCell.classList.add('priv');
+                        tableCell.classList.add('eqvol_body');
+                        tableCell.classList.add('eqvol_body_alert');
+                        tableText = document.createComment(JSON.stringify(val_r));
+                        tableCell.append(tableText);
+                        tableLine.append(tableCell);
+                    }
+                }
                 tableCell = document.createElement('td');
                 tableCell.style.textAlign='center';
                 linkText = document.createElement('a');
