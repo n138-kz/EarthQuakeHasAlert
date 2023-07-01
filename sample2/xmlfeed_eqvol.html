@@ -378,6 +378,7 @@
                 tableText = document.createElement('input');
                 tableText.classList.add('priv');
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_alert');
                 tableText.value = '手動発報';
                 tableText.type = 'button';
                 tableText.dataset.eventid = val_r.detail.Head.EventID + ',' + val_r.detail.Head.jma.EventID + ',' + (val_r.detail.Head.EventID&val_r.detail.Head.jma.EventID);
@@ -388,6 +389,7 @@
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_detecttime');
                 tableCell.style.textAlign='center';
                 linkText = document.createElement('a');
                 linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
@@ -396,16 +398,19 @@
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_centerofthequake');
                 tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
                 tableCell.style.textAlign='center';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_maxint');
                 tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
                 tableCell.style.textAlign='right';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_pref');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
                     sub1_tableLine = document.createElement('div');
                     console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].Name );
@@ -418,6 +423,7 @@
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_int');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
                     sub1_tableLine = document.createElement('div');
                     console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt );
@@ -549,6 +555,7 @@
                 tableCell = document.createElement('td');
                 tableCell.classList.add('priv');
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_alert');
                 tableText = document.createComment(JSON.stringify(val_r));
                 tableCell.append(tableText);
                 tableLine.append(tableCell);
@@ -558,16 +565,19 @@
                 linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
                 linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_detecttime');
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_centerofthequake');
                 tableCell.style.textAlign='center';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
                 tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_maxint');
                 tableCell.style.textAlign='right';
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
@@ -580,6 +590,7 @@
                     tableCell.append(sub1_tableCell);
                 });
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_pref');
                 tableCell.append(sub1_tableLine);
                 tableLine.append(tableCell);
                 tableCell = document.createElement('td');
@@ -592,6 +603,7 @@
                     tableCell.append(sub1_tableCell);
                 });
                 tableCell.classList.add('eqvol_body');
+                tableCell.classList.add('eqvol_body_int');
                 tableCell.append(sub1_tableLine);
                 tableLine.append(tableCell);
 
