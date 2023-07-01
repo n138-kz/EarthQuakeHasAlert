@@ -592,6 +592,9 @@
             wrapLine.append(tableBlock);
             tableMeta = document.createElement('tbody');
 
+            /*
+	     * Object.keys().reverse() https://sossy-blog.com/useful/5054/
+	    */
             console.debug( eqvol );
             Object.keys(eqvol).reverse().map(function(key){
                 console.debug( eqvol[key] );
