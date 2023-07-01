@@ -81,14 +81,8 @@
             if ( isArray( credential ) ) {
                 credential = JSON.stringify( credential );
             }
-            sessionStorage.setItem(
-                (btoa(location.href)).slice(0, 16) + '.google-sso',
-                credential
-            );
-            return localStorage.setItem(
-                (btoa(location.href)).slice(0, 16) + '.google-sso',
-                credential
-            );
+            sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.google-sso', credential );
+            return localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.google-sso', credential );
         }
         function get_gsso() {
             credential = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
