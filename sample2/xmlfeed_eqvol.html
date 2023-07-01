@@ -691,21 +691,21 @@
     </script>
     <script>
         window.addEventListener('load', function() {
-            console.debug('page is fully loaded');
+            console.log('page is fully loaded');
             getFeedXML_eqvol();
             getFeedXML_eqvol_log();
             onLoadSignin();
         });
         window.addEventListener('DOMContentLoaded', function() {
-            console.debug('DOMContent loaded');
+            console.log('DOMContent loaded');
         });
         window.addEventListener("orientationchange", function() {
-            console.debug('Device rotated');
+            console.log('Device rotated');
             getFeedXML_eqvol();
             getFeedXML_eqvol_log();
         });
         window.addEventListener("resize", function() {
-            console.debug('Window resized');
+            console.log('Window resized');
             getFeedXML_eqvol();
             getFeedXML_eqvol_log();
         });
