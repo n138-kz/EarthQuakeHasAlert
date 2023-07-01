@@ -582,7 +582,9 @@
                 );
             }
 
-            document.getElementsByTagName('body')[0].style.width=(width+'px');
+            width = Math.floor( (width/10) ) * 10;
+
+            document.getElementsByTagName('body')[0].style.maxWidth=(2000+'px');
             document.querySelectorAll('meta[name="viewport"]').forEach(function(elm){
                 elm.content=('width='+width);
             });
