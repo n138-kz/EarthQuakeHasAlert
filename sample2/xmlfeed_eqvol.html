@@ -357,6 +357,7 @@
             tableBlock.append(tableMeta);
             wrapLine.append(tableBlock);
             tableMeta = document.createElement('tbody');
+            console.debug( eqvol );
             eqvol.entry.map(function(val_r) {
                 console.log(val_r.detail.Body);
                 tableLine = document.createElement('tr');
@@ -475,6 +476,7 @@
                     eqvol.hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' )
                 ]);
             }
+
             root_body = document.getElementById('eqvol_log');
             root_body.innerText = '';
 
