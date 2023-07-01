@@ -430,6 +430,7 @@
                 tableCell.style.textAlign='center';
                 linkText = document.createElement('a');
                 linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
+                linkText.target = '_blank';
                 linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
                 tableCell.append(linkText);
                 tableLine.append(tableCell);
@@ -617,6 +618,7 @@
                 tableCell.style.textAlign='center';
                 linkText = document.createElement('a');
                 linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
+                linkText.target = '_blank';
                 linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
                 tableCell.classList.add('eqvol_body');
                 tableCell.classList.add('eqvol_body_detecttime');
