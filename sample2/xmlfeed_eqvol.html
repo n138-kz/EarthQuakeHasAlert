@@ -510,18 +510,16 @@
             tableBlock.append(tableMeta);
             wrapLine.append(tableBlock);
             tableMeta = document.createElement('tbody');
-            eqvol.entry.map(function(val_r) {
-                console.log(val_r.detail.Body);
+
+            console.debug( eqvol );
+            Object.keys(eqvol).map(function(key){
+                console.debug( eqvol[key] );
+                val_r = eqvol[key];
+
+                console.debug( val_r.detail.Body );
                 tableLine = document.createElement('tr');
                 tableCell = document.createElement('td');
                 tableCell.classList.add('priv');
-                tableText = document.createElement('input');
-                tableText.classList.add('priv');
-                tableText.value = '手動発報';
-                tableText.type = 'button';
-                tableText.dataset.eventid = val_r.detail.Head.EventID + ',' + val_r.detail.Head.jma.EventID + ',' + (val_r.detail.Head.EventID&val_r.detail.Head.jma.EventID);
-                tableText.setAttribute('onclick', 'issueAlert(this)');
-                tableCell.append(tableText);
                 tableText = document.createComment(JSON.stringify(val_r));
                 tableCell.append(tableText);
                 tableLine.append(tableCell);
