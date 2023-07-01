@@ -59,7 +59,7 @@
                 }
             }
             try {
-                xhr.open('POST','./google-sso.php');
+                xhr.open('POST','./google-sso_authn.php');
                 xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
                 xhr.send(
                     'ts='+(Math.floor((new Date()).getTime()/1000))
