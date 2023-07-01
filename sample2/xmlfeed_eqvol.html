@@ -72,6 +72,28 @@
                 console.error(error);
             }
         }
+        function set_gsso(credential) {
+            if ( credential == null ) {
+                sessionStorage.removeItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
+                localStorage.removeItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
+                return false;
+            }
+            if ( isArray( credential ) ) {
+                credential = JSON.stringify( credential );
+            }
+            sessionStorage.setItem(
+                (btoa(location.href)).slice(0, 16) + '.google-sso',
+                credential
+            );
+            return localStorage.setItem(
+                (btoa(location.href)).slice(0, 16) + '.google-sso',
+                credential
+            );
+        }
+        function get_gsso() {
+            credential = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
+            return JSON.parse(credential);
+        }
     </script>
     <script src="./lib/isset.js"></script>
     <script>
@@ -162,28 +184,6 @@
         function get_eqvol_log(eqvol) {
             eqvol = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log' );
             return JSON.parse(eqvol);
-        }
-        function set_gsso(credential) {
-            if ( credential == null ) {
-                sessionStorage.removeItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
-                localStorage.removeItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
-                return false;
-            }
-            if ( isArray( credential ) ) {
-                credential = JSON.stringify( credential );
-            }
-            sessionStorage.setItem(
-                (btoa(location.href)).slice(0, 16) + '.google-sso',
-                credential
-            );
-            return localStorage.setItem(
-                (btoa(location.href)).slice(0, 16) + '.google-sso',
-                credential
-            );
-        }
-        function get_gsso() {
-            credential = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.google-sso' );
-            return JSON.parse(credential);
         }
         function replaceFullToHalf(str){
             /* 
