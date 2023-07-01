@@ -187,6 +187,25 @@
                 return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
             });
         }
+        function checkAuthStatus() {
+            try {
+                let credential = get_gsso();
+                console.debug(credential);
+                console.debug(credential.client_id);
+                console.debug(credential.credential);
+                console.debug(credential.session.iat);
+                console.debug(credential.session.exp);
+            } catch (error) {
+                console.error(error);
+                return false;
+            }
+
+            if ( credential.session.iat>(Math.floor((new Date()).getTime()/1000)) || credential.session.exp<=(Math.floor((new Date()).getTime()/1000)) ) {
+                credential = onSignIn(credential);
+            }
+
+            return credential;
+        }
         function debugInfo(item='') {
             let DEBUG = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.debug' );
             if ( (DEBUG === null) ) {
