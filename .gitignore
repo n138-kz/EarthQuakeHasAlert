@@ -3,7 +3,7 @@
 *.lock
 *.dat
 *.db
-*.json
 *.swp
 vendor/
 secret.txt
+xmlfeed_eqvol*.json
