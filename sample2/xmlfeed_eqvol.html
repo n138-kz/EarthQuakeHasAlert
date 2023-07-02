@@ -301,10 +301,6 @@
                 ]);
             }
 
-            num=0;Object.keys(eqvol.entry).map(function(key){ num+=1; });
-            console.log(arguments.callee.name, num);
-            if ( num == 0 ) { break; }
-
             root_body = document.getElementById('eqvol');
             root_body.innerText = '';
 
@@ -359,6 +355,10 @@
             });
             wrapLine.append(listBlock);
             root_body.append(wrapLine);
+
+            num=0;Object.keys(eqvol.entry).map(function(key){ num+=1; });
+            console.log(arguments.callee.name, num);
+            if ( num == 0 ) { return false; }
 
             wrapLine = document.createElement('p');
             wrapLine.classList.add('content');
@@ -554,7 +554,7 @@
 
             num=0;Object.keys(eqvol).map(function(key){ num+=1; });
             console.log(arguments.callee.name, num);
-            if ( num == 0 ) { break; }
+            if ( num == 0 ) { return false; }
 
             root_body = document.getElementById('eqvol_log');
             root_body.innerText = '';
