@@ -67,18 +67,18 @@ $_SESSION = [];
 $client = new Google_Client(['client_id' => CLIENT_ID]); 
 $payload = $client->verifyIdToken(CLIENT_TOKEN);
 if ($payload) {
-	$userid = $payload['sub'];
-	$_SESSION = [];
-	$_SESSION['user']['google']['client_id']      = CLIENT_ID;
-	$_SESSION['user']['google']['client_token']   = CLIENT_TOKEN;
-	$_SESSION['user']['google']['userid']         = $payload['sub'];
-	$_SESSION['user']['google']['email']          = $payload['email'];
-	$_SESSION['user']['google']['name']           = $payload['name'];
-	$_SESSION['user']['google']['icon']           = $payload['picture'];
-	$_SESSION['user']['google']['session']['iat'] = $payload['iat'];
-	$_SESSION['user']['google']['session']['exp'] = $payload['exp'];
-	$_SESSION['user']['local']['privilege']['eqvol']['level'] = 1;
-	$_SESSION['user']['local']['privilege']['eqvol']['name']  = 'Authorized user';
+    $userid = $payload['sub'];
+    $_SESSION = [];
+    $_SESSION['user']['google']['client_id']      = CLIENT_ID;
+    $_SESSION['user']['google']['client_token']   = CLIENT_TOKEN;
+    $_SESSION['user']['google']['userid']         = $payload['sub'];
+    $_SESSION['user']['google']['email']          = $payload['email'];
+    $_SESSION['user']['google']['name']           = $payload['name'];
+    $_SESSION['user']['google']['icon']           = $payload['picture'];
+    $_SESSION['user']['google']['session']['iat'] = $payload['iat'];
+    $_SESSION['user']['google']['session']['exp'] = $payload['exp'];
+    $_SESSION['user']['local']['privilege']['eqvol']['level'] = 1;
+    $_SESSION['user']['local']['privilege']['eqvol']['name']  = 'Authorized user';
 }
 echo json_encode([
 	'client_id'  => CLIENT_ID,
