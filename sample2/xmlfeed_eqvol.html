@@ -303,6 +303,7 @@
 
             num=0;Object.keys(eqvol.entry).map(function(key){ num+=1; });
             console.log(arguments.callee.name, num);
+            if ( num == 0 ) { break; }
 
             root_body = document.getElementById('eqvol');
             root_body.innerText = '';
@@ -553,6 +554,7 @@
 
             num=0;Object.keys(eqvol).map(function(key){ num+=1; });
             console.log(arguments.callee.name, num);
+            if ( num == 0 ) { break; }
 
             root_body = document.getElementById('eqvol_log');
             root_body.innerText = '';
