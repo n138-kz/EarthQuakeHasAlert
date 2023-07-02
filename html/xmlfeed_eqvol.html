@@ -707,6 +707,18 @@
 				elm.content=('initial-scale=1,width='+width);
 			});
 		}
+		function menubox_opener(open=false) {
+			console.debug(open);
+			const menubox_innerbox = document.getElementById('menubox_innerbox');
+			
+			alert('Unimplemented');
+
+			if ( !open ) {
+				menubox_innerbox.style.display='none';
+				return false;
+			}
+			menubox_innerbox.style.display='block';
+		}
 	</script>
 	<script>
 		window.addEventListener('load', function() {
@@ -717,6 +729,10 @@
 		});
 		window.addEventListener('DOMContentLoaded', function() {
 			console.log('DOMContent loaded');
+			document.getElementById('menubox_switcher').addEventListener('click', function(e){
+				console.log(e);
+				menubox_opener(false);
+			});
 		});
 		window.addEventListener("orientationchange", function() {
 			console.log('Device rotated');
