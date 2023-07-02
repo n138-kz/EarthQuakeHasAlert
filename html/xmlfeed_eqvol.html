@@ -606,242 +606,242 @@
             wrapLine.append(tableBlock);
             tableMeta = document.createElement('tbody');
 
-            /*
-	     * Object.keys().reverse() https://sossy-blog.com/useful/5054/
-	    */
-            console.debug( arguments.callee.name, [eqvol] );
-            Object.keys(eqvol).reverse().map(function(key){
-                console.debug( arguments.callee.name, [eqvol[key]] );
-                val_r = eqvol[key];
+			/*
+			 * Object.keys().reverse() https://sossy-blog.com/useful/5054/
+			*/
+			console.debug( arguments.callee.name, [eqvol] );
+			Object.keys(eqvol).reverse().map(function(key){
+				console.debug( arguments.callee.name, [eqvol[key]] );
+				val_r = eqvol[key];
 
-                console.debug( arguments.callee.name, [val_r.detail.Body] );
-                tableLine = document.createElement('tr');
-                privLevel = checkAuthStatus();
-                try {
-                    if (!!privLevel) {
-                        if ( (privLevel.eqvol.userlevel & 3) == 3 ) {
-                            tableCell = document.createElement('td');
-                            tableCell.classList.add('priv');
-                            tableCell.classList.add('eqvol_body');
-                            tableCell.classList.add('eqvol_body_alert');
-                            tableText = document.createComment(JSON.stringify(val_r));
-                            tableCell.append(tableText);
-                            tableLine.append(tableCell);
-                        }
-                    }
-                } catch (error) {
-                }
-                tableCell = document.createElement('td');
-                tableCell.style.textAlign='center';
-                linkText = document.createElement('a');
-                linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
-                linkText.target = '_blank';
-                linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
-                tableCell.classList.add('eqvol_body');
-                tableCell.classList.add('eqvol_body_detecttime');
-                tableCell.append(linkText);
-                tableLine.append(tableCell);
-                tableCell = document.createElement('td');
-                tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
-                tableCell.classList.add('eqvol_body');
-                tableCell.classList.add('eqvol_body_centerofthequake');
-                tableCell.style.textAlign='center';
-                tableLine.append(tableCell);
-                tableCell = document.createElement('td');
-                tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
-                tableCell.classList.add('eqvol_body');
-                tableCell.classList.add('eqvol_body_maxint');
-                tableCell.classList.add('eqvol_body_maxint'+'_'+parseInt(val_r.detail.Body.Intensity.Observation.MaxInt, 10));
-                tableCell.style.textAlign='right';
-                tableLine.append(tableCell);
-                tableCell = document.createElement('td');
-                Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
-                    sub1_tableLine = document.createElement('div');
-                    console.debug( arguments.callee.name, [val_r.detail.Body.Intensity.Observation.Pref[key1].Name] );
-                    sub1_tableCell = document.createElement('div');
-                    sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].Name;
-                    sub1_tableCell.style.textAlign='center';
-                    tableCell.append(sub1_tableCell);
-                });
-                tableCell.classList.add('eqvol_body');
-                tableCell.classList.add('eqvol_body_pref');
-                tableCell.append(sub1_tableLine);
-                tableLine.append(tableCell);
-                tableCell = document.createElement('td');
-                Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
-                    sub1_tableLine = document.createElement('div');
-                    console.debug( arguments.callee.name, [val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt] );
-                    sub1_tableCell = document.createElement('div');
-                    sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt;
-                    sub1_tableCell.style.textAlign='right';
-                    tableCell.append(sub1_tableCell);
-                });
-                tableCell.classList.add('eqvol_body');
-                tableCell.classList.add('eqvol_body_int');
-                tableCell.append(sub1_tableLine);
-                tableLine.append(tableCell);
+				console.debug( arguments.callee.name, [val_r.detail.Body] );
+				tableLine = document.createElement('tr');
+				privLevel = checkAuthStatus();
+				try {
+					if (!!privLevel) {
+						if ( (privLevel.eqvol.userlevel & 3) == 3 ) {
+							tableCell = document.createElement('td');
+							tableCell.classList.add('priv');
+							tableCell.classList.add('eqvol_body');
+							tableCell.classList.add('eqvol_body_alert');
+							tableText = document.createComment(JSON.stringify(val_r));
+							tableCell.append(tableText);
+							tableLine.append(tableCell);
+						}
+					}
+				} catch (error) {
+				}
+				tableCell = document.createElement('td');
+				tableCell.style.textAlign='center';
+				linkText = document.createElement('a');
+				linkText.href = val_r['detail']['Head']['jma']['link']['@attributes']['href'];
+				linkText.target = '_blank';
+				linkText.innerText = datef(new Date(val_r.detail.Body.Earthquake.ArrivalTime));
+				tableCell.classList.add('eqvol_body');
+				tableCell.classList.add('eqvol_body_detecttime');
+				tableCell.append(linkText);
+				tableLine.append(tableCell);
+				tableCell = document.createElement('td');
+				tableCell.innerText = val_r.detail.Body.Earthquake.Hypocenter.Area.Name;
+				tableCell.classList.add('eqvol_body');
+				tableCell.classList.add('eqvol_body_centerofthequake');
+				tableCell.style.textAlign='center';
+				tableLine.append(tableCell);
+				tableCell = document.createElement('td');
+				tableCell.innerText = val_r.detail.Body.Intensity.Observation.MaxInt;
+				tableCell.classList.add('eqvol_body');
+				tableCell.classList.add('eqvol_body_maxint');
+				tableCell.classList.add('eqvol_body_maxint'+'_'+parseInt(val_r.detail.Body.Intensity.Observation.MaxInt, 10));
+				tableCell.style.textAlign='right';
+				tableLine.append(tableCell);
+				tableCell = document.createElement('td');
+				Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
+					sub1_tableLine = document.createElement('div');
+					console.debug( arguments.callee.name, [val_r.detail.Body.Intensity.Observation.Pref[key1].Name] );
+					sub1_tableCell = document.createElement('div');
+					sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].Name;
+					sub1_tableCell.style.textAlign='center';
+					tableCell.append(sub1_tableCell);
+				});
+				tableCell.classList.add('eqvol_body');
+				tableCell.classList.add('eqvol_body_pref');
+				tableCell.append(sub1_tableLine);
+				tableLine.append(tableCell);
+				tableCell = document.createElement('td');
+				Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
+					sub1_tableLine = document.createElement('div');
+					console.debug( arguments.callee.name, [val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt] );
+					sub1_tableCell = document.createElement('div');
+					sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt;
+					sub1_tableCell.style.textAlign='right';
+					tableCell.append(sub1_tableCell);
+				});
+				tableCell.classList.add('eqvol_body');
+				tableCell.classList.add('eqvol_body_int');
+				tableCell.append(sub1_tableLine);
+				tableLine.append(tableCell);
 
-                tableMeta.append(tableLine);
-            });
-            tableBlock.append(tableMeta);
-            wrapLine.append(tableBlock);
-            root_body.append(wrapLine);
-        }
-        function setChassisWidth(width=0) {
-            /* to Int */
-            width=parseInt(width, 10);
-
-            /* 引数として無効な数値が与えられた */
-            if ( !(width>0) ) {
-                width = Math.max(
-                    document.documentElement.clientWidth,
-                    window.innerWidth || 0,
-                    document.getElementById('eqvol').offsetWidth
-                );
-            }
-
-            width = Math.floor( (width/10) ) * 10;
-
-            document.getElementsByTagName('body')[0].style.maxWidth=(2000+'px');
-            document.querySelectorAll('meta[name="viewport"]').forEach(function(elm){
-                elm.content=('initial-scale=1,width='+width);
-            });
-        }
-    </script>
-    <script>
-        window.addEventListener('load', function() {
-            console.log('page is fully loaded');
-            getFeedXML_eqvol();
-            getFeedXML_eqvol_log();
-            onLoadSignin();
-        });
-        window.addEventListener('DOMContentLoaded', function() {
-            console.log('DOMContent loaded');
-        });
-        window.addEventListener("orientationchange", function() {
-            console.log('Device rotated');
-            getFeedXML_eqvol();
-            getFeedXML_eqvol_log();
-        });
-        window.addEventListener("resize", function() {
-            console.log('Window resized');
-            getFeedXML_eqvol();
-            getFeedXML_eqvol_log();
-        });
-        setInterval(() => {
-            getFeedXML_eqvol();
-            getFeedXML_eqvol_log();
-            document.querySelectorAll('body>div:not([id]):not([class])').forEach(function(elm){
-                elm.remove();
-            });
-        }, 1000*10);
-    </script>
-    <style>
-        .grecaptcha-badge{
-            opacity: 0;
-        }
-    </style>
-    <style>
-	html {
-		height: 100%;
-	}
-	body {
-		background: repeating-linear-gradient(90deg, transparent, #3cf64a75);
-		background-color: #3cf64a29;
-	}
-	h1.meta {
-		margin: 0;
-	}
-	p.meta {
-		margin: 0;
-	}
-	p.content {
-		margin: 0;
-	}
-	table.content th, table.content td {
-		margin: 0;
-		white-space:nowrap;
-		vertical-align: top;
-	}
-	@media screen and (orientation: portrait) {
-		.display_landscape {
-			display: none;
+				tableMeta.append(tableLine);
+			});
+			tableBlock.append(tableMeta);
+			wrapLine.append(tableBlock);
+			root_body.append(wrapLine);
 		}
-		.display_landscape_text {
+		function setChassisWidth(width=0) {
+			/* to Int */
+			width=parseInt(width, 10);
+
+			/* 引数として無効な数値が与えられた */
+			if ( !(width>0) ) {
+				width = Math.max(
+					document.documentElement.clientWidth,
+					window.innerWidth || 0,
+					document.getElementById('eqvol').offsetWidth
+				);
+			}
+
+			width = Math.floor( (width/10) ) * 10;
+
+			document.getElementsByTagName('body')[0].style.maxWidth=(2000+'px');
+			document.querySelectorAll('meta[name="viewport"]').forEach(function(elm){
+				elm.content=('initial-scale=1,width='+width);
+			});
+		}
+	</script>
+	<script>
+		window.addEventListener('load', function() {
+			console.log('page is fully loaded');
+			getFeedXML_eqvol();
+			getFeedXML_eqvol_log();
+			onLoadSignin();
+		});
+		window.addEventListener('DOMContentLoaded', function() {
+			console.log('DOMContent loaded');
+		});
+		window.addEventListener("orientationchange", function() {
+			console.log('Device rotated');
+			getFeedXML_eqvol();
+			getFeedXML_eqvol_log();
+		});
+		window.addEventListener("resize", function() {
+			console.log('Window resized');
+			getFeedXML_eqvol();
+			getFeedXML_eqvol_log();
+		});
+		setInterval(() => {
+			getFeedXML_eqvol();
+			getFeedXML_eqvol_log();
+			document.querySelectorAll('body>div:not([id]):not([class])').forEach(function(elm){
+				elm.remove();
+			});
+		}, 1000*10);
+	</script>
+	<style>
+		.grecaptcha-badge{
 			opacity: 0;
 		}
-	}
-	@media screen and (orientation: landscape) {
-		.display_portrait {
-			display: none;
+	</style>
+	<style>
+		html {
+			height: 100%;
 		}
-		.display_portrait_text {
-			opacity: 0;
+		body {
+			background: repeating-linear-gradient(90deg, transparent, #3cf64a75);
+			background-color: #3cf64a29;
 		}
-	}
-    </style>
-    <style>
-        .eqvol_header {
-            min-width: 10px;
-        }
-        .eqvol_header_alert {
-            width: 100px;
-        }
-        .eqvol_header_detecttime {
-            width: 160px;
-        }
-        .eqvol_header_centerofthequake {
-            width: 120px;
-        }
-        .eqvol_header_maxint {
-            width: 70px;
-        }
-        .eqvol_header_pref {
-            width: 70px;
-        }
-        .eqvol_header_int {
-            width: 70px;
-        }
-        .eqvol_body_maxint_3 {
-            background: radial-gradient(khaki, yellow);
-        }
-        .eqvol_body_maxint_4 {
-            background: radial-gradient(khaki, orange);
-        }
-        .eqvol_body_maxint_5 {
-            background: radial-gradient(khaki, red);
-        }
-        .eqvol_body_maxint_6 {
-            background: radial-gradient(khaki, red);
-        }
-        .eqvol_body_maxint_7 {
-            background: radial-gradient(khaki, red);
-        }
-    </style>
-    <style>
-        img.g_id_icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-        .g_id_signin {
-            position: fixed;
-            top: 0;
-            right: 0;
-            z-index: 1;
-            margin-top: 10px;
-            margin-right: 10px;
-        }
-    </style>
+		h1.meta {
+			margin: 0;
+		}
+		p.meta {
+			margin: 0;
+		}
+		p.content {
+			margin: 0;
+		}
+		table.content th, table.content td {
+			margin: 0;
+			white-space:nowrap;
+			vertical-align: top;
+		}
+		@media screen and (orientation: portrait) {
+			.display_landscape {
+				display: none;
+			}
+			.display_landscape_text {
+				opacity: 0;
+			}
+		}
+		@media screen and (orientation: landscape) {
+			.display_portrait {
+				display: none;
+			}
+			.display_portrait_text {
+				opacity: 0;
+			}
+		}
+	</style>
+	<style>
+		.eqvol_header {
+			min-width: 10px;
+		}
+		.eqvol_header_alert {
+			width: 100px;
+		}
+		.eqvol_header_detecttime {
+			width: 160px;
+		}
+		.eqvol_header_centerofthequake {
+			width: 120px;
+		}
+		.eqvol_header_maxint {
+			width: 70px;
+		}
+		.eqvol_header_pref {
+			width: 70px;
+		}
+		.eqvol_header_int {
+			width: 70px;
+		}
+		.eqvol_body_maxint_3 {
+			background: radial-gradient(khaki, yellow);
+		}
+		.eqvol_body_maxint_4 {
+			background: radial-gradient(khaki, orange);
+		}
+		.eqvol_body_maxint_5 {
+			background: radial-gradient(khaki, red);
+		}
+		.eqvol_body_maxint_6 {
+			background: radial-gradient(khaki, red);
+		}
+		.eqvol_body_maxint_7 {
+			background: radial-gradient(khaki, red);
+		}
+	</style>
+	<style>
+		img.g_id_icon {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+		.g_id_signin {
+			position: fixed;
+			top: 0;
+			right: 0;
+			z-index: 1;
+			margin-top: 10px;
+			margin-right: 10px;
+		}
+	</style>
 </head>
 <body>
 	<div id="auth_google_sso">
-	    <div id="g_id_onload"
-	        data-client_id="784669840257-i0a06p3o6g8k0k1tk26jj09li1q2acud.apps.googleusercontent.com"
-	        data-login_uri="https://labs.n138.jp"
-	        data-callback="onSignIn">
-	    </div>
-	    <div class="g_id_signin" data-type="standard" data-logo_alignment="left"></div>
+		<div id="g_id_onload"
+			data-client_id="784669840257-i0a06p3o6g8k0k1tk26jj09li1q2acud.apps.googleusercontent.com"
+			data-login_uri="https://labs.n138.jp"
+			data-callback="onSignIn">
+		</div>
+		<div class="g_id_signin" data-type="standard" data-logo_alignment="left"></div>
 	</div>
 	<div id="eqvol"></div>
 	<div id="eqvol_log"></div>
