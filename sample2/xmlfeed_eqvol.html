@@ -15,9 +15,9 @@
         }
         function onSignIn(googleUser) {
             try {
-                console.debug(googleUser);
-                console.debug(googleUser.client_id);
-                console.debug(googleUser.credential);
+                console.debug(arguments.callee.name, [googleUser]);
+                console.debug(arguments.callee.name, [googleUser.client_id]);
+                console.debug(arguments.callee.name, [googleUser.credential]);
             } catch (error) {
                 set_gsso(null);
                 return false;
@@ -25,11 +25,11 @@
 
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
-                console.debug(xhr.readyState);
+                console.debug(arguments.callee.name, xhr.readyState);
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
-                    console.debug( xhr.responseText );
-                    console.debug( JSON.parse(xhr.responseText) );
+                    console.debug( arguments.callee.name, [xhr.responseText] );
+                    console.debug( arguments.callee.name, [JSON.parse(xhr.responseText)] );
 
                     if ( isset(JSON.parse(xhr.responseText).email) && !( JSON.parse(xhr.responseText).email == null ) ) {
                         /* 認証後メニュー */
@@ -57,7 +57,7 @@
                     }
 
                 } else {
-                    console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
+                    console.debug( arguments.callee.name, [xhr.responseText,xhr.readyState,xhr.status] );
                 }
             }
             try {
@@ -119,7 +119,7 @@
             }
         }
         function issueAlert(issuer_object) {
-            console.debug(issuer_object.dataset.eventid);
+            console.debug(arguments.callee.name, [issuer_object.dataset.eventid]);
             alert(issuer_object.dataset.eventid);
         }
         function datef(date) {
@@ -191,14 +191,14 @@
             let credential;
             try {
                 credential = get_gsso();
-                console.debug(credential);
-                console.debug(credential.client_id);
-                console.debug(credential.credential);
-                console.debug((Math.floor((new Date()).getTime()/1000)));
-                console.debug(credential.session.iat, ((Math.floor((new Date()).getTime()/1000))<credential.session.iat));
-                console.debug(credential.session.exp, ((Math.floor((new Date()).getTime()/1000))>=credential.session.exp));
+                console.debug(arguments.callee.name, [credential]);
+                console.debug(arguments.callee.name, [credential.client_id]);
+                console.debug(arguments.callee.name, [credential.credential]);
+                console.debug(arguments.callee.name, [(Math.floor((new Date()).getTime()/1000))]);
+                console.debug(arguments.callee.name, [credential.session.iat, ((Math.floor((new Date()).getTime()/1000))<credential.session.iat)]);
+                console.debug(arguments.callee.name, [credential.session.exp, ((Math.floor((new Date()).getTime()/1000))>=credential.session.exp)]);
             } catch (error) {
-                console.debug(error);
+                console.debug(arguments.callee.name, [error]);
                 return false;
             }
 
@@ -245,7 +245,7 @@
         }
         function getFeedXML_eqvol() {
             if(debugInfo('stop_refresh')!==false){
-                console.debug(
+                console.log(arguments.callee.name, 
                     '** STOP **',
                     'Debug mode is Turn on.(refresh = stop)',
                     'How to Turn off Debug mode is:',
@@ -258,28 +258,28 @@
             }
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
-                console.debug(xhr.readyState);
+                console.debug(arguments.callee.name, [xhr.readyState]);
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
-                    console.debug( xhr.responseText );
+                    console.debug( arguments.callee.name, [xhr.responseText] );
                     console.log( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
                     eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' );
                     eqvol_hash_diff = false;
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(arguments.callee.name, [hash]);
-                        console.debug( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
+                        console.debug( arguments.callee.name, ['eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash] );
                         eqvol_hash_diff = eqvol_hash == hash;
                     }).catch(function(e) {
-                        console.warn(e);
+                        console.warn(arguments.callee.name, e);
                     });
-                    console.debug( eqvol_hash_diff );
-                    console.debug( JSON.parse( set_eqvol( xhr_responseText ) ) );
+                    console.debug( arguments.callee.name, [eqvol_hash_diff] );
+                    console.debug( arguments.callee.name, [JSON.parse( set_eqvol( xhr_responseText ) )] );
                     listup_eqvol( xhr_responseText );
                     setChassisWidth();
                     sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash', xhr_responseText.hash);
                 } else {
-                    console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
+                    console.debug( arguments.callee.name, [xhr.responseText,xhr.readyState,xhr.status] );
                 }
                 grecaptcha_init();
             }
@@ -331,14 +331,14 @@
             smallText = document.createElement('small');
             arrayList = [];
             Object.keys(eqvol.link).forEach(function(key) {
-                console.debug(eqvol.link[key]['@attributes']['href']);
+                console.debug(arguments.callee.name, [eqvol.link[key]['@attributes']['href']]);
             });
             arrayList.push(['https://www.jma.go.jp/', '気象庁 Japan Meteorological Agency']);
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'), '開発: データ参照先(JSON)']);
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat', '開発: var_dump()']);
             arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php', '開発: 管理メニュー']);
             arrayList.push(['https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/', 'ソースコード']);
-            console.debug(arrayList);
+            console.debug(arguments.callee.name, [arrayList]);
             arrayList.map(function(val) {
                 listLine = document.createElement('li');
                 linkText = document.createElement('a');
@@ -411,9 +411,9 @@
             wrapLine.append(tableBlock);
             tableMeta = document.createElement('tbody');
 
-            console.debug( eqvol );
+            console.debug( arguments.callee.name, [eqvol] );
             eqvol.entry.map(function(val_r) {
-                console.debug(val_r.detail.Body);
+                console.debug(arguments.callee.name, [val_r.detail.Body]);
                 tableLine = document.createElement('tr');
                 privLevel = checkAuthStatus();
                 try {
@@ -465,7 +465,7 @@
                 tableCell.classList.add('eqvol_body_pref');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
                     sub1_tableLine = document.createElement('div');
-                    console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].Name );
+                    console.debug( arguments.callee.name, [val_r.detail.Body.Intensity.Observation.Pref[key1].Name] );
                     sub1_tableCell = document.createElement('div');
                     sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].Name;
                     sub1_tableCell.style.textAlign='center';
@@ -478,7 +478,7 @@
                 tableCell.classList.add('eqvol_body_int');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
                     sub1_tableLine = document.createElement('div');
-                    console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt );
+                    console.debug( arguments.callee.name, [val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt] );
                     sub1_tableCell = document.createElement('div');
                     sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt;
                     sub1_tableCell.style.textAlign='right';
@@ -495,7 +495,7 @@
         }
         function getFeedXML_eqvol_log() {
             if(debugInfo('stop_refresh')!==false){
-                console.debug(
+                console.debug(arguments.callee.name, 
                     '** STOP **',
                     'Debug mode is Turn on.(refresh = stop)',
                     'How to Turn off Debug mode is:',
@@ -508,28 +508,28 @@
             }
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
-                console.debug(xhr.readyState);
+                console.debug(arguments.callee.name, [xhr.readyState]);
 
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
-                    console.debug( xhr.responseText );
+                    console.debug( arguments.callee.name, [xhr.responseText] );
                     console.log( JSON.parse(xhr.responseText) );
                     xhr_responseText = JSON.parse(xhr.responseText);
                     eqvol_hash = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash' );
                     eqvol_hash_diff = false;
                     sha256(xhr_responseText).then(function(hash){
                         console.debug(arguments.callee.name, [hash]);
-                        console.debug( 'eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash );
+                        console.debug( arguments.callee.name, ['eqvol_hash == hash', eqvol_hash == hash, eqvol_hash, hash] );
                         eqvol_hash_diff = eqvol_hash == hash;
                     }).catch(function(e) {
                         console.warn(e);
                     });
-                    console.debug( eqvol_hash_diff );
-                    console.debug( JSON.parse( set_eqvol_log( xhr_responseText ) ) );
+                    console.debug( arguments.callee.name, [eqvol_hash_diff] );
+                    console.debug( arguments.callee.name, [JSON.parse( set_eqvol_log( xhr_responseText ) )] );
                     listup_eqvol_log( xhr_responseText );
                     setChassisWidth();
                     sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash', xhr_responseText.hash);
                 } else {
-                    console.debug( [xhr.responseText,xhr.readyState,xhr.status] );
+                    console.debug( arguments.callee.name, [xhr.responseText,xhr.readyState,xhr.status] );
                 }
                 grecaptcha_init();
             }
@@ -611,12 +611,12 @@
             /*
 	     * Object.keys().reverse() https://sossy-blog.com/useful/5054/
 	    */
-            console.debug( eqvol );
+            console.debug( arguments.callee.name, [eqvol] );
             Object.keys(eqvol).reverse().map(function(key){
-                console.debug( eqvol[key] );
+                console.debug( arguments.callee.name, [eqvol[key]] );
                 val_r = eqvol[key];
 
-                console.debug( val_r.detail.Body );
+                console.debug( arguments.callee.name, [val_r.detail.Body] );
                 tableLine = document.createElement('tr');
                 privLevel = checkAuthStatus();
                 try {
@@ -659,7 +659,7 @@
                 tableCell = document.createElement('td');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
                     sub1_tableLine = document.createElement('div');
-                    console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].Name );
+                    console.debug( arguments.callee.name, [val_r.detail.Body.Intensity.Observation.Pref[key1].Name] );
                     sub1_tableCell = document.createElement('div');
                     sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].Name;
                     sub1_tableCell.style.textAlign='center';
@@ -672,7 +672,7 @@
                 tableCell = document.createElement('td');
                 Object.keys(val_r.detail.Body.Intensity.Observation.Pref).forEach(function(key1) {
                     sub1_tableLine = document.createElement('div');
-                    console.debug( val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt );
+                    console.debug( arguments.callee.name, [val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt] );
                     sub1_tableCell = document.createElement('div');
                     sub1_tableCell.innerText = val_r.detail.Body.Intensity.Observation.Pref[key1].MaxInt;
                     sub1_tableCell.style.textAlign='right';
