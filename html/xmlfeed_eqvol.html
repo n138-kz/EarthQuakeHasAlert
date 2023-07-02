@@ -819,6 +819,17 @@
 		}
 	</style>
 	<style>
+		#menubox_switcher {
+			width: 40px;
+			height: 40px;
+			position: fixed;
+			top: 0;
+			right: 0;
+			z-index: 1;
+			margin-top: 10px;
+			margin-right: 10px;
+			background-image: url('./lib/menu1.svg');
+		}
 		img.g_id_icon {
 			width: 40px;
 			height: 40px;
@@ -835,6 +846,9 @@
 	</style>
 </head>
 <body>
+	<div id="menubox">
+		<div id="menubox_switcher"></div>
+	</div>
 	<div id="auth_google_sso">
 		<div id="g_id_onload"
 			data-client_id="784669840257-i0a06p3o6g8k0k1tk26jj09li1q2acud.apps.googleusercontent.com"
