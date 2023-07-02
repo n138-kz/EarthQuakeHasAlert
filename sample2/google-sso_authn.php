@@ -77,6 +77,8 @@ if ($payload) {
     $_SESSION['user']['google']['icon']           = $payload['picture'];
     $_SESSION['user']['google']['session']['iat'] = $payload['iat'];
     $_SESSION['user']['google']['session']['exp'] = $payload['exp'];
+    $_SESSION['user']['local']['privilege']['eqvol']['level'] = 1;
+    $_SESSION['user']['local']['privilege']['eqvol']['name']  = 'Authorized user';
 }
 echo json_encode([
 	'client_id'  => CLIENT_ID,
@@ -85,4 +87,5 @@ echo json_encode([
 	'icon'       => $_SESSION['user']['google']['icon'],
 	'name'       => $_SESSION['user']['google']['name'],
 	'session'    => $_SESSION['user']['google']['session'],
+	'eqvol'      => [ 'userlevel' => $_SESSION['user']['local']['privilege']['eqvol']['level'] ],
 ]);

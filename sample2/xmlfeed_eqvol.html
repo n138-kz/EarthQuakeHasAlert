@@ -210,6 +210,14 @@
                 credential = onSignIn(credential);
             }
 
+            console.debug(arguments.callee.name, credential);
+            console.debug(arguments.callee.name, [
+                credential.eqvol.userlevel &  1 ,
+                credential.eqvol.userlevel &  3 ,
+                credential.eqvol.userlevel &  7 ,
+                credential.eqvol.userlevel & 15 ,
+            ]);
+
             return credential;
         }
         function debugInfo(item='') {
