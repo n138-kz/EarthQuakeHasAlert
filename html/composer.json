@@ -1,0 +1,9 @@
+{
+	"name": "vendor-name/php_vendor",
+	"description": "vendor-name/php_vendor",
+	"license": "MIT",
+	"require": {
+		"phpmailer/phpmailer": "^6.8",
+		"google/apiclient": "^2.15"
+	}
+}
