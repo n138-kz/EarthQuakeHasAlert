@@ -292,6 +292,10 @@
                     eqvol.hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_hash' )
                 ]);
             }
+
+            num=0;Object.keys(eqvol.entry).map(function(key){ num+=1; });
+            console.log(arguments.callee.name, num);
+
             root_body = document.getElementById('eqvol');
             root_body.innerText = '';
 
@@ -398,6 +402,7 @@
             tableBlock.append(tableMeta);
             wrapLine.append(tableBlock);
             tableMeta = document.createElement('tbody');
+
             console.debug( eqvol );
             eqvol.entry.map(function(val_r) {
                 console.debug(val_r.detail.Body);
@@ -537,6 +542,9 @@
                     eqvol.hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.eqvol_log_hash' )
                 ]);
             }
+
+            num=0;Object.keys(eqvol).map(function(key){ num+=1; });
+            console.log(arguments.callee.name, num);
 
             root_body = document.getElementById('eqvol_log');
             root_body.innerText = '';
