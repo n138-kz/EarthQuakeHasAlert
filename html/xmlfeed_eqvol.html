@@ -331,10 +331,6 @@
                 console.debug(arguments.callee.name, [eqvol.link[key]['@attributes']['href']]);
             });
             arrayList.push(['https://www.jma.go.jp/', '気象庁 Japan Meteorological Agency']);
-            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/html$/,'json'), '開発: データ参照先(JSON)']);
-            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'var_dump_export.dat', '開発: var_dump()']);
-            arrayList.push([location.protocol + '//' + location.host + location.pathname.replace(/\\/g, '/').replace(/\/[^/]*$/, '') + '/' + 'manage.php', '開発: 管理メニュー']);
-            arrayList.push(['https://github.com/n138-kz/EarthQuakeHasAlert/tree/main/', 'ソースコード']);
             console.debug(arguments.callee.name, [arrayList]);
             arrayList.map(function(val) {
                 listLine = document.createElement('li');
