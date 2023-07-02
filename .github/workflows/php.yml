@@ -22,9 +22,9 @@ jobs:
       run: composer validate --strict
 
     - name: Cache Composer packages
-      working-directory: ./html
       id: composer-cache
       uses: actions/cache@v3
+      working-directory: ./html
       with:
         path: vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
