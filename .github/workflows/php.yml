@@ -1,4 +1,4 @@
-name: PHP Composer (sample/test01.php)
+name: PHP Composer
 
 on:
   push:
@@ -17,6 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v3
@@ -34,7 +37,3 @@ jobs:
 
     # - name: Run test suite
     #   run: composer run-script test
-
-    - name: Test sample program
-      run: php sample1/test01.php
-    
