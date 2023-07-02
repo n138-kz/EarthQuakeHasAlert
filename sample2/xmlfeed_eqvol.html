@@ -369,7 +369,7 @@
             privLevel = checkAuthStatus();
             try {
                 if (!!privLevel) {
-                    if (privLevel.eqvol.userlevel & 3 == 3) {
+                    if ( (privLevel.eqvol.userlevel & 3) == 3 ) {
                         tableCell = document.createElement('th');
                         tableCell.innerText = '&#9654;';
                         tableCell.classList.add('priv');
@@ -418,7 +418,7 @@
                 privLevel = checkAuthStatus();
                 try {
                     if (!!privLevel) {
-                        if (privLevel.eqvol.userlevel & 3 == 3) {
+                        if ( (privLevel.eqvol.userlevel & 3) == 3 ) {
                             tableCell = document.createElement('td');
                             tableCell.classList.add('priv');
                             tableText = document.createElement('input');
@@ -567,7 +567,7 @@
             privLevel = checkAuthStatus();
             try {
                 if (!!privLevel) {
-                    if (privLevel.eqvol.userlevel & 3 == 3) {
+                    if ( (privLevel.eqvol.userlevel & 3) == 3 ) {
                         tableCell = document.createElement('th');
                         tableCell.innerText = '&#9654;';
                         tableCell.classList.add('priv');
@@ -621,7 +621,7 @@
                 privLevel = checkAuthStatus();
                 try {
                     if (!!privLevel) {
-                        if (privLevel.eqvol.userlevel & 3 == 3) {
+                        if ( (privLevel.eqvol.userlevel & 3) == 3 ) {
                             tableCell = document.createElement('td');
                             tableCell.classList.add('priv');
                             tableCell.classList.add('eqvol_body');
