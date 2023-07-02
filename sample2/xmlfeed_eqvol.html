@@ -56,16 +56,16 @@
 						return false;
 					}
 
-            dateftext.literal.FullYear    = date.getFullYear();
-            dateftext.literal.Month       = date.getMonth()+1;
-            dateftext.literal.Date        = date.getDate();
-            dateftext.literal.Hours       = date.getHours();
-            dateftext.literal.Minutes     = date.getMinutes();
-            dateftext.literal.Seconds     = date.getSeconds();
-            dateftext.appendzero.FullYear = ('00' + dateftext.literal.FullYear + '');
-            dateftext.appendzero.Month    = ('00' + dateftext.literal.Month    + '');
-            dateftext.appendzero.Date     = ('00' + dateftext.literal.Date     + '');
-            dateftext.appendzero.Hours    = ('00' + dateftext.literal.Hours    + '');
+			dateftext.literal.FullYear    = date.getFullYear();
+			dateftext.literal.Month       = date.getMonth()+1;
+			dateftext.literal.Date        = date.getDate();
+			dateftext.literal.Hours       = date.getHours();
+			dateftext.literal.Minutes     = date.getMinutes();
+			dateftext.literal.Seconds     = date.getSeconds();
+			dateftext.appendzero.FullYear = ('00' + dateftext.literal.FullYear + '');
+			dateftext.appendzero.Month    = ('00' + dateftext.literal.Month    + '');
+			dateftext.appendzero.Date     = ('00' + dateftext.literal.Date     + '');
+			dateftext.appendzero.Hours    = ('00' + dateftext.literal.Hours    + '');
 				} else {
 					console.debug( arguments.callee.name, [xhr.responseText,xhr.readyState,xhr.status] );
 				}
