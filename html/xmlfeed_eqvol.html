@@ -707,9 +707,16 @@
 				elm.content=('initial-scale=1,width='+width);
 			});
 		}
-		function menubox_opener(open=false) {
-			console.debug(open);
+		function menubox_opener(open) {
 			const menubox_innerbox = document.getElementById('menubox_innerbox');
+
+			console.debug(open);
+			if (!isset(open)) {
+				open=false;
+				if ( (menubox_innerbox.style.display).substr(0,4)=='none' ) {
+					open=true;
+				}
+			}
 			
 			alert('Unimplemented');
 
@@ -717,7 +724,8 @@
 				menubox_innerbox.style.display='none';
 				return false;
 			}
-			menubox_innerbox.style.display='block';
+			menubox_innerbox.style.display='block !important';
+			return true;
 		}
 	</script>
 	<script>
@@ -731,7 +739,7 @@
 			console.log('DOMContent loaded');
 			document.getElementById('menubox_switcher').addEventListener('click', function(e){
 				console.log(e);
-				menubox_opener(false);
+				menubox_opener();
 			});
 		});
 		window.addEventListener("orientationchange", function() {
