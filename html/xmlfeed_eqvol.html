@@ -710,7 +710,7 @@
 		function menubox_opener(open) {
 			const menubox_innerbox = document.getElementById('menubox_innerbox');
 
-			console.debug(open);
+			console.debug( arguments.callee.name, [open,!isset(open)] );
 			if (!isset(open)) {
 				open=false;
 				if ( (menubox_innerbox.style.display).substr(0,4)=='none' ) {
