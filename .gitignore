@@ -6,4 +6,3 @@
 *.swp
 vendor/
 secret.txt
-xmlfeed_eqvol*.json
