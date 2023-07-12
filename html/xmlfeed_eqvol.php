@@ -59,6 +59,8 @@ function saveStore($cache_name = '', $data=[]){
 		error_log('Store cache save failed: ' . $cache_name);
 	}
 
+	git_add_and_commit($cache_name, 'Backup: saveStore: ' . date('Y/m/d H:i:s T'));
+
 	return $cache_result !== FALSE;
 }
 function loadSystemSecret($secret_keyfile = 'secret.txt'){
@@ -68,6 +70,16 @@ function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	$secret_keyfile = file_get_contents($secret_keyfile);
 	$secret_keyfile = json_decode($secret_keyfile, TRUE);
 	return $secret_keyfile;
+}
+function git_add_and_commit($filename, $commitmesg) {
+	$git_cmd = [];
+	$git_cmd[] = 'git add ' . '"' . $filename . '"';
+	$git_cmd[] = 'git commit -m "' . $commitmesg . '"';
+	$git_cmd[] = 'git push';
+	chdir(__DIR__);
+	foreach($git_cmd as $key => $val){
+		exec($val);
+	}
 }
 /* PHPMailer のクラスをグローバル名前空間（global namespace）にインポート */
 use PHPMailer\PHPMailer\PHPMailer;
