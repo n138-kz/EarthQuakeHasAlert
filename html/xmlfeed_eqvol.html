@@ -708,19 +708,23 @@
 			});
 		}
 		function menubox_opener(open) {
+			/*
+			* @args open
+			* open = {true|false}
+			* true:  表示
+			* false: 非表示
+			*/
 			const menubox_innerbox = document.getElementById('menubox_innerbox');
 
 			console.debug( arguments.callee.name, [open,!isset(open)] );
 			if (!isset(open)) {
-				open=false;
-				if ( (menubox_innerbox.style.display).substr(0,4)=='none' ) {
-					open=true;
-				}
+				open=(menubox_innerbox.style.display).substr(0,4)=='none';
 			}
+			console.log( arguments.callee.name, [open] );
 			
-			alert('Unimplemented');
+			// alert('Unimplemented');
 
-			if ( !open ) {
+			if ( open ) {
 				menubox_innerbox.style.display='none';
 				return false;
 			}
@@ -860,7 +864,6 @@
 			cursor: pointer;
 		}
 		#menubox_innerbox {
-			display: none;
 			position: fixed;
 			width: 75%;
 			background-color: silver;
@@ -901,7 +904,7 @@
 <body>
 	<div id="menubox">
 		<div id="menubox_switcher"></div>
-		<div id="menubox_innerbox">MenuBox is comming soon.</div>
+		<div id="menubox_innerbox" style="display: none;">MenuBox is comming soon.</div>
 	</div>
 	<div id="auth_google_sso">
 		<div id="g_id_onload"
