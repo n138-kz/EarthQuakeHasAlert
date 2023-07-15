@@ -63,9 +63,9 @@ function saveStore($cache_name = '', $data=[]){
 
 	return $cache_result !== FALSE;
 }
-function loadSystemSecret($secret_keyfile = 'secret.txt'){
+function loadSystemSecret($secret_keyfile = __DIR__ . '/' . 'secret.json'){
 	if (!is_readable($secret_keyfile)) {
-		error_log( 'SystemSecretConfig has not readable.' );
+		error_log( 'SystemSecretConfig has not readable. ' . $secret_keyfile );
 		return FALSE;
 	}
 	$secret_keyfile = file_get_contents($secret_keyfile);
