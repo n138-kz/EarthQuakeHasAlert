@@ -65,6 +65,7 @@ function saveStore($cache_name = '', $data=[]){
 }
 function loadSystemSecret($secret_keyfile = 'secret.txt'){
 	if (!is_readable($secret_keyfile)) {
+		error_log( 'SystemSecretConfig has not readable.' );
 		return FALSE;
 	}
 	$secret_keyfile = file_get_contents($secret_keyfile);
