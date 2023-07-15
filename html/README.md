@@ -1,4 +1,4 @@
-# sample2
+# EarthQuakeHasAlert
 
 ## Require librarys
 
@@ -12,4 +12,16 @@
 
 ```bash:crontab
 * * * * * for i in {1..8} ; do sleep 5; curl "http://localhost/EarthQuakeHasAlert/sample2/xmlfeed_eqvol.php?ts=$(date +\%s)&id=x" ; done
+```
+
+## 初期設定
+
+1. RUN `git clone git@github.com:n138-kz/EarthQuakeHasAlert.git`
+2. RUN `sudo chmod 0777 EarthQuakeHasAlert/html && ls -la EarthQuakeHasAlert/html`
+3. Web-access
+4. RUN `sudo chmod 0755 EarthQuakeHasAlert/html && cd EarthQuakeHasAlert`
+5. RUN `echo '{"external":{"discord":[{"endpoint":""}]}}' | jq | tee secret.json`
+
+```json
+{"external":{"discord":[{"endpoint":""}]}}
 ```
