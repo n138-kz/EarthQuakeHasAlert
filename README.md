@@ -1,4 +1,4 @@
-# EarthQuakeHasAlert
+# [EarthQuakeHasAlert](https://github.com/n138-kz/EarthQuakeHasAlert)
 
 ## 本プログラムに関して
 
