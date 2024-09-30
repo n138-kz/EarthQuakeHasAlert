@@ -1,0 +1,7 @@
+*.bak*
+*.db
+*.lock
+*.dat
+*.swp
+vendor/
+secret*

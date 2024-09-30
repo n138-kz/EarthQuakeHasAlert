@@ -1,0 +1,10 @@
+services:
+  web-sv-core:
+    container_name: web-sv-core
+    build: 
+      context: ./build_core/
+    networks:
+      - external
+networks:
+  external:
+    external: true
