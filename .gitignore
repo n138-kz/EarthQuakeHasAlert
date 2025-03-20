@@ -3,5 +3,11 @@
 *.lock
 *.dat
 *.swp
+result*
+detail*
+.secret/
 vendor/
-secret*
+build/
+log/
+result/
+
