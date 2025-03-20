@@ -1,8 +1,0 @@
-*.bak*
-*.db
-*.lock
-*.dat
-*.db
-*.swp
-vendor/
-secret.txt
