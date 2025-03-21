@@ -58,12 +58,18 @@ class webapp{
 				$dsn,
 				$pdo_config['connection']['user'],
 				$pdo_config['connection']['password'],
-				$pdo_config['option']
 			);
-			$sql = 'insert into '.$pdo_config['connection']['tableprefix'].'_cache () values ();';
-			#$pdo -> prepare();
-			return $pdo_config['option'];
+			$sql = 'insert into '.$pdo_config['connection']['tableprefix'].'_cache (atom_feed,data_size,data_hash) values (?,?,?);';
+			error_log($sql);
+			$st = $pdo -> prepare($sql);
+			$res = $st -> execute([
+				$data['content'],
+				$data['size'],
+				hash('sha256', $data['content']),
+			]);
+			return $res;
 		} catch (\Exception $e) {
+			error_log($e->getMessage());
 			return $e->getTraceAsString();
 		}
 	}
