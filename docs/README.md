@@ -60,3 +60,15 @@ Atomフィード ○高頻度フィード ※毎分更新し、直近少なく�
   デバッグ用ログを表示できる `Authrized user` である。
   ※注：フロントエンド側のログは権限管理はしない為全ユーザーにて確認可能である。
 - 権威処理を行う必要のあるユーザには Level `4` (Manager) を設定する。
+
+## Databases
+
+```sql
+CREATE TABLE IF NOT EXISTS _cache (
+	"timestamp" double precision NOT NULL,
+	atom_feed text not null,
+	data_size double precision NOT NULL default 0,
+	data_hash text not null,
+);
+```
+
