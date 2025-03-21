@@ -59,14 +59,22 @@ class webapp{
 				$pdo_config['connection']['user'],
 				$pdo_config['connection']['password'],
 			);
-			$sql = 'insert into '.$pdo_config['connection']['tableprefix'].'_cache (atom_feed,data_size,data_hash) values (?,?,?);';
-			error_log($sql);
+
+			$sql = 'select count(data_hash) from '.$pdo_config['connection']['tableprefix'].'_cache where data_hash=?;';
 			$st = $pdo -> prepare($sql);
 			$res = $st -> execute([
-				$data['content'],
-				$data['size'],
 				hash('sha256', $data['content']),
 			]);
+			$res = $st -> fetchAll();
+			if($res['count']==0){
+				$sql = 'insert into '.$pdo_config['connection']['tableprefix'].'_cache (atom_feed,data_size,data_hash) values (?,?,?);';
+				$st = $pdo -> prepare($sql);
+				$res = $st -> execute([
+					$data['content'],
+					$data['size'],
+					hash('sha256', $data['content']),
+				]);
+			}
 			return $res;
 		} catch (\Exception $e) {
 			error_log($e->getMessage());
