@@ -64,11 +64,11 @@ Atomフィード ○高頻度フィード ※毎分更新し、直近少なく�
 ## Databases
 
 ```sql
-CREATE TABLE IF NOT EXISTS _cache (
-	"timestamp" double precision NOT NULL,
-	atom_feed text not null,
-	data_size double precision NOT NULL default 0,
-	data_hash text not null,
+CREATE TABLE IF NOT EXISTS jma_eqvol_cache (
+	"timestamp" double precision NOT NULL DEFAULT EXTRACT(epoch FROM CURRENT_TIMESTAMP),
+	data_size double precision NOT NULL DEFAULT 0,
+	data_hash TEXT NOT NULL,
+	atom_feed TEXT NOT NULL
 );
 ```
 
