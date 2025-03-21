@@ -66,8 +66,9 @@ Atomフィード ○高頻度フィード ※毎分更新し、直近少なく�
 ```sql
 CREATE TABLE IF NOT EXISTS jma_eqvol_cache (
 	"timestamp" double precision NOT NULL DEFAULT EXTRACT(epoch FROM CURRENT_TIMESTAMP),
-	data_size double precision NOT NULL DEFAULT 0,
+	uuid TEXT NOT NULL PRIMARY KEY, 
 	data_hash TEXT NOT NULL,
+	data_size double precision NOT NULL DEFAULT 0,
 	atom_feed TEXT NOT NULL
 );
 ```
