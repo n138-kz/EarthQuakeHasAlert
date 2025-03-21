@@ -70,7 +70,7 @@ class webapp{
 				$pdo_config['connection']['password'],
 			);
 
-			$sql = 'insert into '.$pdo_config['connection']['tableprefix'].'_cache (atom_feed,data_size,data_hash,uuid) values (?,?,?,?);';
+			$sql = 'INSERT INTO '.$pdo_config['connection']['tableprefix'].'_cache (atom_feed,data_size,data_hash,uuid) VALUES (?,?,?,?);';
 			$st = $pdo -> prepare($sql);
 			$res = $st -> execute([
 				$data['content'],
