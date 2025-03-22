@@ -76,5 +76,18 @@ CREATE TABLE IF NOT EXISTS jma_eqvol_cache (
 ALTER TABLE jma_eqvol_cache
     OWNER TO webapp;
 ```
+
+```sql
+CREATE OR REPLACE VIEW jma_eqvol_cache_metainfo
+	AS
+	SELECT
+		EXTRACT(epoch FROM CURRENT_TIMESTAMP) AS timestamp,
+		COUNT(data_size),
+		SUM(data_size) AS size,
+		SUM(data_size)/1000000000 AS size_giga
+		FROM jma_eqvol_cache;
+
+ALTER TABLE jma_eqvol_cache_metainfo
+    OWNER TO webapp;
 ```
 
