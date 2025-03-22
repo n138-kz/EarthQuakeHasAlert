@@ -159,6 +159,10 @@ foreach($summary['entry'] as $k1 => $v1){
 	$v1['detail']=file_get_contents($v1['id']);
 	$size=strlen($v1['detail']);
 	$details=$data=json_decode(xml2json($v1['detail']), true, JSON_DEPTH, JSON_OPTION_DECODE);
+	$webapp->setCache(
+		[ 'connection'=>CONFIG['internal']['databases'][0],'option'=>PDO_OPTION, ],
+		[ 'src'=>$v1['id'], 'content'=>$v1['detail'], 'size'=>$size ]
+	);
 	$v1['detail']=$details;
 	$summary['entry'][hash('sha256', $v1['title'])][]=$v1;
 	unset($summary['entry'][$k1]);
