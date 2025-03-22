@@ -69,7 +69,8 @@ CREATE TABLE IF NOT EXISTS jma_eqvol_cache (
 	uuid TEXT NOT NULL PRIMARY KEY, 
 	data_hash TEXT NOT NULL,
 	data_size double precision NOT NULL DEFAULT 0,
-	atom_feed TEXT NOT NULL
+	data_src TEXT NOT NULL,
+	data_feed TEXT
 );
 ```
 

@@ -56,7 +56,7 @@ class webapp{
 		// Output the 36 character UUID.
 		return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 	}
-	function setCache($pdo_config=[], $data=[]){
+	function setCache($pdo_config=[], $data=['src'=>'','content'=>'','size'=>'',]){
 		$dsn = '{schema}:host={host};port={port};dbname={dbname};user={user};password={password}';
 		$list = ['schema', 'host', 'port', 'user', 'password'];
 		foreach($list as $k => $v){
@@ -70,9 +70,10 @@ class webapp{
 				$pdo_config['connection']['password'],
 			);
 
-			$sql = 'INSERT INTO '.$pdo_config['connection']['tableprefix'].'_cache (atom_feed,data_size,data_hash,uuid) VALUES (?,?,?,?);';
+			$sql = 'INSERT INTO '.$pdo_config['connection']['tableprefix'].'_cache (data_src,data_feed,data_size,data_hash,uuid) VALUES (?,?,?,?,?);';
 			$st = $pdo -> prepare($sql);
 			$res = $st -> execute([
+				$data['src'],
 				$data['content'],
 				$data['size'],
 				hash('sha256', $data['content']),
@@ -145,14 +146,17 @@ $webapp->setCache(
 	[ 'src'=>$api_endpoint, 'content'=>$data, 'size'=>$size ]
 );
 // $webapp->result['dumps'][]=[ 'src'=>$api_endpoint, 'content'=>$data, 'size'=>$size ];
-$data = json_decode(xml2json($data), true, JSON_DEPTH, JSON_OPTION_DECODE);
-foreach($data['entry'] as $k1 => $v1){
-	$v1['detail']=null;
-	$data['entry'][hash('sha256', $v1['title'])][]=$v1;
-	unset($data['entry'][$k1]);
+$summary = $data = json_decode(xml2json($data), true, JSON_DEPTH, JSON_OPTION_DECODE);
+foreach($summary['entry'] as $k1 => $v1){
+	$v1['detail']=file_get_contents($v1['id']);
+	$size=strlen($v1['detail']);
+	$details=$data=json_decode(xml2json($v1['detail']), true, JSON_DEPTH, JSON_OPTION_DECODE);
+	$v1['detail']=$details;
+	$summary['entry'][hash('sha256', $v1['title'])][]=$v1;
+	unset($summary['entry'][$k1]);
 }
 
-$webapp->result['data'] = ['content'=>$data,'size'=>$size,];
+$webapp->result['data'] = ['content'=>$summary,'size'=>$size,];
 
 echo json_encode($webapp->result_return(), JSON_OPTION_ENCODE);
 
