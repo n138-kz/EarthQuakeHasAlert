@@ -140,9 +140,9 @@ if(!isset($_SERVER['REMOTE_ADDR'])){
 $api_endpoint = 'https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml';
 $data = file_get_contents($api_endpoint);
 $size = strlen($data);
-$webapp->result['dumps'][]=$webapp->setCache(
+$webapp->setCache(
 	[ 'connection'=>CONFIG['internal']['databases'][0],'option'=>PDO_OPTION, ],
-	[ 'content'=>$data, 'size'=>$size ]
+	[ 'src'=>$api_endpoint, 'content'=>$data, 'size'=>$size ]
 );
 $webapp->result['dumps'][]=[ 'src'=>$api_endpoint, 'content'=>$data, 'size'=>$size ];
 $data = json_decode(xml2json($data), true, JSON_DEPTH, JSON_OPTION_DECODE);
@@ -150,6 +150,7 @@ foreach($data['entry'] as $k => $v){
 	$data['entry'][hash('sha256', $v['title'])][]=$v;
 	unset($data['entry'][$k]);
 }
+
 $webapp->result['data'] = ['content'=>$data,'size'=>$size,];
 
 echo json_encode($webapp->result_return(), JSON_OPTION_ENCODE);
