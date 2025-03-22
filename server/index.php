@@ -146,9 +146,10 @@ $webapp->setCache(
 );
 // $webapp->result['dumps'][]=[ 'src'=>$api_endpoint, 'content'=>$data, 'size'=>$size ];
 $data = json_decode(xml2json($data), true, JSON_DEPTH, JSON_OPTION_DECODE);
-foreach($data['entry'] as $k => $v){
-	$data['entry'][hash('sha256', $v['title'])][]=$v;
-	unset($data['entry'][$k]);
+foreach($data['entry'] as $k1 => $v1){
+	$v1['detail']=null;
+	$data['entry'][hash('sha256', $v1['title'])][]=$v1;
+	unset($data['entry'][$k1]);
 }
 
 $webapp->result['data'] = ['content'=>$data,'size'=>$size,];
