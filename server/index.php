@@ -144,7 +144,7 @@ $webapp->setCache(
 	[ 'connection'=>CONFIG['internal']['databases'][0],'option'=>PDO_OPTION, ],
 	[ 'src'=>$api_endpoint, 'content'=>$data, 'size'=>$size ]
 );
-$webapp->result['dumps'][]=[ 'src'=>$api_endpoint, 'content'=>$data, 'size'=>$size ];
+// $webapp->result['dumps'][]=[ 'src'=>$api_endpoint, 'content'=>$data, 'size'=>$size ];
 $data = json_decode(xml2json($data), true, JSON_DEPTH, JSON_OPTION_DECODE);
 foreach($data['entry'] as $k => $v){
 	$data['entry'][hash('sha256', $v['title'])][]=$v;
