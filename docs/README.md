@@ -72,5 +72,9 @@ CREATE TABLE IF NOT EXISTS jma_eqvol_cache (
 	data_src TEXT NOT NULL,
 	data_feed TEXT
 );
+
+ALTER TABLE jma_eqvol_cache
+    OWNER TO webapp;
+```
 ```
 
