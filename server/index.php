@@ -70,6 +70,14 @@ class webapp{
 				$pdo_config['connection']['password'],
 			);
 
+			$sql = 'SELECT COUNT(*) FROM '.$pdo_config['connection']['tableprefix'].'_cache WHERE data_hash=?;';
+			$st = $pdo -> prepare($sql);
+			$res = $st -> execute([
+				hash('sha256', $data['content']),
+			]);
+			$res = $st -> fetch(PDO::FETCH_ASSOC);
+			#if($res['count']>0){ $data['content']=null; }
+
 			$sql = 'INSERT INTO '.$pdo_config['connection']['tableprefix'].'_cache (data_src,data_feed,data_size,data_hash,uuid) VALUES (?,?,?,?,?);';
 			$st = $pdo -> prepare($sql);
 			$res = $st -> execute([
