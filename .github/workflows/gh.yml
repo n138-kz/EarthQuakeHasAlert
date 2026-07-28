@@ -2,6 +2,9 @@ name: n138-kz.github.io
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/**.md"
 
 permissions:
   contents: read
