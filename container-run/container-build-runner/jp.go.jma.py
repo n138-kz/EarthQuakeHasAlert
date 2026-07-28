@@ -21,7 +21,7 @@ def getAtomFeedFromURL(url=''):
   }
 
   json_data = json.dumps(feed_summary, ensure_ascii=False, indent=2)
-  return json_data
+  return feed_summary
 
 if __name__ == '__main__':
   feed_urls = [
