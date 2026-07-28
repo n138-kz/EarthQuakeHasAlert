@@ -19,6 +19,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: ls
       run: tree
+    - name: pwd
+      run: pwd
     - name: docker build
       working-directory: ./container-run/container-build-runner
       run: docker build --tag dev-python .
