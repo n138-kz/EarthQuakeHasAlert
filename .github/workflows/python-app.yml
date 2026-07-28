@@ -20,5 +20,5 @@ jobs:
     - name: docker build
       working-directory: ./container-run/container-build-runner
       run: docker build --tag dev-python .
-    - name: docker run
+    - name: "docker run: jp.go.jma.py"
       run: docker run --rm -t -w /tmp dev-python python3.14 /media/jp.go.jma.py
