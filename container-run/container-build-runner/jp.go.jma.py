@@ -1,10 +1,6 @@
 import feedparser
 import json
 
-feed_urls = [
-  {'url':'https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml', 'title':None},
-]
-
 def getAtomFeedFromURL(url=''):
   feed_data = feedparser.parse(url)
   parsed_entries = []
@@ -28,6 +24,9 @@ def getAtomFeedFromURL(url=''):
   return json_data
 
 if __name__ == '__main__':
+  feed_urls = [
+    {'url':'https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml', 'title':None},
+  ]
   for u_object in feed_urls:
     print(u_object['url'])
     print(getAtomFeedFromURL(u_object['url']))
