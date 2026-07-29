@@ -3,7 +3,6 @@ import json
 
 def getAtomFeedFromURL(url=''):
   feed_data = feedparser.parse(url)
-  parsed_entries = []
   # シリアライズ可能なシンプルな辞書構造に変換する
   parsed_entries = []
   for entry in feed_data.entries:
