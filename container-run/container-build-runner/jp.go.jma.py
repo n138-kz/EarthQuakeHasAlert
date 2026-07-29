@@ -31,3 +31,6 @@ if __name__ == '__main__':
     print(u_object['url'])
     u_sub1 = getAtomFeedFromURL(u_object['url'])
     print(json.dumps(u_sub1, ensure_ascii=False, indent=2))
+    for u_sub1_object in u_sub1['entries']:
+      print(u_sub1_object['link'])
+
