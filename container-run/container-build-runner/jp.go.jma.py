@@ -29,6 +29,5 @@ if __name__ == '__main__':
   ]
   for u_object in feed_urls:
     print(u_object['url'])
-    print(json.dumps(
-        getAtomFeedFromURL(u_object['url']), ensure_ascii=False, indent=2
-    ))
+    u_sub1 = getAtomFeedFromURL(u_object['url'])
+    print(json.dumps(u_sub1, ensure_ascii=False, indent=2))
