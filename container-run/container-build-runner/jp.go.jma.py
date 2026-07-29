@@ -33,4 +33,5 @@ if __name__ == '__main__':
     print(json.dumps(u_sub1, ensure_ascii=False, indent=2))
     for u_sub1_object in u_sub1['entries']:
       print(u_sub1_object['link'])
-
+      u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
+      print(json.dumps(u_sub2, ensure_ascii=False, indent=2))
