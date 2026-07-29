@@ -1,17 +1,22 @@
 import feedparser
 import json
 
-def getAtomFeedFromURL(url=''):
+def getAtomFeedFromURL(url='', isSummary=False):
   feed_data = feedparser.parse(url)
-  # シリアライズ可能なシンプルな辞書構造に変換する
-  parsed_entries = []
-  for entry in feed_data.entries:
-    parsed_entries.append({
-      'title': getattr(entry, 'title', None),
-      'link': getattr(entry, 'link', None),
-      'published': getattr(entry, 'published', getattr(entry, 'updated', None)),
-      'summary': getattr(entry, 'summary', None),
-    })
+
+  if isSummary:
+    # シリアライズ可能なシンプルな辞書構造に変換する
+    parsed_entries = []
+    for entry in feed_data.entries:
+      parsed_entries.append({
+        'title': getattr(entry, 'title', None),
+        'link': getattr(entry, 'link', None),
+        'published': getattr(entry, 'published', getattr(entry, 'updated', None)),
+        'summary': getattr(entry, 'summary', None),
+      })
+  else:
+    print(feed_data)
+    return None
 
   feed_summary = {
     'feed_title': feed_data.feed.get('title', None),
@@ -30,7 +35,8 @@ if __name__ == '__main__':
     print(u_object['url'])
     u_sub1 = getAtomFeedFromURL(u_object['url'])
     print(json.dumps(u_sub1, ensure_ascii=False, indent=2))
-    for u_sub1_object in u_sub1['entries']:
-      print(u_sub1_object['link'])
-      u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
-      print(json.dumps(u_sub2, ensure_ascii=False, indent=2))
+    if not u_sub1 is None and not u_sub1.get('url', None) is None:
+        for u_sub1_object in u_sub1['entries']:
+          print(u_sub1_object['link'])
+          u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
+          print(json.dumps(u_sub2, ensure_ascii=False, indent=2))
