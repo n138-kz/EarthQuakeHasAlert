@@ -1,31 +1,12 @@
 import feedparser
 import json
 
-def getAtomFeedFromURL(url='', isSummary=False):
+def getAtomFeedFromURL(url=''):
   feed_data = feedparser.parse(url)
+  if 'bozo_exception' in feed_data:
+    feed_data.pop('bozo_exception', None)
 
-  if isSummary:
-    # シリアライズ可能なシンプルな辞書構造に変換する
-    parsed_entries = []
-    for entry in feed_data.entries:
-      parsed_entries.append({
-        'title': getattr(entry, 'title', None),
-        'link': getattr(entry, 'link', None),
-        'published': getattr(entry, 'published', getattr(entry, 'updated', None)),
-        'summary': getattr(entry, 'summary', None),
-      })
-  else:
-    #print(feed_data)
-    return None
-
-  feed_summary = {
-    'feed_title': feed_data.feed.get('title', None),
-    'feed_subtitle': feed_data.feed.get('subtitle', None),
-    'entries': parsed_entries
-  }
-
-  json_data = json.dumps(feed_summary, ensure_ascii=False, indent=2)
-  return feed_summary
+  return feed_data
 
 if __name__ == '__main__':
   feed_urls = [
@@ -36,7 +17,7 @@ if __name__ == '__main__':
   }
   for u_object in feed_urls:
     print({'url': u_object['url']})
-    u_sub1 = getAtomFeedFromURL(u_object['url'], True)
+    u_sub1 = getAtomFeedFromURL(u_object['url'])
     with open(output_files.get('sub1','output.log'), mode='a') as f:
       json.dump(u_sub1, f, ensure_ascii=False, indent=2, sort_keys=True)
     if not u_sub1 is None and not u_sub1.get('url', None) is None:
