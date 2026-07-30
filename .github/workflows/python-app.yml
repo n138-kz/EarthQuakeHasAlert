@@ -30,6 +30,7 @@ jobs:
         path: output.log
 
     - name: "docker run: jp.go.jma.py"
+      working-directory: ./container-run/container-build-runner
       run: docker run --rm -t -w /mnt -v $(pwd):/mnt dev-python python3.14 /mnt/jp.go.jma.py
     - name: ls
       if: always()
