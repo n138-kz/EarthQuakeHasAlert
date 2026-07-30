@@ -32,4 +32,5 @@ jobs:
     - name: "docker run: jp.go.jma.py"
       run: docker run --rm -t -w /mnt -v $(pwd):/mnt dev-python python3.14 /mnt/jp.go.jma.py
     - name: ls
+      if: always()
       run: tree
