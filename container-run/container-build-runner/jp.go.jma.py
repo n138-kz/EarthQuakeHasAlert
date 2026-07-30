@@ -10,10 +10,10 @@ def getAtomFeedFromURL(url=''):
   feed_data = feedparser.parse(feed_rawdata.text)
   if 'feed' not in feed_data:
     feed_data['feed'] = {}
+  feed_data.feed['href'] = url
   feed_data.feed['raw'] = {}
   feed_data.feed.raw['text'] = feed_rawdata.text
   feed_data.feed.raw['length'] = len(feed_rawdata.text)
-  feed_data.feed['href'] = url
   if 'bozo_exception' in feed_data:
     feed_data.pop('bozo_exception', None)
 
