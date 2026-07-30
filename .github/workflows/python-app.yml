@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: docker build
       working-directory: ./container-run/container-build-runner
       run: docker build --tag dev-python .
