@@ -46,6 +46,7 @@ def getAtomFeedFromURL(url=''):
   feed_data.feed['raw'] = {}
   feed_data.feed.raw['text'] = feed_rawdata.text
   feed_data.feed.raw['length'] = len(feed_rawdata.text)
+
   if 'bozo_exception' in feed_data:
     feed_data.pop('bozo_exception', None)
 
@@ -65,9 +66,11 @@ if __name__ == '__main__':
     'sub2': 'output_sub2.json',
   }
   for u_object in feed_urls:
+    print({'url': [u_object['url']]})
     u_sub1 = getAtomFeedFromURL(u_object['url'])
     if (not u_sub1 is None) and (not u_sub1.get('entries', None) is None):
         for u_sub1_object in u_sub1['entries']:
+          print({'url': [u_object['url'], u_sub1_object['link']]})
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
           u_sub1_object['details'] = u_sub2
 
