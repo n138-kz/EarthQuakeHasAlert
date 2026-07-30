@@ -20,7 +20,7 @@ if __name__ == '__main__':
     u_sub1 = getAtomFeedFromURL(u_object['url'])
     with open(output_files.get('sub1','output.log'), mode='a') as f:
       json.dump(u_sub1, f, ensure_ascii=False, indent=2, sort_keys=True)
-    if not u_sub1 is None and not u_sub1.get('url', None) is None:
+    if not u_sub1 is None and not u_sub1.get('entries', None) is None:
         for u_sub1_object in u_sub1['entries']:
           #print(u_sub1_object['link'])
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
