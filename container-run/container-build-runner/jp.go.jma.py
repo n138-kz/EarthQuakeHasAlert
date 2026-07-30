@@ -76,13 +76,13 @@ if __name__ == '__main__':
           u_sub1_object['details'] = u_sub2
 
           # debug
-          with open('{stem}_{id}{suffix}'.format(
+          with open('{stem}_{id}_{hash}{suffix}'.format(
             stem = pathlib.Path(output_files.get('sub2','output.log')).stem,
             id = hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest(),
             suffix = pathlib.Path(output_files.get('sub2','output.log')).suffix
           ), mode='w') as f:
             json.dump(u_sub2, f, ensure_ascii=False, indent=2, sort_keys=True)
-    with open('{stem}_{id}{suffix}'.format(
+    with open('{stem}_{id}_{hash}{suffix}'.format(
       stem = pathlib.Path(output_files.get('sub1','output.log')).stem,
       id = hashlib.md5(u_object['url'].encode("utf-8")).hexdigest(),
       suffix = pathlib.Path(output_files.get('sub1','output.log')).suffix
