@@ -28,3 +28,8 @@ jobs:
       with:
         name: debug-log
         path: output.log
+
+    - name: "docker run: jp.go.jma.py"
+      run: docker run --rm -t -w /mnt -v $(pwd):/mnt dev-python python3.14 /mnt/jp.go.jma.py
+    - name: ls
+      run: tree
