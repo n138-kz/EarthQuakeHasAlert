@@ -26,4 +26,4 @@ if __name__ == '__main__':
           print({'url': u_sub1_object['link']})
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
           with open(output_files.get('sub2','output.log'), mode='a') as f:
-            json.dump(u_sub1, f, ensure_ascii=False, indent=2, sort_keys=True)
+            json.dump(u_sub2, f, ensure_ascii=False, indent=2, sort_keys=True)
