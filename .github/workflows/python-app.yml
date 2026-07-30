@@ -29,3 +29,8 @@ jobs:
       with:
         name: debug-log
         path: ./container-run/container-build-runner/*.json
+    - name: Upload log file
+      uses: actions/upload-artifact@v4
+      with:
+        name: output_sub1
+        path: ./container-run/container-build-runner/output_sub1.json
