@@ -23,11 +23,6 @@ if __name__ == '__main__':
     u_sub1 = getAtomFeedFromURL(u_object['url'])
     if not u_sub1 is None and not u_sub1.get('entries', None) is None:
         for u_sub1_object in u_sub1['entries']:
-          print(json.dumps({
-            'url': u_sub1_object['link'],
-            'id': hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest(),
-            'output': f'{pathlib.Path(output_files.get('sub2','output.log')).stem}_{hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest()}{pathlib.Path(output_files.get('sub2','output.log')).suffix}'
-          },ensure_ascii=False, indent=2, sort_keys=True))
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
           u_sub1_object['details'] = u_sub2
           with open(f'{pathlib.Path(output_files.get('sub2','output.log')).stem}_{hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest()}{pathlib.Path(output_files.get('sub2','output.log')).suffix}', mode='w') as f:
