@@ -32,6 +32,8 @@ if __name__ == '__main__':
         for u_sub1_object in u_sub1['entries']:
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
           u_sub1_object['details'] = u_sub2
+
+          # debug
           with open('{stem}_{id}_{suffix}'.format(
             stem = pathlib.Path(output_files.get('sub2','output.log')).stem,
             id = hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest(),
