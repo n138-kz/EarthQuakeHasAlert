@@ -71,6 +71,7 @@ if __name__ == '__main__':
     u_sub1 = getAtomFeedFromURL(u_object['url'])
     if (not u_sub1 is None) and (not u_sub1.get('entries', None) is None):
         for j, u_sub1_object in enumerate(u_sub1['entries']):
+          print("\033[?7l", end="")
           print(
             f"\r{json.dumps({
               'number': f'{i+1:03}/{len(feed_urls):03}_{j+1:03}/{len(u_sub1['entries']):03}',
@@ -82,6 +83,7 @@ if __name__ == '__main__':
             end="",
             flush=True
           )
+          print("\033[?7h", end="")
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
           u_sub1_object['details'] = u_sub2
 
