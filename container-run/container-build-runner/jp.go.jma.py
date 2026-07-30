@@ -31,10 +31,14 @@ if __name__ == '__main__':
   feed_urls = [
     {'url':'https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml', 'title':None},
   ]
+  output_files = {
+    'sub1': 'output_sub1.log',
+  }
   for u_object in feed_urls:
-    print(json.dumps(u_sub1, ensure_ascii=False, indent=2))
     print({'url': u_object['url']})
     u_sub1 = getAtomFeedFromURL(u_object['url'], True)
+    with open(output_files.get('sub1','output.log'), mode='a') as f:
+      json.dump(u_sub1, f, ensure_ascii=False, indent=2, sort_keys=True)
     if not u_sub1 is None and not u_sub1.get('url', None) is None:
         for u_sub1_object in u_sub1['entries']:
           #print(u_sub1_object['link'])
