@@ -21,8 +21,6 @@ if __name__ == '__main__':
   for u_object in feed_urls:
     print({'url': u_object['url']})
     u_sub1 = getAtomFeedFromURL(u_object['url'])
-    with open(output_files.get('sub1','output.log'), mode='w') as f:
-      json.dump(u_sub1, f, ensure_ascii=False, indent=2, sort_keys=True)
     if not u_sub1 is None and not u_sub1.get('entries', None) is None:
         for u_sub1_object in u_sub1['entries']:
           print(json.dumps({
@@ -34,3 +32,5 @@ if __name__ == '__main__':
           u_sub1_object['details'] = u_sub2
           with open(f'{pathlib.Path(output_files.get('sub2','output.log')).stem}_{hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest()}{pathlib.Path(output_files.get('sub2','output.log')).suffix}', mode='w') as f:
             json.dump(u_sub2, f, ensure_ascii=False, indent=2, sort_keys=True)
+    with open(output_files.get('sub1','output.log'), mode='w') as f:
+      json.dump(u_sub1, f, ensure_ascii=False, indent=2, sort_keys=True)
