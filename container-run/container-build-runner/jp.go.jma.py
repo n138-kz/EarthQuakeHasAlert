@@ -67,11 +67,21 @@ if __name__ == '__main__':
     'sub2': 'output_sub2.json',
   }
   for i, u_object in enumerate(feed_urls):
-    print({'index': i, 'url': [u_object['url']]})
+    print({'number': f'{i+1:03}/{len(feed_urls):03}', 'url': [u_object['url']]})
     u_sub1 = getAtomFeedFromURL(u_object['url'])
     if (not u_sub1 is None) and (not u_sub1.get('entries', None) is None):
         for j, u_sub1_object in enumerate(u_sub1['entries']):
-          print({'index': i, 'url': [u_object['url'], u_sub1_object['link']]})
+          print(
+            f"\r{json.dumps({
+              'number': f'{i+1:03}/{len(feed_urls):03}_{j+1:03}/{len(u_sub1['entries']):03}',
+              'url': [
+                u_object['url'],
+                u_sub1_object['link'],
+              ]
+            })}\033[0K",
+            end="",
+            flush=True
+          )
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
           u_sub1_object['details'] = u_sub2
 
