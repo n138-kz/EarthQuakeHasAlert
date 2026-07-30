@@ -37,6 +37,7 @@ jobs:
       run: tree
     - name: Upload log file
       uses: actions/upload-artifact@v4
+      working-directory: ./container-run/container-build-runner
       with:
         name: debug-log-2
         path: ./*.json
