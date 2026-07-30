@@ -15,7 +15,7 @@ def getAtomFeedFromURL(url='', isSummary=False):
         'summary': getattr(entry, 'summary', None),
       })
   else:
-    print(feed_data)
+    #print(feed_data)
     return None
 
   feed_summary = {
@@ -37,6 +37,6 @@ if __name__ == '__main__':
     print(json.dumps(u_sub1, ensure_ascii=False, indent=2))
     if not u_sub1 is None and not u_sub1.get('url', None) is None:
         for u_sub1_object in u_sub1['entries']:
-          print(u_sub1_object['link'])
+          #print(u_sub1_object['link'])
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
-          print(json.dumps(u_sub2, ensure_ascii=False, indent=2))
+          #print(json.dumps(u_sub2, ensure_ascii=False, indent=2))
