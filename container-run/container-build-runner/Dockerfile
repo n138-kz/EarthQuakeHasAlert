@@ -4,4 +4,4 @@ RUN pip install -r /tmp/requirement.txt
 RUN rm -f /tmp/requirement.txt
 
 COPY *.py /media
-CMD bash
+CMD ["bash"]
