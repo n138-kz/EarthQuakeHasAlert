@@ -26,6 +26,8 @@ jobs:
       run: docker run --rm -t -w /mnt -v $(pwd):/mnt dev-python python3.14 /mnt/jp.go.jma.py
     - name: Upload log file
       uses: actions/upload-artifact@v4
+      env:
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       with:
         name: debug-log
         path: ./container-run/container-build-runner/*.json
