@@ -13,8 +13,8 @@ if __name__ == '__main__':
     {'url':'https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml', 'title':None},
   ]
   output_files = {
-    'sub1': 'output_sub1.log',
-    'sub2': 'output_sub2.log',
+    'sub1': 'output_sub1.json',
+    'sub2': 'output_sub2.json',
   }
   for u_object in feed_urls:
     print({'url': u_object['url']})
