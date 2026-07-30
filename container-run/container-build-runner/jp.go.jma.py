@@ -31,5 +31,6 @@ if __name__ == '__main__':
             'output': f'{pathlib.Path(output_files.get('sub2','output.log')).stem}_{hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest()}{pathlib.Path(output_files.get('sub2','output.log')).suffix}'
           },ensure_ascii=False, indent=2, sort_keys=True))
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
+          u_sub1_object['details'] = u_sub2
           with open(f'{pathlib.Path(output_files.get('sub2','output.log')).stem}_{hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest()}{pathlib.Path(output_files.get('sub2','output.log')).suffix}', mode='w') as f:
             json.dump(u_sub2, f, ensure_ascii=False, indent=2, sort_keys=True)
