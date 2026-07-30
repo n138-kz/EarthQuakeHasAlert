@@ -28,7 +28,7 @@ if __name__ == '__main__':
   }
   for u_object in feed_urls:
     u_sub1 = getAtomFeedFromURL(u_object['url'])
-    if not u_sub1 is None and not u_sub1.get('entries', None) is None:
+    if (not u_sub1 is None) and (not u_sub1.get('entries', None) is None):
         for u_sub1_object in u_sub1['entries']:
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
           u_sub1_object['details'] = u_sub2
