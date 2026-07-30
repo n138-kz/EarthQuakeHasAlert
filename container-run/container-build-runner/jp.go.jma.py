@@ -20,7 +20,7 @@ def getAtomFeedFromURL(url=''):
 
 if __name__ == '__main__':
   feed_urls = [
-    {'url':'https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml', 'title':None},
+    {'url':'https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml', 'title':'気象庁防災情報XMLフォーマット形式電文の公開（PULL型）/Atomフィード○高頻度フィード/地震火山'},
   ]
   output_files = {
     'sub1': 'output_sub1.json',
