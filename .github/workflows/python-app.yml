@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v7
       with:
         name: output_sub1
-        path: ./container-run/container-build-runner/output_sub1.json
+        path: ./container-run/container-build-runner/output_sub1*.json
