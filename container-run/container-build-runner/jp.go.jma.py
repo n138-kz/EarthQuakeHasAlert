@@ -14,6 +14,7 @@ if __name__ == '__main__':
   ]
   output_files = {
     'sub1': 'output_sub1.log',
+    'sub2': 'output_sub2.log',
   }
   for u_object in feed_urls:
     print({'url': u_object['url']})
@@ -24,4 +25,5 @@ if __name__ == '__main__':
         for u_sub1_object in u_sub1['entries']:
           print({'url': u_sub1_object['link']})
           u_sub2 = getAtomFeedFromURL(u_sub1_object['link'])
-          #print(json.dumps(u_sub2, ensure_ascii=False, indent=2))
+          with open(output_files.get('sub2','output.log'), mode='a') as f:
+            json.dump(u_sub1, f, ensure_ascii=False, indent=2, sort_keys=True)
