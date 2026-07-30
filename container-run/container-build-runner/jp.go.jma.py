@@ -6,6 +6,7 @@ import requests
 
 def getAtomFeedFromURL(url=''):
   feed_rawdata = requests.get(url)
+  feed_rawdata.encoding = feed_rawdata.apparent_encoding
   feed_data = feedparser.parse(feed_rawdata.text)
   if 'feed' not in feed_data:
     feed_data['feed'] = {}
