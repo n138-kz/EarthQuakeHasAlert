@@ -3,6 +3,38 @@ import json
 import hashlib
 import pathlib
 import requests
+import xml.etree.ElementTree as ET
+
+def parse_jma_xml_detail(xml_text):
+  try:
+    root = ET.fromstring(xml_text)
+  except Exception:
+    return []
+
+  parsed_time_series = []
+
+  # タグ名から名前空間 {http://...} を無視して 'Area' のみを探す
+  for elem in root.iter():
+    # タグの末尾が 'Area' で終わる要素を探す
+    if elem.tag.endswith('Area'):
+      name = None
+      code = None
+
+      # Area の子要素を走査
+      for child in elem:
+        if child.tag.endswith('Name'):
+          name = child.text
+        elif child.tag.endswith('Code'):
+          code = child.text
+
+      # Name または Code が取れていればリストに追加
+      if name or code:
+        parsed_time_series.append({
+          'area_name': name,
+          'area_code': code
+        })
+
+  return parsed_time_series
 
 def getAtomFeedFromURL(url=''):
   feed_rawdata = requests.get(url)
@@ -16,6 +48,11 @@ def getAtomFeedFromURL(url=''):
   feed_data.feed.raw['length'] = len(feed_rawdata.text)
   if 'bozo_exception' in feed_data:
     feed_data.pop('bozo_exception', None)
+
+  try:
+    feed_data['parsed_xml_areas'] = parse_jma_xml_detail(feed_rawdata.text)
+  except Exception as e:
+    feed_data['parsed_xml_areas'] = []
 
   return feed_data
 
