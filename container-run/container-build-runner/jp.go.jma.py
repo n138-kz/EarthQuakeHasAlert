@@ -78,13 +78,15 @@ if __name__ == '__main__':
           # debug
           with open('{stem}_{id}_{hash}{suffix}'.format(
             stem = pathlib.Path(output_files.get('sub2','output.log')).stem,
-            id = hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest(),
+            id = f'{i+1:03}_{j+1:03}',
+            hash = hashlib.md5(u_sub1_object['link'].encode("utf-8")).hexdigest(),
             suffix = pathlib.Path(output_files.get('sub2','output.log')).suffix
           ), mode='w') as f:
             json.dump(u_sub2, f, ensure_ascii=False, indent=2, sort_keys=True)
     with open('{stem}_{id}_{hash}{suffix}'.format(
       stem = pathlib.Path(output_files.get('sub1','output.log')).stem,
-      id = hashlib.md5(u_object['url'].encode("utf-8")).hexdigest(),
+      id = f'{i+1:03}',
+      hash = hashlib.md5(u_object['url'].encode("utf-8")).hexdigest(),
       suffix = pathlib.Path(output_files.get('sub1','output.log')).suffix
     ), mode='w') as f:
       json.dump(u_sub1, f, ensure_ascii=False, indent=2, sort_keys=True)
